@@ -14,7 +14,7 @@
 [Database ERD](https://drive.google.com/file/d/1GzuWrU59UL9d-xduMUfwgh8nh_hFXmqM/view?usp=sharing)
 [Project Files Diagram](https://www.figma.com/file/cAAYUcOztKl7CTCsOTNu4M/WorkFlow?node-id=0%3A1&t=7CGCIDY5e2h2C0er-1)
 [Application Features Flowchart](https://www.figma.com/file/WXMUdelsT9uIYjZVuviWKu/Application-Flow-Chart?node-id=0%3A1&t=i02rS2ru0BoSU0oY-1)
-[Wireframe](https://www.figma.com/file/cAAYUcOztKl7CTCsOTNu4M/WorkFlow?node-id=6%3A335&t=7CGCIDY5e2h2C0er-1)
+[Wireframe](https://www.figma.com/file/BPcbTFNfxIVSOCWsvg5rtz/Midterm-Web-Mockup?node-id=0%3A1&t=W7O4eGeeO5DaWQuX-1)
 
 ## Project Description
 
