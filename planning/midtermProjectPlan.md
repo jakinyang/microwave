@@ -14,7 +14,7 @@
 [Database ERD](https://drive.google.com/file/d/1GzuWrU59UL9d-xduMUfwgh8nh_hFXmqM/view?usp=sharing)
 [Project Files Diagram](https://www.figma.com/file/cAAYUcOztKl7CTCsOTNu4M/WorkFlow?node-id=0%3A1&t=7CGCIDY5e2h2C0er-1)
 [Application Features Flowchart](https://www.figma.com/file/WXMUdelsT9uIYjZVuviWKu/Application-Flow-Chart?node-id=0%3A1&t=i02rS2ru0BoSU0oY-1)
-[Wireframe](link)
+[Wireframe](https://www.figma.com/file/cAAYUcOztKl7CTCsOTNu4M/WorkFlow?node-id=6%3A335&t=7CGCIDY5e2h2C0er-1)
 
 ## Project Description
 
@@ -39,40 +39,40 @@ For inspiration check out how Ritual works, but keep in mind that's implemented 
 RESTAURANT
 
 - MENU
-    - As ****************************the restaurant**************************** I want **********to *ADD* my menu offerings to the app** because I ****************want to sell them to customers (make money)****************
-    - As ****************************the restaurant**************************** I want **********to update (*EDIT)* my menu offerings to the app** because I ****************want to keep my menu up to date (save time)****************
-    - As ****************************the restaurant**************************** I want **********the menu offerings to automatically keep stock (EDIT)**********  because ****************I don’t want to manually update things (make money/save time)****************
-    - As ****************************the restaurant**************************** I want **********the menu offerings to automatically remove (DELETE) out of stock things**********  because ****************I don’t want to manually update things (make money/save time)****************
+    - As **the restaurant** I want **to *ADD* my menu offerings to the app** because I **want to sell them to customers (make money)**
+    - As **the restaurant** I want **to update *(EDIT)* my menu offerings to the app** because I **want to keep my menu up to date (save time)**
+    - As **the restaurant** I want **the menu offerings to automatically keep stock (EDIT)**  because **I don’t want to manually update things (make money/save time)**
+    - As **the restaurant** I want **the menu offerings to automatically remove (DELETE) out of stock things**  because **I don’t want to manually update things (make money/save time)**
 - ORDERS
-    - As ****************************the restaurant**************************** I want **************to update the app (EDIT) with the ready time************** because  ****************I want to the customer to not cancel the order (make money)****************
-    - As ****************************the restaurant**************************** I want **************to update the website (EDIT) when the product is ready************** because  ****************I want to the customer to not cancel the order (make money)****************
+    - As **the restaurant** I want **to update the app (EDIT) with the ready time** because  **I want to the customer to not cancel the order (make money)**
+    - As **the restaurant** I want **to update the website (EDIT) when the product is ready** because  **I want to the customer to not cancel the order (make money)**
 - NOTIFICATIONS
-    - As ****************************the restaurant**************************** I want **************to be notified (ADD/READ) when someone buys something************** because ****************because I want to get the product ready to deliver (save time)****************
-    - As ****************************the restaurant**************************** I want **************to notify the customer (ADD) when the product is ready************** because  ****************I want the customer to not cancel the order (make money)****************
+    - As **the restaurant** I want **to be notified (ADD/READ) when someone buys something** because **because I want to get the product ready to deliver (save time)**
+    - As **the restaurant** I want **to notify the customer (ADD) when the product is ready** because  **I want the customer to not cancel the order (make money)**
 - STRETCH
-    - As ****************************the restaurant**************************** I want **************to be notified (ADD/READ) when someone receives what they ordered************** because ****************I want to know when a sale has succeeded (save time)****************
-    - As ****************************the restaurant**************************** I want to ********send a prompt for a review (ADD) if the customer hasn’t already reviewed us******** because ********************************************************************I want to increase my customer base (make money)********************************************************************
-    - As ****************************the restaurant**************************** I want to ********send a prompt for a promotion/coupon (ADD)********  because ********************************************************************I want to increase my customer base (make money)********************************************************************
+    - As **the restaurant** I want **to be notified (ADD/READ) when someone receives what they ordered** because **I want to know when a sale has succeeded (save time)**
+    - As **the restaurant** I want to **send a prompt for a review (ADD) if the customer hasn’t already reviewed us** because **I want to increase my customer base (make money)**
+    - As **the restaurant** I want to **send a prompt for a promotion/coupon (ADD)**  because **I want to increase my customer base (make money)**
 
 CUSTOMER
 
 - MENU
-    - As ****************************the customer**************************** I want **********to see (BROWSE) the menu offerings of the restaurants********** because I ****************want to see if there are discounted products I want (save money/save time)****************
-    - As ****************************the customer**************************** I want **********to see (READ) an item of the restaurants********** because I ****************want to see the product description and know the product’s details (save time)****************
-    - As ************************the customer************************ I want **********************************************************************the menu and UI (BROWSE) to be as intuitive as possible********************************************************************** because ******************************************************************I don’t want to have to learn how to use an app to order food (save time)******************************************************************
+    - As **the customer** I want **to see (BROWSE) the menu offerings of the restaurants** because I **want to see if there are discounted products I want (save money/save time)**
+    - As **the customer** I want **to see (READ) an item of the restaurants** because I **want to see the product description and know the product’s details (save time)**
+    - As the customer I want the menu and UI (BROWSE) to be as intuitive as possible because **I don’t want to have to learn how to use an app to order food (save time)**
     - Stretch
         - Tags or Filters for the menu
             - As the customer I want to see (READ) items that have or are exclusive of the tags that I specify because I want to not spend time looking through things that are not a part of what I want (save time)
 - ORDER
-    - As ****************************the customer**************************** I want **********to order (ADD) an item of the restaurants********** because ****************I want to buy products I want at discounted prices (save money)****************
+    - As **the customer** I want **to order (ADD) an item of the restaurants** because **I want to buy products I want at discounted prices (save money)**
     - BASKET
-        - As ****************************the customer**************************** I want **********to add (ADD) an item I want to a list of things I want********** because ****************I don’t want to make multiple transactions if I want to buy multiple things (save time/save money)****************
-        - As ****************************the customer**************************** I want **********to see (READ) the items in my basket********** because ****************I want to know what I’m ordering (save time)****************
-        - As ****************************the customer**************************** I want **********to remove (DELETE) items in my basket********** because ****************I want only order the things I want if I change my mind (save money)****************
-        - As ****************************the customer**************************** I want **********to order (ADD) the items of the restaurants********** because **I** ****************want to buy all the products I want all at once and receive them in one order (save time/save money)****************
+        - As **the customer** I want **to add (ADD) an item I want to a list of things I want** because **I don’t want to make multiple transactions if I want to buy multiple things (save time/save money)**
+        - As **the customer** I want **to see (READ) the items in my basket** because **I want to know what I’m ordering (save time)**
+        - As **the customer** I want **to remove (DELETE) items in my basket** because **I want only order the things I want if I change my mind (save money)**
+        - As **the customer** I want **to order (ADD) the items of the restaurants** because **I** **want to buy all the products I want all at once and receive them in one order (save time/save money)**
 - NOTIFICATION
-    - As ****************************the customer**************************** I want **********to be notified when the order has been received/confirmed by the restaurant********** because **I** ****************know if something went wrong with the order and I’m waiting for nothing (save time)****************
-    - As ****************************the customer**************************** I want **********to be notified when the order has ready********** because **I** ****************know if when I will get my product or if something has gone wrong and I’m waiting for nothing (save time)****************
+    - As **the customer** I want **to be notified when the order has been received/confirmed by the restaurant** because **I** **know if something went wrong with the order and I’m waiting for nothing (save time)**
+    - As **the customer** I want **to be notified when the order has ready** because **I** **know if when I will get my product or if something has gone wrong and I’m waiting for nothing (save time)**
 
 ### Features
 
