@@ -41,8 +41,8 @@ header {
 }
 
 .options {
-  padding-left: 25%;
-  padding-bottom: 2rem;
+  // padding-left: 25%;
+  // padding-bottom: 2rem;
   .container {
     // margin-left: 100%;
   }
@@ -57,6 +57,7 @@ header {
     &.selected {
       background: black;
       color: white;
+      margin-top: 2rem;
     }
   }
 }
@@ -69,6 +70,7 @@ header {
   .header {
     display: flex;
     .header-title {
+      margin-top: 2rem;
       h2 {
         align-items: center;
         font-size: 2rem;
@@ -95,6 +97,7 @@ header {
 
       .container-row {
         display: flex;
+        flex-direction: row;
       }
 
       .text {
