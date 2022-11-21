@@ -12,7 +12,6 @@ const router  = express.Router();
 const userQueries = require('../db/queries/users');
 
 
-// id = user_id = owner_id
 router.get('/restaurants/order/:id', (req, res) => {
 
   // do something
@@ -20,13 +19,13 @@ router.get('/restaurants/order/:id', (req, res) => {
   });
   
     
-  router.post('/restaurant/order/:id', (req, res) => {
+router.post('/restaurant/order/:id', (req, res) => {
   
   // do something
   
   });
   
-  
+
 router.get('/restaurant/menu/:id', (req, res) => {
 
   // do something
@@ -34,7 +33,7 @@ router.get('/restaurant/menu/:id', (req, res) => {
   });
   
     
-  router.post('/restaurant/menu/:id', (req, res) => {
+router.post('/restaurant/menu/:id', (req, res) => {
   
   // do something
   

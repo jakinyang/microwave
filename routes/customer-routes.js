@@ -18,7 +18,7 @@ router.get('/customers/menu/:id', (req, res) => {
   
   });
       
-  router.post('/customers/menu/:id', (req, res) => {
+router.post('/customers/menu/:id', (req, res) => {
   
   // do something
   
@@ -31,7 +31,7 @@ router.get('/customers/basket/:id', (req, res) => {
     
   });
         
-  router.post('/customers/basket/', (req, res) => {
+router.post('/customers/basket/', (req, res) => {
     
   // do something
     
