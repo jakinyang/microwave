@@ -8,6 +8,8 @@
 const express = require('express');
 const router  = express.Router();
 
+
+//Change to /login 
 router.get('/', (req, res) => {
   res.render('users');
 }); 
