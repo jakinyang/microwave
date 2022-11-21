@@ -1,6 +1,22 @@
 // See: https://sass-lang.com/
 
-body,
-html {
+// body,
+// html {
+//   margin: 0;
+// }
+:root {
+  --color-green: #06c167;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
   margin: 0;
+  font-family: sans-serif;
+}
+.container {
+  width: calc(100% - 120px);
+  margin: auto;
 }
