@@ -6,5 +6,5 @@ CREATE TABLE users (
   name VARCHAR(50) NOT NULL,
   restaurant BOOLEAN DEFAULT false NOT NULL,
   phone VARCHAR(50) NOT NULL,
-  restaurant_id INTEGER REFERENCES restaurant(id);
+  -- restaurant_id INTEGER REFERENCES restaurant(id);
 );
