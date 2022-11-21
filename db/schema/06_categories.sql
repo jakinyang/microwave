@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS catagories CASCADE
+
+CREATE TABLE catagories (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCAHR(50) NOT NULL,
+  description VARCAHR(510)
+);
