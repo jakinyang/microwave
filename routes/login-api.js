@@ -10,19 +10,11 @@ const router  = express.Router();
 const { getCustomers, getOwners } = require('../db/queries/loginQueries');
 
 router.post('/owners', (req, res) => {
-  getOwners()
-    .then(owners => {
-    })
-    .catch(err => {
-    });
+  res.render('restaurant_menus');
 });
 
 router.post('/customers', (req, res) => {
-  getCustomers()
-    .then(customers => {
-    })
-    .catch(err => {
-    });
+  res.render('customer_menus');
 });
 
 
