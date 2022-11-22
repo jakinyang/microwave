@@ -1,5 +1,5 @@
 // Client facing scripts here
-const loginRestaurantOwner = () => {
+/* const loginRestaurantOwner = () => {
   $.ajax({
     method: 'GET',
     url: '/api/login/owners'
@@ -27,7 +27,7 @@ $(() => {
 
   $('#customer_login').on('click', loginCustomer)
 
-});
+}); */
 
 
 

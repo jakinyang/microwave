@@ -19,6 +19,4 @@ router.get('/customers', (req, res) => {
   res.render('customer_menus');
 });
 
-
-
 module.exports = router;
