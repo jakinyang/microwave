@@ -28,25 +28,52 @@ app.use(express.static('public'));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const userApiRoutes = require('./routes/users-api');
-const widgetApiRoutes = require('./routes/widgets-api');
-const usersRoutes = require('./routes/users');
+
+const loginApiRoutes = require('./routes/login-api');
+const loginRoutes = require('./routes/login');
+
+const customerRoutes = require('./routes/customer-routes');
+const customerApiRoutes = require('./routes/customer-api');
+
+const restaurantRoutes = require('./routes/restaurant-routes');
+const restaurantApiRoutes = require('./routes/restaurant-api');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
-app.use('/api/users', userApiRoutes);
-app.use('/api/widgets', widgetApiRoutes);
-app.use('/users', usersRoutes);
-// Note: mount other resources here, using the same pattern above
+
+// Routes for login and login API
+app.use('/login', loginRoutes);
+app.use('/api/login', loginApiRoutes);
+
+// Routes for customers and customer Api
+app.use('/customers', customerRoutes);
+app.use('/api/customers', customerApiRoutes);
+
+// Routes for restaurants and restaurant Api
+app.use('/restaurants', restaurantRoutes);
+app.use('/api/restaurants', restaurantApiRoutes);
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
+
+// this would be home screen: login as restaurant/customer
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('login');
 });
+
+app.get('/customer_menus', (req, res) => {
+  res.render('customer_menus');
+})
+
+app.get('/customer_orders', (req, res) => {
+  res.render('customer_orders')
+})
+app.get('/restaurant_menus', (req, res) => {
+  res.render('restaurant_menus');
+})
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

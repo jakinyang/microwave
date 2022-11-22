@@ -1,0 +1,71 @@
+<header class="nav-fixed-top">
+
+  <!--Container-->
+
+  <div class="container">
+    <div class="logo">
+      <h1>Micro<span><b>wave</b></span></h1>
+      <i data-feather="user-check">User</i>
+      <span><b>lorem</b></span>
+    </div>
+    <!--User-->
+
+
+    <!--Current Details-->
+    <div class="currentDetails">
+      <div class="header-option">
+        <button type="button" type="button" class="btn btn-outline-primary">
+          <i data-feather="bell">Home</i>
+          <span>Customer Order</span>
+        </button>
+      </div>
+      <div class="header-option">
+        <!--Add Items Button-->
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+          aria-controls="offcanvasRight"> <i data-feather="briefcase">basket</i>
+          <span>Add Items</span></button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">Item N</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+
+          <!--Add Item N-->
+          <div class="flex-shrink-5"></div>
+          <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Item Name</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
+              <small id="emailHelp" class="form-text text-muted">Your stock name</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Image URL</label>
+              <input type="url" class="form-control" id="exampleInputPassword1" placeholder="url">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputPassword1">Description</label>
+              <input type="text" class="form-control" id="exampleInputPassword1" placeholder="description">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Price: $</label>
+              <input type="number" class="form-control" id="exampleInputPassword1" placeholder="price">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputPassword1">Stock Quantity</label>
+              <input type="number" class="form-control" id="exampleInputPassword1" placeholder="stock">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          </div>
+          <!--Add Item N End-->
+          <div class="offcanvas-body">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
