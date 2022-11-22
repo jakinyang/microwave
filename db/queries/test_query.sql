@@ -1,12 +1,20 @@
-SELECT menu.id, customer_id, menu.name, description, price, type
-FROM menu_items menu
-JOIN users
-ON customer_id = users.id
-WHERE users.id = 2;
+SELECT id, name, address
+FROM customers;
 
-SELECT users.name AS owner_name, menu.name, COUNT(menu.*) AS item_count
-FROM menu_items menu
-JOIN users
-ON menu.customer_id = users.id
-GROUP BY users.name, menu.customer_id, menu.name
-ORDER BY users.name;
+SELECT id ,name, email
+FROM restaurant_owners;
+
+SELECT * FROM categories;
+
+SELECT id, restaurant_owner_id, name, price, stock
+FROM menu_items;
+
+SELECT mi.name
+FROM menu_items AS mi
+JOIN menu_item_baskets AS mib
+ON mib.menu_item_id = mi.id
+JOIN baskets
+ON baskets.id = mib.basket_id
+JOIN customers
+ON customers.id = baskets.customer_id
+WHERE customers.id = 4;
