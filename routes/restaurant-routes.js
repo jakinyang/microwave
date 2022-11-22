@@ -9,7 +9,7 @@ Notes: id = user_id = owner_id
 
 const express = require('express');
 const router  = express.Router();
-const { somefunction } = require('../db/queries/restaurantQueries');
+// const { somefunction } = require('../db/queries/restaurantQueries');
 
 router.get('/menus', (req, res) => {
   res.render('restaurant_menus');
