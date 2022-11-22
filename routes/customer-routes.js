@@ -10,31 +10,15 @@ Notes:
 
 const express = require('express');
 const router  = express.Router();
-const userQueries = require('../db/queries/users');
+const { getMenuItems } = require('../db/queries/customerQueries');
 
-router.get('/customers/menu/:id', (req, res) => {
 
-  // do something
-  
-  });
-      
-router.post('/customers/menu/:id', (req, res) => {
-  
-  // do something
-  
-  });
-  
-    
-router.get('/customers/basket/:id', (req, res) => {
+router.get('/menus', (req, res) => {
+  res.render('customer_menus');
+})
 
-  // do something
-    
-  });
-        
-router.post('/customers/basket/', (req, res) => {
-    
-  // do something
-    
-  });
-  
-  module.exports = router;
+router.get('/orders', (req, res) => {
+  res.render('customer_orders');
+})
+
+module.exports = router;
