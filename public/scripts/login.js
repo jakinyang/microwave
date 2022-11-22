@@ -1,6 +1,7 @@
 // Client facing scripts here
 $(() => {
-  $('#restaurant_login')
+  $('#restaurant_login').on('click', loginRestaurantOwner)
+  $('#customer_login').on('click', loginCustomer)
 });
 
 const loginRestaurantOwner = () => {
