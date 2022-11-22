@@ -10,18 +10,28 @@ Notes:
 
 const express = require('express');
 const router  = express.Router();
-const { getMenuItems } = require('../db/queries/customerQueries');
+const userQueries = require('../db/queries/users');
+
+router.get('/customers/menu/:id', (req, res) => {
+
+module.exports = router;
+=========
+  // do something
+
+  });
+
+  router.post('/customers/menu/:id', (req, res) => {
+
+  // do something
+
+  });
 
 
-router.get('/menus', (req, res) => {
-  res.render('customer_menus');
-})
+router.get('/customers/basket/:id', (req, res) => {
 
-router.get('/orders', (req, res) => {
-  res.render('customer_orders');
-})
+  // do something
 
-<<<<<<< HEAD
+
   });
 
   router.post('/customers/basket/', (req, res) => {
@@ -31,6 +41,4 @@ router.get('/orders', (req, res) => {
   });
 
   module.exports = router;
-=======
-module.exports = router;
->>>>>>> 2c64293b680176d08d09e9c01e64823231c31344
+>>>>>>>>> Temporary merge branch 2
