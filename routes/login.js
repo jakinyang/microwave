@@ -8,14 +8,13 @@
 const express = require('express');
 const router  = express.Router();
 
-<<<<<<<< HEAD:routes/menu.js
+
 router.get('/', (req, res) => {
-  res.render('menu');
-========
-//Change to /login
+  res.render('login');
+});
+
 router.get('/login/', (req, res) => {
   res.render('login');
->>>>>>>> russel/routes:routes/login.js
 });
 
 module.exports = router;
