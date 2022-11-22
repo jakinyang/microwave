@@ -52,8 +52,16 @@ app.use('/users', restaurantRoutes);
 
 // this would be home screen: login as restaurant/customer
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('login');
 });
+
+app.get('/customer_menus', (req, res) => {
+  res.render('customer_menus');
+})
+
+app.get('/customer_orders', (req, res) => {
+  res.render('customer_orders')
+})
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
