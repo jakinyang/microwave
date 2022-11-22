@@ -19,8 +19,9 @@
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
-  <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/public/styles/main.css" />
+  <link rel="stylesheet" href="/public/styles/layout.css" />
+  <link rel="stylesheet" href="/public/styles/orderpage.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
@@ -28,14 +29,8 @@
 
 <body>
   <!--Header-->
-  <header>
-    <%- include('partials/_header') %>
-
-  </header>
-
-
-  <!--Listing-->
-
+  <%- include('partials/_header') %>
+    <!--Listing-->
 
     <div class="order-title">
       <div class="card bg-dark text-white" style="height: 100px;">
@@ -43,18 +38,8 @@
       </div>
       <h2>Checkout Page</h2>
     </div>
+    <!--Item List-->
 
-
-    <div class="card" style="width: 18rem;">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-      </ul>
-    </div>
 
 </body>
 <!--Bootstrap-->
