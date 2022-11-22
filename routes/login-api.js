@@ -9,12 +9,12 @@ const express = require('express');
 const router  = express.Router();
 const { getCustomers, getOwners } = require('../db/queries/loginQueries');
 
-router.post('/owners', (req, res) => {
+router.get('/owners', (req, res) => {
   console.log('POST request to /api/login/owners');
   res.render('restaurant_menus');
 });
 
-router.post('/customers', (req, res) => {
+router.get('/customers', (req, res) => {
   console.log('POST request to /api/login/customers');
   res.render('customer_menus');
 });

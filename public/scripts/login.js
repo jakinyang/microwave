@@ -1,21 +1,23 @@
 // Client facing scripts here
 const loginRestaurantOwner = () => {
   $.ajax({
-    method: 'POST',
+    method: 'GET',
     url: '/api/login/owners'
   })
   .done((response) => {
     console.log('Post request completed to /owners');
+    console.log(response);
   })
 };
 
 const loginCustomer = () => {
   $.ajax({
-    method: 'POST',
+    method: 'GET',
     url: '/api/login/customers'
   })
   .done((response) => {
     console.log('Post request completed to /customers');
+    console.log(response);
   })
 };
 
