@@ -7,18 +7,33 @@
 
 const express = require('express');
 const router  = express.Router();
+<<<<<<<< HEAD:routes/menu-api.js
 const userQueries = require('../db/queries/menu_items');
 
 router.get('/', (req, res) => {
   userQueries.getMenuItems()
     .then(menu_items => {
       res.json({ menu_items });
+========
+const { getCustomers, getOwners } = require('../db/queries/loginQueries');
+
+router.post('/owners', (req, res) => {
+  getOwners()
+    .then(owners => {
+>>>>>>>> russel/routes:routes/login-api.js
     })
     .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
     });
 });
+
+router.post('/customers', (req, res) => {
+  getCustomers()
+    .then(customers => {
+    })
+    .catch(err => {
+    });
+});
+
+
 
 module.exports = router;
