@@ -15,3 +15,10 @@ $(() => {
     });
   });
 });
+
+const loginRestaurantOwner = () => {
+
+};
+
+// /api/login/owners
+// /api/login/customers
