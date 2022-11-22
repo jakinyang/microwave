@@ -1,24 +1,23 @@
 // Client facing scripts here
 $(() => {
-  $('#fetch-users').on('click', () => {
-    $.ajax({
-      method: 'GET',
-      url: '/api/users'
-    })
-    .done((response) => {
-      const $usersList = $('#users');
-      $usersList.empty();
-
-      for(const user of response.users) {
-        $(`<li class="user">`).text(user.name).appendTo($usersList);
-      }
-    });
-  });
+  $('#restaurant_login')
 });
 
 const loginRestaurantOwner = () => {
-
+  return $.ajax({
+    method: 'POST',
+    url: '/api/login/owners'
+  })
 };
+
+const loginCustomer = () => {
+  return $.ajax({
+    method: 'POST',
+    url: '/api/login/customers'
+  })
+};
+
+
 
 // /api/login/owners
 // /api/login/customers
