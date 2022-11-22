@@ -29,7 +29,6 @@ router.get('/customers/basket/:id', (req, res) => {
 
   // do something
 
-
   });
 
   router.post('/customers/basket/', (req, res) => {

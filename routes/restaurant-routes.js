@@ -9,36 +9,14 @@ Notes: id = user_id = owner_id
 
 const express = require('express');
 const router  = express.Router();
-const userQueries = require('../db/queries/users');
+// const { somefunction } = require('../db/queries/restaurantQueries');
 
+router.get('/menus', (req, res) => {
+  res.render('restaurant_menus');
+})
 
-// id = user_id = owner_id
-router.get('/restaurants/order/:id', (req, res) => {
+router.get('/orders', (req, res) => {
+  res.render('restaurant_orders');
+})
 
-  // do something
-  
-  });
-  
-    
-  router.post('/restaurant/order/:id', (req, res) => {
-  
-  // do something
-  
-  });
-  
-  
-router.get('/restaurant/menu/:id', (req, res) => {
-
-  // do something
-  
-  });
-  
-    
-  router.post('/restaurant/menu/:id', (req, res) => {
-  
-  // do something
-  
-  });
-    
-  
   module.exports = router;

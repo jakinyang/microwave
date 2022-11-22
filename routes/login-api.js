@@ -7,18 +7,24 @@
 
 const express = require('express');
 const router  = express.Router();
-const userQueries = require('../db/queries/users');
+const { getCustomers, getOwners } = require('../db/queries/loginQueries');
 
-router.get('/', (req, res) => {
-  userQueries.getUsers()
-    .then(users => {
-      res.json({ users });
+router.post('/owners', (req, res) => {
+  getOwners()
+    .then(owners => {
     })
     .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
     });
 });
+
+router.post('/customers', (req, res) => {
+  getCustomers()
+    .then(customers => {
+    })
+    .catch(err => {
+    });
+});
+
+
 
 module.exports = router;

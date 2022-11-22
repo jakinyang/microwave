@@ -8,10 +8,9 @@
 const express = require('express');
 const router  = express.Router();
 
-
-//Change to /login 
-router.get('/', (req, res) => {
-  res.render('users');
-}); 
+//Change to /login
+router.get('/login/', (req, res) => {
+  res.render('login');
+});
 
 module.exports = router;
