@@ -9,13 +9,13 @@ const express = require('express');
 const router  = express.Router();
 const db = require('../db/connection');
 
-router.get('/', (req, res) => {
-  const query = `SELECT * FROM widgets`;
+router.get('/menu', (req, res) => {
+  const query = `SELECT * FROM menu_items WHERE restaurant_owner_id = 2;`;
   console.log(query);
   db.query(query)
     .then(data => {
-      const widgets = data.rows;
-      res.json({ widgets });
+      const menu_items = data.rows;
+      res.json({ menu_items });
     })
     .catch(err => {
       res
