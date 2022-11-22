@@ -28,6 +28,8 @@ router.post('/customers', (req, res) => {
 
 
 module.exports = router;
+<<<<<<< HEAD
+=======
 /*
  * All routes for User Data are defined here
  * Since this file is loaded in server.js into api/users,
@@ -67,3 +69,4 @@ router.post('/customers', (req, res) => {
 
 
 module.exports = router;
+>>>>>>> 2c64293b680176d08d09e9c01e64823231c31344

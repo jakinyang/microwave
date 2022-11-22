@@ -21,4 +21,16 @@ router.get('/orders', (req, res) => {
   res.render('customer_orders');
 })
 
+<<<<<<< HEAD
+  });
+
+  router.post('/customers/basket/', (req, res) => {
+
+  // do something
+
+  });
+
+  module.exports = router;
+=======
 module.exports = router;
+>>>>>>> 2c64293b680176d08d09e9c01e64823231c31344
