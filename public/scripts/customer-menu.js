@@ -91,7 +91,7 @@ const basketCardCreator = function(itemObject) {
               <span class="stock-id">${itemObject.stock}</span>
             </div>
             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-              <h6 class="mb-0">$${itemObject.price}</h6>
+              <h6 class="mb-0">$${Number(itemObject.price / 100)}</h6>
             </div>
           </div>
           <hr class="my-4">
@@ -171,7 +171,7 @@ $(() => {
     updateMenuItemBasket(item)
     .then(res => {
       console.log('Response received from customer-api router for POST to menu/basket', res);
-      // listBasketItems();
+      listBasketItems();
     })
 
   })
