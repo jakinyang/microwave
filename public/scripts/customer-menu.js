@@ -1,5 +1,3 @@
-
-
 // needs edit to be cusotmer:
 const menuCardCreator = (dbObject) => {
   return `<div class="listing-grid-element">
@@ -33,6 +31,19 @@ const menuCardCreator = (dbObject) => {
             </div>
           </div>`
 };
+
+const itemInfoGrabber = function(event) {
+  const id = $(event.target).parents('.container-row').find("#menu-itm-id").text();
+  const restaurant_owner_id = $(event.target).parents('.container-row').find("#menu-itm-owner-id").text();
+  const name = $(event.target).parents('.container-row').find("h3.name").text();
+  const image_url = $(event.target).parents('.listing-grid-element').find("img").attr('src');
+  const description = $(event.target).parents('.container-row').find("#menu-itm-description").text();
+  const priceString = $(event.target).parents('.container-row').find(".price").text().substring(1);
+  const price = Number(priceString) * 100;
+  const stock = $(event.target).parents('.container-row').find(".stock").text();
+
+  return {id, restaurant_owner_id, name, image_url, description, price, stock}
+}
 
 const listMenuItems = () => {
   $.ajax({
@@ -96,7 +107,7 @@ $(() => {
   // Add Item Button Listener
   $('.listings-grid').on('click', '.add-btn', function(event) {
     console.log("Add button clicked!");
-
+    console.log(itemInfoGrabber(event));
 
   })
 })
