@@ -8,6 +8,7 @@
 const express = require('express');
 const router  = express.Router();
 const db = require('../db/connection');
+const { addMenuItem } = require('../db/queries/restuarantQueries');
 
 router.get('/menu', (req, res) => {
   const query = `SELECT * FROM menu_items WHERE restaurant_owner_id = 2;`;
@@ -26,7 +27,14 @@ router.get('/menu', (req, res) => {
 
 
 router.post('/menu', (req, res) => {
-  console.log('Post request received at /api/restaurants/menu');
-  console.log(req.body);
+  const newMenuObject = req.body;
+  addMenuItem(newMenuObject)
+  .then(res => {
+    console.log(res);
+  })
+  .catch(err => {
+    console.log(err)
+  });
+
 })
 module.exports = router;
