@@ -26,7 +26,7 @@ const menuCardCreator = (dbObject) => {
                       </button>
                     </div>
                     <div class="container add-container">
-                      <button class="options-btn selected">Add</button>
+                      <button class="options-btn selected add-btn">Add</button>
                     </div>
                 </div>
               </div>
@@ -47,7 +47,7 @@ const itemInfoGrabber = function(event) {
 }
 
 const basketInfoGrabber = function(event) {
-  const id = $(event.target).parents()
+  const id = $(event.target).parents('.row mb-4').find("menu-itm-id")
 
   return {id, restaurant_owner_id, name, image_url, description, price, stock};
 }
