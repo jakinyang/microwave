@@ -4,9 +4,11 @@ const router  = express.Router();
 const { getMenuItems } = require('../db/queries/customerQueries');
 
 // Browse
-router.get('/customers/menu', (req, res) => {
-  getMenuItems()
-    .then(menu_items => {
+router.get('/menu', (req, res) => {
+  const query = `SELECT * FROM menu_items WHERE restaurant_owner_id = 2;`;
+  db.query(query)
+    .then(data => {
+      const menu_items = data.rows;
       res.json({ menu_items });
     })
     .catch(err => {
