@@ -23,10 +23,27 @@ const deleteMenuItem = function(deleteId) {
 
 }
 
-const editMenuItem = function(deleteId) {
-  const queryParams = [deleteId];
+const editMenuItem = function(menuObj) {
+  const queryParams = [
+    2,
+    menuObj.editItemName,
+    menuObj.editUrl,
+    menuObj.editDescription,
+    menuObj.editPrice,
+    menuObj.editQuantity,
+    menuObj.editId
+  ];
   return db.query(
-    `DELETE FROM menu_items WHERE id = $1 RETURNING *;`, queryParams
+    `UPDATE menu_items
+    SET
+      restaurant_owner_id = $1,
+      name = $2,
+      image_url = $3,
+      description = $4,
+      price = $5,
+      stock = $6
+    WHERE id = $7
+    RETURNING *;`, queryParams
   )
   .then(res => {
     return res.rows;
@@ -68,5 +85,8 @@ const addMenuItem = function(menuObj) {
 
 
 module.exports = {
-  getOrders, addMenuItem, deleteMenuItem
+  getOrders,
+  addMenuItem,
+  deleteMenuItem,
+  editMenuItem
 }

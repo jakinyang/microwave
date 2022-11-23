@@ -8,7 +8,11 @@
 const express = require('express');
 const router  = express.Router();
 const db = require('../db/connection');
-const { addMenuItem, deleteMenuItem } = require('../db/queries/restuarantQueries');
+const {
+  addMenuItem,
+  deleteMenuItem,
+  editMenuItem
+} = require('../db/queries/restuarantQueries');
 
 router.get('/menu', (req, res) => {
   const query = `SELECT * FROM menu_items WHERE restaurant_owner_id = 2;`;
@@ -54,6 +58,15 @@ router.post('/menu/delete', (req, res) => {
 })
 
 router.post('/menu/edit', (req, res) => {
-
+  console.log('POST to /menu/edit request body: ', req.body);
+  const data = req.body;
+  editMenuItem(data)
+  .then(response => {
+    console.log(response);
+    res.send(response);
+  })
+  .catch(err => {
+    console.log(err)
+  });
 });
 module.exports = router;

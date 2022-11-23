@@ -65,6 +65,50 @@
           <div class="offcanvas-body">
           </div>
         </div>
+        <!-- Off Canvas Edit -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRightEdit" aria-labelledby="offcanvasRightLabel">
+          <div class="offcanvas-header" style="margin-bottom: 5rem;">
+            <!-- <h5 class="offcanvas-title" id="offcanvasRightLabel">Item N</h5> -->
+            <h2 class="form-title">Edit<span class =" label label-default"> Item</span></h2>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+
+          <!--Add Item N-->
+          <div class="d-flex justify-content-center">
+          <form id="editItemForm">
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <h4>Item Name</h4>
+              <input name="editItemName" type="text" class="form-control" placeholder="Enter Name">
+            </div>
+            <div class="form-group">
+              <h4>Image URL<h4>
+              <input name="editUrl" type="text" class="form-control" placeholder="url">
+            </div>
+
+            <div class="form-group">
+              <h4>Description</h4>
+              <input name="editDescription" type="text" class="form-control" placeholder="description">
+            </div>
+            <div class="form-group">
+              <h4>Price: $</h4>
+              <input name="editPrice" type="number" class="form-control"  placeholder="price">
+            </div>
+
+            <div class="form-group">
+              <h4>Stock Quantity</h4>
+              <input name="editQuantity" type="number" class="form-control" placeholder="stock">
+            </div>
+            <div class="form-group d-none">
+              <h4>item id</h4>
+              <input name="editId" type="number" class="form-control" placeholder="id">
+            </div>
+            <button type="submit" class="btn btn-primary" id="editItem" style="margin-top: 2rem;">Submit</button>
+          </form>
+          </div>
+          <!--Add Item N End-->
+          <div class="offcanvas-body">
+          </div>
+        </div>
       </div>
     </div>
   </div>

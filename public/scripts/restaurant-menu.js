@@ -46,7 +46,7 @@ const itemCardCreator = (dbObject) => {
                   <button class="options-btn selected delete-btn">Delete</button>
                 </div>
                 <div class="container add-container">
-                  <button class="options-btn selected edit-btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                  <button class="options-btn selected edit-btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightEdit"
                   aria-controls="offcanvasRight">Edit</button>
                 </div>
               </div>
@@ -81,6 +81,14 @@ const editCurrentItem = (itemInfo) => {
   <button type="submit" class="btn btn-primary" id="newItem" style="margin-top: 2rem;">Submit</button>
 </form>`
 };
+
+const editItem = (data) => {
+  return $.ajax({
+    method: 'POST',
+    url: '/api/restaurants/menu/edit',
+    data
+  })
+}
 
 const itemInfoGrabber = function(event) {
   const id = $(event.target).parents('.container-row').find("#menu-itm-id").text();
@@ -142,11 +150,31 @@ $(() => {
 
   $('.listings-grid').on('click', '.edit-btn', function(event) {
     const item = itemInfoGrabber(event);
-    $('.form-title').text('Edit')
-    $('input[name=newItemName]').attr('placeholder', item.name);
-    $('input[name=newUrl]').attr('placeholder', item.image_url);
-    $('input[name=newDescription]').attr('placeholder', item.description);
-    $('input[name=newPrice]').attr('placeholder', item.price);
-    $('input[name=newQuantity]').attr('placeholder', item.stock);
+    /* $('input[name=editItemName]').attr('placeholder', item.name);
+    $('input[name=editUrl]').attr('placeholder', item.image_url);
+    $('input[name=editDescription]').attr('placeholder', item.description);
+    $('input[name=editPrice]').attr('placeholder', item.price);
+    $('input[name=editQuantity]').attr('placeholder', item.stock);
+    $('input[name=editId]').attr('placeholder', item.id); */
+    /* .val() */
+    $('input[name=editItemName]').val(item.name);
+    $('input[name=editUrl]').val(item.image_url);
+    $('input[name=editDescription]').val(item.description);
+    $('input[name=editPrice]').val(item.price);
+    $('input[name=editQuantity]').val(item.stock);
+    $('input[name=editId]').val(item.id);
   });
+
+  $('#editItemForm').on('submit', function (event) {
+    event.preventDefault();
+    const data = $(this).serialize();
+    editItem(data)
+    .then(res => {
+      console.log('Response received from post router', res);
+      listCurrentItems();
+    })
+    .catch(err => {
+      console.log('Error', err);
+    });
+  })
 });
