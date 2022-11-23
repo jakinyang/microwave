@@ -23,7 +23,7 @@ const menuCardCreator = (dbObject) => {
               </div>
               <div class="options">
                   <div class="container add-container">
-                    <button class="options-btn selected">Add</button>
+                    <button class="options-btn selected add-btn">Add</button>
                   </div>
                   <button type="button" class="btn btn-primary" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
                     sagittis lacus vel augue laoreet rutrum faucibus.">
@@ -49,6 +49,54 @@ const listMenuItems = () => {
   });
 }
 
+const listBasketItems = function() {
+  /*
+  On document.ready():
+  Fire off ajax request to the back end to:
+  1. retrieve all the menu_item_baskets rows for the hard coded basket_id
+  2. retrieve all menu_item rows that are associated with that menu_item_baskets/basket_id
+  3. render menu_item rows as basket item cards inside the basket
+  */
+}
+
+const addToBasket = function() {
+/*
+Front end script only
+Grab item information - generate basket item card
+Insert that card into the basket
+If there is a sub-total information section:
+this function should dynamically update that
+*/
+};
+
+const updateMenuItemBasket = function(data) {
+  /*
+  Fire off ajax request to back end to:
+  1. Insert row into table menu_item_baskets with
+  the menu_item_id and the customers (hard coded basket_id)
+  */
+  return $.ajax({
+    method: 'POST',
+    url: '/api/restaurants/menu',
+    data
+  })
+};
+
+const updateMenuItemStock = function() {
+  /* Fire off ajax request to back end to:
+      1. Update the stock column value for the item inside of
+      menu_items table
+      2. Reload the item card with updated stock number
+ */
+};
+
 $(() => {
   listMenuItems();
+
+  // Add Item Button Listener
+  $('.listings-grid').on('click', '.add-btn', function(event) {
+    console.log("Add button clicked!");
+
+
+  })
 })

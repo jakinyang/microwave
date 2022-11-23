@@ -9,6 +9,20 @@ const getMenuItems = () => {
     });
 };
 
+const alterMenuItemStock = function(data) {
+  return db.query(`
+  UPDATE menu_items
+  SET stock = ${data.stock},
+  WHERE menu_items.id = ${data.id};
+  `)
+  .then(res => {
+    return res.rows;
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
+}
+
 
 
 
@@ -16,4 +30,5 @@ const getMenuItems = () => {
 
 module.exports = {
   getMenuItems,
+  alterMenuItemStock,
 }
