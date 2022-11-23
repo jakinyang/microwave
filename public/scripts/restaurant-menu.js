@@ -1,6 +1,34 @@
 
+const itemCardCreator = (dbObject) => {
+  return `<div class="listing-grid-element">
+            <div class="image">
+              <img
+                src="${dbObject.image_url}"
+                alt="Listing Pic">
+            </div>
+            <div class="container-row">
+              <div class="text">
+                <h3>${dbObject.name}</h3>
+                <div class="info">
+                  <div>
+                    <h6><span class = "label label-default">Price</span> $${dbObject.price / 100}</h6>
+                    <h6><span class = "label label-default">Stock</span> ${dbObject.stock}</h6>
+                  </div>
+                </div>
+              </div>
+              <div class="options">
+                <div class="container add-container">
+                  <button class="options-btn selected">Add</button>
+                </div>
+                <div class="container add-container">
+                  <button class="options-btn selected">Edit</button>
+                </div>
+              </div>
+            </div>
+          </div>`;
+};
+
 $(() => {
-  console.log('document ready');
   $.ajax({
     method: 'GET',
     url: 'api/restaurants/menu'
@@ -11,35 +39,16 @@ $(() => {
     $menuList.empty();
     console.log(response.menu_items);
     for (const item of response.menu_items) {
-      $('.listings-grid').append(`
-      <div class="listing-grid-element">
-          <div class="image">
-            <img
-              src="${item.image_url}"
-              alt="Listing Pic">
-          </div>
-          <div class="container-row">
-            <div class="text">
-              <h3>${item.name}</h3>
-              <div class="info">
-                <div>
-                  <h6><span class = "label label-default">Price</span> $${item.price / 100}</h6>
-                  <h6><span class = "label label-default">Stock</span> ${item.stock}</h6>
-                </div>
-              </div>
-            </div>
-            <div class="options">
-              <div class="container add-container">
-                <button class="options-btn selected">Add</button>
-              </div>
-              <div class="container add-container">
-                <button class="options-btn selected">Edit</button>
-              </div>
-            </div>
-          </div>
-        </div>`);
+      $('.listings-grid').append(itemCardCreator(item));
     }
-  })
+  });
+
+  $('#newItemForm').on('submit', function (event) {
+    event.preventDefault();
+    console.log('event, line 2', event);
+    const data = $(this).serialize();
+    console.log('data, line 5', data);
+  });
 });
 
 
