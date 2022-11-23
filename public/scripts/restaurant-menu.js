@@ -24,7 +24,7 @@ const itemCardCreator = (dbObject) => {
                   <div>
                     <h6><span class = "label label-default">Price</span> $${dbObject.price / 100}</h6>
                     <h6><span class = "label label-default">Stock</span> ${dbObject.stock}</h6>
-                    <div class="d-none">${dbObject.id}</div>
+                    <div id="menu-itm-id" class="d-none">${dbObject.id}</div>
                   </div>
                 </div>
               </div>
