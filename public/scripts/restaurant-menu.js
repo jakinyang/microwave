@@ -67,6 +67,8 @@ $(() => {
     submitNewItem(data)
     .then(res => {
       console.log('Response received from post router', res);
+      $('.listings-grid').append(itemCardCreator(res[0]));
+
     }
     )
     .catch(err => {
