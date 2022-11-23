@@ -3,8 +3,14 @@
 //
 
 const deleteCurrentItem = (event) => {
-  const menuItemId = $(event.target).parents('.container-row').find( "#menu-itm-id" ).text();
-  return menuItemId
+  const menuItemId = $(event.target).parents('.container-row').find("#menu-itm-id").text();
+  const data = {menuItemId: menuItemId};
+  console.log(data);
+  return $.ajax({
+    method: 'POST',
+    url: '/api/restaurants/menu/delete',
+    data
+  })
 }
 
 const submitNewItem = (data) => {
@@ -35,10 +41,10 @@ const itemCardCreator = (dbObject) => {
               </div>
               <div class="options">
                 <div class="container add-container">
-                  <button id="menu-item-delete" class="options-btn selected">Delete</button>
+                  <button class="options-btn selected delete-btn">Delete</button>
                 </div>
                 <div class="container add-container">
-                  <button id="menu-item-edit" class="options-btn selected">Edit</button>
+                  <button class="options-btn selected edit-btn">Edit</button>
                 </div>
               </div>
             </div>
@@ -53,7 +59,6 @@ const listCurrentItems = () => {
   .done((response) => {
     const $menuList = $('.listings-grid');
     $menuList.empty();
-    console.log(response.menu_items);
     for (const item of response.menu_items) {
       $('.listings-grid').append(itemCardCreator(item));
     }
@@ -66,7 +71,9 @@ const listCurrentItems = () => {
 //
 
 $(() => {
+  console.log('Document ready');
   listCurrentItems();
+
   $('#newItemForm').on('submit', function (event) {
     event.preventDefault();
     const data = $(this).serialize();
@@ -75,27 +82,19 @@ $(() => {
       console.log('Response received from post router', res);
       $('.listings-grid').append(itemCardCreator(res[0]));
 
-    }
-    )
+    })
     .catch(err => {
       console.log('Error', err);
     });
   })
 
-
-
-
-
-  $('#menu-item-delete').on('click', function (event) {
+  $('.listings-grid').on('click', '.delete-btn', function(event) {
     deleteCurrentItem(event)
     .then(res => {
-      console.log('Make sure we got the Id', res);
-    }
-    )
-    .catch(err => {
-      console.log('Error', err);
-    });
-  })
+      console.log(res);
+      listCurrentItems();
+    })
+  });
 });
 
 

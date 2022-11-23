@@ -8,7 +8,7 @@
 const express = require('express');
 const router  = express.Router();
 const db = require('../db/connection');
-const { addMenuItem } = require('../db/queries/restuarantQueries');
+const { addMenuItem, deleteMenuItem } = require('../db/queries/restuarantQueries');
 
 router.get('/menu', (req, res) => {
   const query = `SELECT * FROM menu_items WHERE restaurant_owner_id = 2;`;
@@ -41,6 +41,15 @@ router.post('/menu', (req, res) => {
 })
 
 router.post('/menu/delete', (req, res) => {
-  const targetMenuItemId = req.body;
+  console.log('POST to /menu/delete request body: ', req.body);
+  console.log('POST to /menu/delete menuItemId: ', req.body.menuItemId);
+  const deleteItemId = req.body.menuItemId;
+  deleteMenuItem(deleteItemId)
+  .then(response => {
+    res.send(response);
+  })
+  .catch(err => {
+    console.log(err);
+  })
 })
 module.exports = router;

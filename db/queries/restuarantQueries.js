@@ -9,6 +9,20 @@ const getOrders = () => {
     });
 };
 
+const deleteMenuItem = function(deleteId) {
+  const queryParams = [deleteId];
+  return db.query(
+    `DELETE FROM menu_items WHERE id = $1 RETURNING *;`, queryParams
+  )
+  .then(res => {
+    return res.rows;
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
+
+}
+
 
 const addMenuItem = function(menuObj) {
   const queryParams = [
@@ -41,5 +55,5 @@ const addMenuItem = function(menuObj) {
 
 
 module.exports = {
-  getOrders, addMenuItem
+  getOrders, addMenuItem, deleteMenuItem
 }
