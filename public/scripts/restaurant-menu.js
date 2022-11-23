@@ -141,50 +141,12 @@ $(() => {
   });
 
   $('.listings-grid').on('click', '.edit-btn', function(event) {
-    editCurrentItem(itemInfoGrabber(event));
+    const item = itemInfoGrabber(event);
+    $('.form-title').text('Edit')
+    $('input[name=newItemName]').attr('placeholder', item.name);
+    $('input[name=newUrl]').attr('placeholder', item.image_url);
+    $('input[name=newDescription]').attr('placeholder', item.description);
+    $('input[name=newPrice]').attr('placeholder', item.price);
+    $('input[name=newQuantity]').attr('placeholder', item.stock);
   });
 });
-
-/*
-<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-          aria-controls="offcanvasRight"> <i data-feather="briefcase">basket</i>
-          <span>Add Items</span></button>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-          <div class="offcanvas-header" style="margin-bottom: 5rem;">
-            <!-- <h5 class="offcanvas-title" id="offcanvasRightLabel">Item N</h5> -->
-            <h2>Create New<span class =" label label-default"> Item</span></h2>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-
-          <!--Add Item N-->
-          <div class="d-flex justify-content-center">
-          <form id="newItemForm">
-            <div class="form-group" style="margin-bottom: 1rem;">
-              <h4>Item Name</h4>
-              <input name="newItemName" type="text" class="form-control" placeholder="Enter Name">
-            </div>
-            <div class="form-group">
-              <h4>Image URL<h4>
-              <input name="newUrl" type="text" class="form-control" placeholder="url">
-            </div>
-
-            <div class="form-group">
-              <h4>Description</h4>
-              <input name="newDescription" type="text" class="form-control" placeholder="description">
-            </div>
-            <div class="form-group">
-              <h4>Price: $</h4>
-              <input name="newPrice" type="number" class="form-control"  placeholder="price">
-            </div>
-
-            <div class="form-group">
-              <h4>Stock Quantity</h4>
-              <input name="newQuantity" type="number" class="form-control" placeholder="stock">
-            </div>
-            <button type="submit" class="btn btn-primary" id="newItem" style="margin-top: 2rem;">Submit</button>
-          </form>
-          </div>
-          <!--Add Item N End-->
-          <div class="offcanvas-body">
-          </div>
-        </div> */
