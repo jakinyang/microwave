@@ -1,4 +1,12 @@
 
+const submitNewItem = (data) => {
+  return $.ajax({
+    method: 'POST',
+    url: '/api/restaurants/menu',
+    data
+  })
+}
+
 const itemCardCreator = (dbObject) => {
   return `<div class="listing-grid-element">
             <div class="image">
@@ -45,11 +53,9 @@ $(() => {
 
   $('#newItemForm').on('submit', function (event) {
     event.preventDefault();
-    console.log('event, line 48', event);
-    console.log($(this), 'walahoo');
     const data = $(this).serialize();
-    console.log('data, line 50', data);
-  });
+    submitNewItem(data);
+  })
 });
 
 
