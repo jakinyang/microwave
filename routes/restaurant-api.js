@@ -39,4 +39,8 @@ router.post('/menu', (req, res) => {
   });
 
 })
+
+router.post('/menu/delete', (req, res) => {
+  const targetMenuItemId = req.body;
+})
 module.exports = router;
