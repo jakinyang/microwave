@@ -45,8 +45,8 @@ $(() => {
 
   $('#newItemForm').on('submit', function (event) {
     event.preventDefault();
-    console.log('event, line 48', event);
-    console.log($(this), 'walahoo');
+    console.log('event, line 2', event);
+    console.log(this);
     const data = $(this).serialize();
     console.log('data, line 50', data);
   });
