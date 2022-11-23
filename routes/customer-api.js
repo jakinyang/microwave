@@ -1,7 +1,7 @@
 const express = require('express');
 const db = require('../db/connection');
 const router  = express.Router();
-const { getMenuItems } = require('../db/queries/customerQueries');
+const { getMenuItems, alterMenuItemStock } = require('../db/queries/customerQueries');
 
 // Browse
 router.get('/menu', (req, res) => {
@@ -17,6 +17,20 @@ router.get('/menu', (req, res) => {
         .json({ error: err.message });
     });
 });
+
+router.post('/menu', (req, res) => {
+  const newMenuObject = req.body;
+  addMenuItem(newMenuObject)
+  .then(response => {
+    console.log(response);
+    res.send(response);
+
+  })
+  .catch(err => {
+    console.log(err)
+  });
+
+})
 
 
 module.exports = router;
