@@ -52,4 +52,6 @@ router.post('/menu/delete', (req, res) => {
     console.log(err);
   })
 })
+
+router.post('/menu/edit');
 module.exports = router;
