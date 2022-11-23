@@ -1,6 +1,14 @@
-
 header {
-  border-bottom: 1px solid #ddd;
+  top: 0;
+  margin-bottom: 2rem;
+  flex-direction: column;
+  align-items: center;
+  height: 20%;
+  width: 100%;
+  background: rgb(255, 255, 255);
+  position: fixed;
+  z-index: 1;
+  border-radius: 10px;
 
   .logo {
     h1 {
@@ -18,7 +26,7 @@ header {
   }
 
   .header-option {
-    padding-left: 5rem;
+    padding-left: 20rem;
   }
 
   .currentDetails,
@@ -27,11 +35,21 @@ header {
   }
 }
 
+
+.carousel-img-size {
+  height: 500px;
+  border-radius: 10px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
 .options {
+  display: flex;
 
-  // .container {
-
-  // }
   .options-btn {
     background: #ddd;
     padding: 0.8rem 1.2rem;
@@ -49,6 +67,7 @@ header {
 }
 
 .listings {
+ margin-top: 10rem;
   .category {
     width: 20%;
     background: var(--color-green);
@@ -73,12 +92,11 @@ header {
     padding-top: 2rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 100px;
     width: 100%;
-    .listing-grid-element {
 
+    .listing-grid-element {
       padding-right: 2rem;
-      padding-bottom: 1rem;
       .image {
         height: 240px;
         width: 300px;
@@ -87,7 +105,7 @@ header {
         img {
           width: inherit;
           height: inherit;
-          object-fit: cover;
+          object-fit: fill;
           border-radius: 10px;
         }
       }
@@ -132,4 +150,3 @@ header {
     background: var(--color-green);
   }
 }
-
