@@ -163,7 +163,7 @@ const updateMenuItemStock = function(event, callback) {
 
 $(() => {
   listMenuItems();
-
+  listBasketItems();
   // Add Item Button Listener
   $('.listings-grid').on('click', '.add-btn', function(event) {
     console.log("Add button clicked!");

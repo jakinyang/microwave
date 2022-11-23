@@ -1,7 +1,11 @@
 const express = require('express');
 const db = require('../db/connection');
-const router  = express.Router();
-const { alterMenuItemStock, addMenuItemBasket } = require('../db/queries/customerQueries');
+const router = express.Router();
+const {
+  alterMenuItemStock,
+  addMenuItemBasket,
+  getMenuItemBasket,
+ } = require('../db/queries/customerQueries');
 
 // BROWSE
 router.get('/menu', (req, res) => {
