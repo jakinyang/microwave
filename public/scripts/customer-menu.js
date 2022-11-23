@@ -49,7 +49,7 @@ const itemInfoGrabber = function(event) {
 }
 
 const basketInfoGrabber = function(event) {
-  const id = $(event.target)
+  const id = $(event.target).parents()
 
   return {id, restaurant_owner_id, name, image_url, description, price, stock};
 }
