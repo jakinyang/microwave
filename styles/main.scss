@@ -342,22 +342,24 @@ header {
   }
 
   .listings-grid {
-    // display: flex;
+    display: flex;
     padding-top: 2rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
 
     .listing-grid-element {
-      width: 50%;
-      padding-right: 2rem;
 
+      padding-right: 2rem;
+      padding-bottom: 1rem;
       .image {
         height: 240px;
+        width: 300px;
         overflow: hidden;
 
         img {
-          width: 100%;
+          width: inherit;
+          height: inherit;
           object-fit: cover;
           border-radius: 10px;
         }
