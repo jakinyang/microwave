@@ -1,5 +1,6 @@
 
 $(() => {
+  console.log('document ready');
   $.ajax({
     method: 'GET',
     url: 'api/restaurants/menu'
@@ -8,8 +9,10 @@ $(() => {
     console.log('made it to line 8, restaurant-menu.js');
     const $menuList = $('.listings-grid');
     $menuList.empty();
+    console.log(response.menu_items);
     for (const item of response.menu_items) {
-      $('.listings-grid').append(`<div class="listing-grid-element">
+      $('.listings-grid').append(`
+      <div class="listing-grid-element">
           <div class="image">
             <img
               src="${item.image_url}"
