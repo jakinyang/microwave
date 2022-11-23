@@ -29,8 +29,10 @@ router.get('/menu', (req, res) => {
 router.post('/menu', (req, res) => {
   const newMenuObject = req.body;
   addMenuItem(newMenuObject)
-  .then(res => {
-    console.log(res);
+  .then(response => {
+    console.log(response);
+    res.send(response);
+
   })
   .catch(err => {
     console.log(err)
