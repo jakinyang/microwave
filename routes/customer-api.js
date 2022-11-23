@@ -21,8 +21,8 @@ router.get('/menu', (req, res) => {
 // READ
 router.get('/menu/basket', (req, res) => {
   console.log('GET request received for /menu/basket');
-  const customerId = 2; // With cookies this would be grabbed from cookies
-  getMenuItemBasket(customerId)
+  const userId = 2; // With cookies this would be grabbed from cookies
+  getMenuItemBasket(userId)
   .then(menu_items => {
     console.log('Menu items from customer basket query', menu_items)
     res.json({ menu_items });

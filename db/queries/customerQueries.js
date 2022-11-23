@@ -9,9 +9,9 @@ const getMenuItems = () => {
     });
 };
 
-const getMenuItemBasket = (customerId) => {
+const getMenuItemBasket = (userId) => {
   console.log('getMenuItemBasket called');
-  const customerId = customerId;
+  const customerId = userId;
   const queryParams = [customerId];
   return db.query(
     `
