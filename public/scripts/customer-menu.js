@@ -1,5 +1,3 @@
-
-
 // needs edit to be cusotmer:
 const menuCardCreator = (dbObject) => {
     return `<div class="listing-grid-element">
