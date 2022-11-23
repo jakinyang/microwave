@@ -1,7 +1,7 @@
 const express = require('express');
 const db = require('../db/connection');
 const router  = express.Router();
-const { getMenuItems, alterMenuItemStock, addMenuItemBasket } = require('../db/queries/customerQueries');
+const { alterMenuItemStock, addMenuItemBasket } = require('../db/queries/customerQueries');
 
 // BROWSE
 router.get('/menu', (req, res) => {
@@ -18,10 +18,24 @@ router.get('/menu', (req, res) => {
     });
 });
 
+// READ
+router.get('/menu/basket', (req, res) => {
+  console.log('GET request received for /menu/basket');
+  const customerId = 2; // With cookies this would be grabbed from cookies
+  getMenuItemBasket(customerId)
+  .then(menu_items => {
+    console.log('Menu items from customer basket query', menu_items)
+    res.json({ menu_items });
+  })
+  .catch(err => {
+    res.status(500)
+    .json({ error: err.message });
+  })
+})
 
 // ADD
 router.post('/menu/basket', (req, res) => {
-  console.log('POST request receied to /menu/basket')
+  console.log('POST request receied for /menu/basket')
   const menuItem = req.body;
   addMenuItemBasket(menuItem)
   .then(response => {

@@ -47,7 +47,13 @@ const itemInfoGrabber = function(event) {
 }
 
 const basketInfoGrabber = function(event) {
-  const id = $(event.target).parents('.row mb-4').find("menu-itm-id")
+  const id = $(event.target).parents('.row mb-4').find("menu-itm-id").text();
+  const name = $(event.target).parents('.row mb-4').find(".text-black").text();
+  const image_url =$(event.target).parents('.row mb-4').find("img").text();
+  const description = $(event.target).parents('.row mb-4').find("menu-itm-description").text();
+  const priceString = $(event.target).parents('.row mb-4').find("mb-0").text();
+  const price = Number(priceString) * 100;
+  const stock = $(event.target).parents('.row mb-4').find("stock-id").text();
 
   return {id, restaurant_owner_id, name, image_url, description, price, stock};
 }
@@ -67,25 +73,25 @@ const listMenuItems = () => {
   });
 }
 
-const basketCardCreator = function() {
+const basketCardCreator = function(itemObject) {
   return `<div class="row mb-4 d-flex justify-content-around align-items-center">
             <div class="col-md-2 col-lg-2 col-xl-2">
               <img
-                src="${image}"
+                src="${itemObject.image}"
                 class="img-fluid rounded-3" alt="Food Item">
             </div>
             <div class="col-md-3 col-lg-3 col-xl-3">
-              <h6 class="text-muted">${catagory}</h6>
-              <h6 class="text-black mb-0">${name}</h6>
-              <div id="menu-itm-id" class="d-none">${dbObject.id}</div>
-              <div id="menu-itm-owner-id" class="d-none">${dbObject.restaurant_owner_id}</div>
-              <div id="menu-itm-description" class="d-none">${dbObject.description}</div>
+              <h6 class="text-muted">NEED CATEGORY</h6>
+              <h6 class="text-black mb-0">${itemObject.name}</h6>
+              <div id="menu-itm-id" class="d-none">${itemObject.id}</div>
+              <div id="menu-itm-owner-id" class="d-none">${itemObject.restaurant_owner_id}</div>
+              <div id="menu-itm-description" class="d-none">${itemObject.description}</div>
             </div>
             <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-              <span>${stock}</span>
+              <span class="stock-id">${itemObject.stock}</span>
             </div>
             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-              <h6 class="mb-0">$${price}</h6>
+              <h6 class="mb-0">$${itemObject.price}</h6>
             </div>
           </div>
           <hr class="my-4">
@@ -106,10 +112,12 @@ const listBasketItems = function() {
     url: 'api/customers/menu/basket'
   })
   .done((response) => {
-    const $basketList = $('');
+    console.log('Response from GET /menu/basket', response);
+    console.log('listbaskitems res.menuItems: ', response.menu_items);
+    const $basketList = $('#basket-container');
     $basketList.empty();
     for (const item of response.menu_items) {
-      $('').append(basketCardCreator(item));
+      $('#basket-container').append(basketCardCreator(item));
     }
     console.log('listBasketItems Success!');
   });

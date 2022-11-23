@@ -10,7 +10,6 @@ Notes:
 
 const express = require('express');
 const router  = express.Router();
-const { getMenuItems } = require('../db/queries/customerQueries');
 
 
 router.get('/menus', (req, res) => {

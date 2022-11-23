@@ -9,6 +9,32 @@ const getMenuItems = () => {
     });
 };
 
+const getMenuItemBasket = (customerId) => {
+  console.log('getMenuItemBasket called');
+  const customerId = customerId;
+  const queryParams = [customerId];
+  return db.query(
+    `
+    SELECT mi.*
+    FROM menu_items AS mi
+    JOIN menu_item_baskets AS mib
+    ON mi.id = mib.menu_item_id
+    JOIN baskets AS b
+    ON b.id = mib.basket_id
+    JOIN customers AS c
+    ON c.id = b.customer_id
+    WHERE b.customer_id = $1
+    ;
+    `, queryParams)
+    .then(res => {
+      return res.rows;
+    })
+    .catch(err => {
+      console.log(err.message);
+    })
+
+}
+
 const addMenuItemBasket = (menuItemObj) => {
   console.log('addMenuItemsBaskets called');
   const menuItemId = menuItemObj.id;
