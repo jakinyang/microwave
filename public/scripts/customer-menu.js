@@ -77,7 +77,7 @@ const basketCardCreator = function(itemObject) {
   return `<div class="row mb-4 d-flex justify-content-around align-items-center">
             <div class="col-md-2 col-lg-2 col-xl-2">
               <img
-                src="${itemObject.image}"
+                src="${itemObject.image_url}"
                 class="img-fluid rounded-3" alt="Food Item">
             </div>
             <div class="col-md-3 col-lg-3 col-xl-3">
@@ -109,7 +109,7 @@ const listBasketItems = function() {
   */
   $.ajax({
     method: 'GET',
-    url: 'api/customers/menu/basket'
+    url: '/api/customers/menu/basket'
   })
   .done((response) => {
     console.log('Response from GET /menu/basket', response);
