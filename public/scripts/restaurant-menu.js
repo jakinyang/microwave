@@ -30,12 +30,14 @@ const itemCardCreator = (dbObject) => {
             </div>
             <div class="container-row">
               <div class="text">
-                <h3>${dbObject.name}</h3>
+                <h3 class="name">${dbObject.name}</h3>
                 <div class="info">
                   <div>
-                    <h6><span class = "label label-default">Price</span> $${dbObject.price / 100}</h6>
-                    <h6><span class = "label label-default">Stock</span> ${dbObject.stock}</h6>
+                    <h6><span class="label label-default">Price</span> <span class="price">$${dbObject.price / 100}</span></h6>
+                    <h6><span class="label label-default ">Stock</span> <span class="stock">${dbObject.stock}</span></h6>
                     <div id="menu-itm-id" class="d-none">${dbObject.id}</div>
+                    <div id="menu-itm-owner-id" class="d-none">${dbObject.restaurant_owner_id}</div>
+                    <div id="menu-itm-description" class="d-none">${dbObject.description}</div>
                   </div>
                 </div>
               </div>
@@ -44,12 +46,54 @@ const itemCardCreator = (dbObject) => {
                   <button class="options-btn selected delete-btn">Delete</button>
                 </div>
                 <div class="container add-container">
-                  <button class="options-btn selected edit-btn">Edit</button>
+                  <button class="options-btn selected edit-btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                  aria-controls="offcanvasRight">Edit</button>
                 </div>
               </div>
             </div>
           </div>`;
 };
+
+const editCurrentItem = (itemInfo) => {
+  return `<form id="newItemForm">
+  <div class="form-group" style="margin-bottom: 1rem;">
+    <h4>Item Name</h4>
+    <input name="newItemName" type="text" placeholder="${itemInfo.name}" class="form-control" placeholder="Enter Name">
+  </div>
+  <div class="form-group">
+    <h4>Image URL<h4>
+    <input name="newUrl" type="text" placeholder="${itemInfo.image_url}" class="form-control" placeholder="url">
+  </div>
+
+  <div class="form-group">
+    <h4>Description</h4>
+    <input name="newDescription" type="text" placeholder="${itemInfo.description}" class="form-control" placeholder="description">
+  </div>
+  <div class="form-group">
+    <h4>Price: $</h4>
+    <input name="newPrice" type="number" placeholder="${itemInfo.price}" class="form-control"  placeholder="price">
+  </div>
+
+  <div class="form-group">
+    <h4>Stock Quantity</h4>
+    <input name="newQuantity" type="number" placeholder="${itemInfo.stock}" class="form-control" placeholder="stock">
+  </div>
+  <button type="submit" class="btn btn-primary" id="newItem" style="margin-top: 2rem;">Submit</button>
+</form>`
+};
+
+const itemInfoGrabber = function(event) {
+  const id = $(event.target).parents('.container-row').find("#menu-itm-id").text();
+  const restaurant_owner_id = $(event.target).parents('.container-row').find("#menu-itm-owner-id").text();
+  const name = $(event.target).parents('.container-row').find("h3.name").text();
+  const image_url = $(event.target).parents('.listing-grid-element').find("img").attr('src');
+  const description = $(event.target).parents('.container-row').find("#menu-itm-description").text();
+  const priceString = $(event.target).parents('.container-row').find(".price").text().substring(1);
+  const price = Number(priceString) * 100;
+  const stock = $(event.target).parents('.container-row').find(".stock").text();
+
+  return {id, restaurant_owner_id, name, image_url, description, price, stock}
+}
 
 const listCurrentItems = () => {
   $.ajax({
@@ -95,6 +139,52 @@ $(() => {
       listCurrentItems();
     })
   });
+
+  $('.listings-grid').on('click', '.edit-btn', function(event) {
+    editCurrentItem(itemInfoGrabber(event));
+  });
 });
 
+/*
+<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+          aria-controls="offcanvasRight"> <i data-feather="briefcase">basket</i>
+          <span>Add Items</span></button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+          <div class="offcanvas-header" style="margin-bottom: 5rem;">
+            <!-- <h5 class="offcanvas-title" id="offcanvasRightLabel">Item N</h5> -->
+            <h2>Create New<span class =" label label-default"> Item</span></h2>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
 
+          <!--Add Item N-->
+          <div class="d-flex justify-content-center">
+          <form id="newItemForm">
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <h4>Item Name</h4>
+              <input name="newItemName" type="text" class="form-control" placeholder="Enter Name">
+            </div>
+            <div class="form-group">
+              <h4>Image URL<h4>
+              <input name="newUrl" type="text" class="form-control" placeholder="url">
+            </div>
+
+            <div class="form-group">
+              <h4>Description</h4>
+              <input name="newDescription" type="text" class="form-control" placeholder="description">
+            </div>
+            <div class="form-group">
+              <h4>Price: $</h4>
+              <input name="newPrice" type="number" class="form-control"  placeholder="price">
+            </div>
+
+            <div class="form-group">
+              <h4>Stock Quantity</h4>
+              <input name="newQuantity" type="number" class="form-control" placeholder="stock">
+            </div>
+            <button type="submit" class="btn btn-primary" id="newItem" style="margin-top: 2rem;">Submit</button>
+          </form>
+          </div>
+          <!--Add Item N End-->
+          <div class="offcanvas-body">
+          </div>
+        </div> */

@@ -53,5 +53,7 @@ router.post('/menu/delete', (req, res) => {
   })
 })
 
-router.post('/menu/edit');
+router.post('/menu/edit', (req, res) => {
+
+});
 module.exports = router;
