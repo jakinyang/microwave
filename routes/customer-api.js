@@ -18,30 +18,5 @@ router.get('/menu', (req, res) => {
     });
 });
 
-router.get('/customers/basket', (req, res) => {
-
-  // When customer wants to bring up their current basket pre-checkout
-
-});
-
-router.post('/customers/basket/', (req, res) => {
-
-  // do something
-
-});
-
-router.post('/customers/basket/edit', (req, res) => {
-
-  // do something
-
-});
-
-router.post('/customers/basket/delete', (req, res) => {
-
-  // do something
-
-});
-
-
 
 module.exports = router;
