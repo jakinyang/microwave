@@ -76,13 +76,8 @@ const alterMenuItemStock = function(data) {
   });
 }
 
-
-
-
-
-
 module.exports = {
-  getMenuItems,
   alterMenuItemStock,
-  addMenuItemBasket
+  addMenuItemBasket,
+  getMenuItemBasket
 }
