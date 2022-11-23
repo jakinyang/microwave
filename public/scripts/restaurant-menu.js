@@ -1,3 +1,6 @@
+//
+// FUCNTIONS USED IN DOC READY
+//
 
 const submitNewItem = (data) => {
   return $.ajax({
@@ -36,21 +39,28 @@ const itemCardCreator = (dbObject) => {
           </div>`;
 };
 
-$(() => {
+const listCurrentItems = () => {
   $.ajax({
     method: 'GET',
     url: 'api/restaurants/menu'
   })
   .done((response) => {
-    console.log('made it to line 8, restaurant-menu.js');
     const $menuList = $('.listings-grid');
     $menuList.empty();
     console.log(response.menu_items);
     for (const item of response.menu_items) {
       $('.listings-grid').append(itemCardCreator(item));
     }
+    console.log('listCurrentItems Success!');
   });
+}
 
+//
+// DOCUMENT READY BELOW
+//
+
+$(() => {
+  listCurrentItems();
   $('#newItemForm').on('submit', function (event) {
     event.preventDefault();
     const data = $(this).serialize();
