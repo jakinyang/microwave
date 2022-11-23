@@ -29,7 +29,7 @@ const itemCardCreator = (dbObject) => {
               </div>
               <div class="options">
                 <div class="container add-container">
-                  <button class="options-btn selected">Add</button>
+                  <button class="options-btn selected">Delete</button>
                 </div>
                 <div class="container add-container">
                   <button class="options-btn selected">Edit</button>
