@@ -54,7 +54,14 @@ $(() => {
   $('#newItemForm').on('submit', function (event) {
     event.preventDefault();
     const data = $(this).serialize();
-    submitNewItem(data);
+    submitNewItem(data)
+    .then(res => {
+      console.log('Response received from post router', res);
+    }
+    )
+    .catch(err => {
+      console.log('Error', err);
+    });
   })
 });
 

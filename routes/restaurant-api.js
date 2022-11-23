@@ -26,6 +26,7 @@ router.get('/menu', (req, res) => {
 
 
 router.post('/menu', (req, res) => {
+  console.log('Post request received at /api/restaurants/menu');
   console.log(req.body);
 })
 module.exports = router;
