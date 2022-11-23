@@ -2,6 +2,11 @@
 // FUCNTIONS USED IN DOC READY
 //
 
+const deleteCurrentItem = (event) => {
+  const menuItemId = $(event.target).parents('.container-row').find( "#menu-itm-id" ).text();
+  return menuItemId
+}
+
 const submitNewItem = (data) => {
   return $.ajax({
     method: 'POST',
@@ -30,10 +35,10 @@ const itemCardCreator = (dbObject) => {
               </div>
               <div class="options">
                 <div class="container add-container">
-                  <button class="options-btn selected">Delete</button>
+                  <button id="menu-item-delete" class="options-btn selected">Delete</button>
                 </div>
                 <div class="container add-container">
-                  <button class="options-btn selected">Edit</button>
+                  <button id="menu-item-edit" class="options-btn selected">Edit</button>
                 </div>
               </div>
             </div>
@@ -70,6 +75,21 @@ $(() => {
       console.log('Response received from post router', res);
       $('.listings-grid').append(itemCardCreator(res[0]));
 
+    }
+    )
+    .catch(err => {
+      console.log('Error', err);
+    });
+  })
+
+
+
+
+
+  $('#menu-item-delete').on('click', function (event) {
+    deleteCurrentItem(event)
+    .then(res => {
+      console.log('Make sure we got the Id', res);
     }
     )
     .catch(err => {
