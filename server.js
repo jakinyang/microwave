@@ -74,6 +74,9 @@ app.get('/customer_orders', (req, res) => {
 app.get('/restaurant_menus', (req, res) => {
   res.render('restaurant_menus');
 })
+app.get('/restaurant_orders', (req, res) => {
+  res.render('restaurant_orders')
+})
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
