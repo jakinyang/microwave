@@ -24,4 +24,8 @@ router.get('/menu', (req, res) => {
     });
 });
 
+
+router.post('/menu', (req, res) => {
+  console.log(req.body);
+})
 module.exports = router;
