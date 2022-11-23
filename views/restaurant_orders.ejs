@@ -28,7 +28,7 @@
 
 <body>
   <!--Header-->
-  <%- include('partials/_header_customer') %>
+  <%- include('partials/_header_r_order') %>
     <div>
       <section class=" h-110 h-custom" style="height: 1500px;">
         <div class="container py-5 h-100">
@@ -40,11 +40,11 @@
                     <div class="col-lg-8">
                       <div class="p-5">
                         <div class="d-flex justify-content-between align-items-center mb-5">
-                          <h1 class="fw-bold mb-0 text-black">Order Placed, thank you.</h1>
+                          <h1 class="fw-bold mb-0 text-black">New Customer Order</h1>
                           <h6 class="mb-0 text-muted">3 items</h6>
                         </div>
                         <div class="fw-bold mb-0 text-black">
-                          <h2>Your Order Number: 01</h2>
+                          <h2>Customer Order Number: 01</h2>
                         </div>
                         <hr class="my-4">
 
@@ -59,18 +59,7 @@
                             <h6 class="text-black mb-0">Food Item</h6>
                           </div>
                           <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                            <button class="btn btn-link px-2"
-                              onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                              <i class="fas fa-minus"></i>
-                            </button>
-
-                            <input id="form1" min="0" name="quantity" value="1" type="number"
-                              class="form-control form-control-sm" />
-
-                            <button class="btn btn-link px-2"
-                              onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                              <i class="fas fa-plus"></i>
-                            </button>
+                           <div>1</div>
                           </div>
                           <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                             <h6 class="mb-0">$30.00</h6>
@@ -93,18 +82,7 @@
                             <h6 class="text-black mb-0">Food Item</h6>
                           </div>
                           <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                            <button class="btn btn-link px-2"
-                              onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                              <i class="fas fa-minus"></i>
-                            </button>
-
-                            <input id="form1" min="0" name="quantity" value="1" type="number"
-                              class="form-control form-control-sm" />
-
-                            <button class="btn btn-link px-2"
-                              onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                              <i class="fas fa-plus"></i>
-                            </button>
+                           <div>2</div>
                           </div>
                           <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                             <h6 class="mb-0">$30.00</h6>
@@ -127,18 +105,7 @@
                             <h6 class="text-black mb-0">Food Item</h6>
                           </div>
                           <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                            <button class="btn btn-link px-2"
-                              onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                              <i class="fas fa-minus"></i>
-                            </button>
-
-                            <input id="form1" min="0" name="quantity" value="1" type="number"
-                              class="form-control form-control-sm" />
-
-                            <button class="btn btn-link px-2"
-                              onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                              <i class="fas fa-plus"></i>
-                            </button>
+                            <div>3</div>
                           </div>
                           <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                             <h6 class="mb-0">$30.00</h6>
@@ -151,7 +118,7 @@
                         <hr class="my-4">
 
                         <div class="pt-5">
-                          <h6 class="mb-0"><a href="#!" class="text-body"><i
+                          <h6 class="mb-0"><a href="/restaurant_menus" class="text-body"><i
                                 class="fas fa-long-arrow-alt-left me-2"></i>Back to Menu</a></h6>
                         </div>
                       </div>
@@ -161,19 +128,55 @@
                         <h3 class="fw-bold mb-5 mt-2 pt-1">Order Status</h3>
                         <hr class="my-4">
 
+                        <!--Estimated Time Input-->
                         <div class="d-flex justify-content-between mb-4">
-                          <h5 class="text-uppercase">Test</h5>
+                          <div class="row g-3 align-items-center">
+                            <div class="col-auto">
+                              <label for="estimated-time" class="col-form-label">Estimated Time: (Min)</label>
+                            </div>
+                            <div class="col-auto">
+                              <input name="estimated-time" type="number"class=" form-control">
+                              <button id="estimated-time" type="button" class="btn btn-primary" style="margin-top: 1rem;">Send</button>
+                            </div>
+                          </div>
                         </div>
-
-                        <h5 class="text-uppercase mb-3">Test</h5>
-
+                        <!--Divider Line-->
                         <hr class="my-4">
 
-                        <div class="d-flex justify-content-between mb-5">
-                          <h5 class="text-uppercase">Test</h5>
+                      <!--Order Processing-->
+                      <div class="d-flex justify-content-between mb-4">
+                        <div class="row g-3 align-items-center">
+                        <h4>Order Processing...</h4>
+                          <div class="col-auto">
+                            <button id="order-processing" type="button" class="btn btn-warning">Send to Customer</button>
+                          </div>
                         </div>
+                      </div>
+                       <!--Divider Line-->
+                       <hr class="my-4">
 
+                      <!--Order Ready-->
+                      <div class="d-flex justify-content-between mb-4">
+                        <div class="row g-3 align-items-center">
+                          <div>
+                            <h4>Order Ready!</h4>
+                          </div>
+                          <div class="col-auto">
+                            <button id="order-ready" type="button" class="btn btn-success">Ready!</button>
+                          </div>
+                        </div>
+                      </div>
+                       <!--Divider Line-->
+                       <hr class="my-4">
 
+                      <!--Order Ready-->
+                      <div class="d-flex justify-content-between mb-4">
+                        <div class="row g-3 align-items-center">
+                          <div class="col-auto">
+                            <button id="cancel-order" type="button" class="btn btn-danger">Cancel Order</button>
+                          </div>
+                        </div>
+                      </div>
 
                       </div>
                     </div>

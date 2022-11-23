@@ -63,6 +63,9 @@ header {
       color: white;
       margin-top: 2rem;
     }
+    &:hover {
+      background-color: var(--color-green);
+    }
   }
 }
 
