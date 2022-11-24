@@ -66,6 +66,7 @@ const itemInfoGrabber = function (event) {
 
 const basketInfoGrabber = function (event) {
   const id = $(event.target).parents('#top-of-basket-card').find("#menu-itm-id").text();
+  const restaurant_owner_id = $(event.target).parents('#top-of-basket-card').find("#menu-itm-owner-id").text();
   const name = $(event.target).parents('#top-of-basket-card').find("#basket-itm-name").text();
   const image_url = $(event.target).parents('#top-of-basket-card').find("img").attr('src');
   const description = $(event.target).parents('#top-of-basket-card').find("#menu-itm-description").text();
@@ -129,7 +130,7 @@ const basketCardCreator = function (itemObject) {
               <h4 class="basket-quantity-id">${itemObject.quantity}</h4>
             </div>
             <div class="col-md-3 col-lg-2 col-xl-1 d-flex">
-              <h6 id="basket-itm-price" class="mb-0">$${Number(itemObject.price / 100)}</h6>
+              <h6 class="mb-0">$ <span id="basket-itm-price">${Number(itemObject.price / 100)}</span></h6>
             </div>
             <div class="col-md-3 col-lg-2 col-xl-3 offset-lg-1">
             <form class="basket-edit-form">
@@ -201,14 +202,19 @@ const updateMenuItemBasket = function (data) {
 
 
 // to be called and tested when checkout function is implemented
-const updateMenuItemStock = function (event, callback) {
+const updateMenuItemStock = function (event) {
   /* Fire off ajax request to back end to:
       1. Update the stock column value for the item inside of
       menu_items table
       2. Reload the item card with updated stock number
  */
-  const stockItemId = callback(event).id;
-  const data = { stockItemId: stockItemId };
+  const basketItemInfo = basketInfoGrabber(event);
+  console.log(basketItemInfo);
+  $newQuanity = $(event.target).find('select').val();
+  console.log($newQuanity);
+  const data = basketItemInfo;
+  data.quantity = $newQuanity;
+  console.log(data);
   return $.ajax({
     method: 'POST',
     url: '/api/customers/menu/quantity/update',
@@ -246,13 +252,7 @@ $(() => {
 
   $('#basket-container').on('submit', '.basket-edit-form', function(event) {
     event.preventDefault();
-    console.log($(event.target).parents('#top-of-basket-card').find("#menu-itm-id").text());
-    const basketItemInfo = basketInfoGrabber(event);
-    console.log(basketItemInfo);
-    console.log(basketItemInfoObj);
-    $newQuanity = $(event.target).find('select').val();
-    console.log($newQuanity);
-
+    updateMenuItemStock(event);
 
 
 
