@@ -11,13 +11,13 @@ const db = require('../db/connection');
 const {
   addMenuItem,
   deleteMenuItem,
-  editMenuItem
+  editMenuItem,
+  getAllItems
 } = require('../db/queries/restuarantQueries');
 
 router.get('/menu', (req, res) => {
-  const query = `SELECT * FROM menu_items WHERE restaurant_owner_id = 2;`;
-  console.log(query);
-  db.query(query)
+  const restaurantOwnerId = 2;
+  getAllItems(restaurantOwnerId)
     .then(data => {
       const menu_items = data.rows;
       res.json({ menu_items });

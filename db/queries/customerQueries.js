@@ -99,9 +99,14 @@ const alterMenuItemStock = function(data) {
   });
 }
 
-const basketItemDelete = function(itemId, basketId) {
+const basketItemDelete = function(itemId) {
   console.log('basket item delete was hit from customer quries');
+  const basketId = 4;
+  user_id = 2;
   const queryParams = [itemId, basketId]
+  return db.query(`
+
+  `, queryParams)
 }
 
 
@@ -113,5 +118,10 @@ module.exports = {
   getBasketyItemQuantity
 }
 
+
+
+
+// DELETE FROM menu_item_baskets USING menu_items, baskets
+// WHERE basket_id = 2 AND menu_items_id = 2;
 
 

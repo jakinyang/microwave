@@ -9,6 +9,25 @@ const getOrders = () => {
     });
 };
 
+const getAllItems = function(ownerId) {
+  const queryParams = [ownerId];
+  return db.query(`
+  SELECT *, cat.name
+  FROM menu_items AS mi
+  JOIN menu_items_categories AS mic
+  ON mi.id = mic.menu_item_id
+  JOIN categories AS cat
+  ON cat.id = mic.categories_id
+  WHERE restaurant_owner_id = $1;
+  `, queryParams)
+  .then(data => {
+    return data.rows;
+  })
+  .catch(err => {
+    console.log(err.message);
+  })
+}
+
 const deleteMenuItem = function(deleteId) {
   const queryParams = [deleteId];
   return db.query(
@@ -31,7 +50,8 @@ const editMenuItem = function(menuObj) {
     menuObj.editDescription,
     menuObj.editPrice,
     menuObj.editQuantity,
-    menuObj.editId
+    menuObj.editId,
+    menuObj.editCategory
   ];
   return db.query(
     `UPDATE menu_items
@@ -43,7 +63,13 @@ const editMenuItem = function(menuObj) {
       price = $5,
       stock = $6
     WHERE id = $7
-    RETURNING *;`, queryParams
+    RETURNING *;
+    UPDATE menu_items_categories
+    SET
+    menu_item_id = $7,
+    categories_id = $8
+    WHERE id =
+    `, queryParams
   )
   .then(res => {
     return res.rows;
@@ -56,12 +82,13 @@ const editMenuItem = function(menuObj) {
 
 const addMenuItem = function(menuObj) {
   const queryParams = [
+    2,
     menuObj.newItemName,
     menuObj.newUrl,
     menuObj.newDescription,
     menuObj.newPrice,
     menuObj.newQuantity,
-    2
+    menuObj.newCategory
   ];
   return db.query(
     `INSERT INTO menu_items (
@@ -71,8 +98,10 @@ const addMenuItem = function(menuObj) {
       description,
       price,
       stock)
-    VALUES ($6, $1, $2, $3, $4, $5)
+    VALUES ($1, $2, $3, $4, $5, $6)
     RETURNING *;
+    INSERT INTO menu_items_categories (menu_item_id, categories_id)
+    SELECT (SELECT MAX(id) FROM menu_items), $7;
     `, queryParams
   )
   .then((result) => {
@@ -88,5 +117,6 @@ module.exports = {
   getOrders,
   addMenuItem,
   deleteMenuItem,
-  editMenuItem
+  editMenuItem,
+  getAllItems
 }

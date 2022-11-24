@@ -58,25 +58,41 @@ const editCurrentItem = (itemInfo) => {
   return `<form id="newItemForm">
   <div class="form-group" style="margin-bottom: 1rem;">
     <h4>Item Name</h4>
-    <input name="newItemName" type="text" placeholder="${itemInfo.name}" class="form-control" placeholder="Enter Name">
+    <input name="editNewItemName" type="text" placeholder="${itemInfo.name}" class="form-control" placeholder="Enter Name">
   </div>
+  <!--Food Type Form-->
+  <div class="form-group" style="margin-bottom: 1rem;">
+    <h4>Food Type</h4>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>bakery</option>
+      <option>beverage</option>
+      <option>produce</option>
+      <option>deli</option>
+      <option>processed</option>
+      <option>meat</option>
+      <option>seafood</option>
+      <option>dairy</option>
+      <option>other</option>
+    </select>
+  </div>
+  <!--Food Type Form End-->
   <div class="form-group">
     <h4>Image URL<h4>
-    <input name="newUrl" type="text" placeholder="${itemInfo.image_url}" class="form-control" placeholder="url">
+    <input name="editNewUrl" type="text" placeholder="${itemInfo.image_url}" class="form-control" placeholder="url">
   </div>
 
   <div class="form-group">
     <h4>Description</h4>
-    <input name="newDescription" type="text" placeholder="${itemInfo.description}" class="form-control" placeholder="description">
+    <input name="editNewDescription" type="text" placeholder="${itemInfo.description}" class="form-control" placeholder="description">
   </div>
   <div class="form-group">
     <h4>Price: $</h4>
-    <input name="newPrice" type="number" placeholder="${itemInfo.price}" class="form-control"  placeholder="price">
+    <input name="editNewPrice" type="number" placeholder="${itemInfo.price}" class="form-control"  placeholder="price">
   </div>
 
   <div class="form-group">
     <h4>Stock Quantity</h4>
-    <input name="newQuantity" type="number" placeholder="${itemInfo.stock}" class="form-control" placeholder="stock">
+    <input name="editNewQuantity" type="number" placeholder="${itemInfo.stock}" class="form-control" placeholder="stock">
   </div>
   <button type="submit" class="btn btn-primary" id="newItem" style="margin-top: 2rem;">Submit</button>
 </form>`

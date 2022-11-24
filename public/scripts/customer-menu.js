@@ -1,7 +1,7 @@
 // needs edit to be cusotmer:
 const deleteBasketItem = (event) => {
   const basketItemId = $(event.target).parents('#top-of-basket-card').find("#menu-itm-id").text();
-  const data = {basketItemId: basketItemId};
+  const data = { basketItemId: basketItemId };
   console.log('delete basket id data: ', data);
   return $.ajax({
     method: 'POST',
@@ -161,6 +161,7 @@ const updateMenuItemBasket = function(data) {
   })
 };
 
+// to be called and tested when checkout function is implemented
 const updateMenuItemStock = function(event, callback) {
   /* Fire off ajax request to back end to:
       1. Update the stock column value for the item inside of

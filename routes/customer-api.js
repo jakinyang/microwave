@@ -54,6 +54,7 @@ router.post('/menu/basket', (req, res) => {
 })
 
 // EDIT
+// to be called and tested when checkout function is implemented
 router.post('/menu/stock/update', (req, res) => {
   const newStockObject = req.body;
   console.log('cust.api newStockObj :', newStockObject);
@@ -61,11 +62,13 @@ router.post('/menu/stock/update', (req, res) => {
   .then(response => {
     console.log('result from cust.api stock func :', response);
     res.send(response);
-
   })
   .catch(err => {
     console.log(err)
   });
+})
+
+router.post('/menu/basket/update', (req, res) => {
 
 })
 
