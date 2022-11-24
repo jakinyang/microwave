@@ -40,9 +40,9 @@ const listOrderCards = function () {
     let subTotal = 0; // subtotal thing 
     for (const item of response.menu_items) {
       $('#customer-order-container').append(orderCardCreator(item));
-      subTotal += Number(item.quantity * item.price / 100) // subtotal thing 
+      subTotal += item.quantity * item.price / 100 // subtotal thing 
     }
-    const totalInput = '$' + subTotal.toString() // subtotal thing
+    const totalInput = subTotal.toFixed(2); // subtotal thing
     $('#order-grand-total').text(totalInput);  // subtotal thing 
     console.log('listOrderItems Success!');
   });
