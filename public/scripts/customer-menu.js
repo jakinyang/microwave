@@ -32,8 +32,7 @@ const menuCardCreator = (dbObject) => {
                 </div>
                 <div class="options">
                 <div class="container add-container" style="margin-right: 0.5rem;">
-                      <button type="button" class="options-btn selected" data-container="body" data-toggle="popover" data-placement="bottom"
-                        data-content="Oh hey, Look, it worked!"> Description
+                      <button type="button" class="options-btn selected" data-toggle="tooltip" title="Oh hey, Look, it worked!"> Description
                       </button>
                     </div>
                     <div class="container add-container">
@@ -81,6 +80,23 @@ const listMenuItems = () => {
       $('.listings-grid').append(menuCardCreator(item));
     }
     console.log('listCurrentItems Success!');
+  });
+}
+
+
+// func in production
+const listCategoricalItems = () => {
+  $.ajax({
+    method: 'GET',
+    url: 'api/customers/menu/categories'
+  })
+  .done((response) => {
+    const $menuList = $('.listings-grid');
+    $menuList.empty();
+    for (const item of response.menu_items) {
+      $('.listings-grid').append(menuCardCreator(item));
+    }
+    console.log('list categorical Items Success :D');
   });
 }
 

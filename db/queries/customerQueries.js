@@ -117,14 +117,14 @@ const basketItemDelete = function(itemId) {
 }
 
 const runCategoryQuery = (catId) => {
-  const queryParams = []
+  const queryParams = [2, ]
     const query = `
     SELECT * FROM menu_items
     JOIN menu_items_categories
     ON menu_items.id = menu_items_categories.menu_item_id
     JOIN categories ON categories.id = menu_items_categories.categories_id
-    WHERE restaurant_owner_id = 2
-    AND categories.id = $1
+    WHERE restaurant_owner_id = $1
+    AND categories.id = $2
     ;`;
     db.query(query)
 };
