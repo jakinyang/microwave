@@ -58,7 +58,6 @@ app.use('/api/restaurants', restaurantApiRoutes);
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-
 // this would be home screen: login as restaurant/customer
 app.get('/', (req, res) => {
   res.render('login');
