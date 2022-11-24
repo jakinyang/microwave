@@ -9,7 +9,7 @@ const getMenuItems = () => {
     });
 };
 
-const getBasketyItemQuantity = (userId) => {
+const getBasketItemQuantity = (userId) => {
   console.log('getBasketItemQuantity called!');
   const queryParams = [userId];
   return db.query(
@@ -134,6 +134,6 @@ module.exports = {
   addMenuItemBasket,
   getMenuItemBasket,
   basketItemDelete,
-  getBasketyItemQuantity,
+  getBasketItemQuantity,
   runCategoryQuery,
 }

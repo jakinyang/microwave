@@ -201,9 +201,11 @@ $(() => {
     console.log("Add button clicked!");
     const item = itemInfoGrabber(event);
     console.log(item.id);
-    const basketItem = $('#basket-container').find(`#menu-itm-id:contains('${item.id}')`).parents('div#top-of-basket-card').find('.basket-quantity-id').text();
-    console.log(basketItem)
-    if (item.stock <= basketItem) {
+    console.log(item.stock);
+    const $basketItem = $('#basket-container').find(`#menu-itm-id:contains('${item.id}')`);
+    const $itemQuantity = $basketItem.parent('div').next('div').find('.basket-quantity-id').text();
+    console.log($itemQuantity);
+    if (item.stock <= $itemQuantity) {
       return console.log('Error: not enough stock baby!')
     } else {
       updateMenuItemBasket(item)
