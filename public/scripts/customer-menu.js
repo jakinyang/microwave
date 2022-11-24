@@ -129,7 +129,7 @@ const basketCardCreator = function (itemObject) {
             </div>
             <div class="col-md-3 col-lg-3 col-xl-3">
               <h4 class="text-black mb-0" id="basket-itm-name" >${itemObject.name}</h4>
-              <div id="menu-itm-id" class="d-none">${itemObject.id}</div>
+              <div id="menu-itm-id" class="menu-itm-id-${itemObject.id} d-none">${itemObject.id}</div>
               <div id="menu-itm-owner-id" class="d-none">${itemObject.restaurant_owner_id}</div>
               <div id="menu-itm-description" class="d-none">${itemObject.description}</div>
             </div>
@@ -244,7 +244,7 @@ $(() => {
     console.log("Add button clicked!");
     const item = itemInfoGrabber(event);
     console.log(item.id);
-    const $basketItem = $('#basket-container').filter(function(){ return $(this).text() === item.id;});
+    const $basketItem = $(`.menu-itm-id-${item.id}`);
     console.log($basketItem.text());
     const $itemQuantity = $basketItem.parent('div').next('div').find('.basket-quantity-id').text();
     console.log("item quantity: ", $itemQuantity);
