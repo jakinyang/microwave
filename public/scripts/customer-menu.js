@@ -179,11 +179,10 @@ const listBasketItems = function () {
       item.price = Number(item.price);
       item.stock = Number(item.stock);
       $('#basket-container').append(basketCardCreator(item));
-
-      subTotal += item.quantity * item.price / 100 // subtotal thing
-
+      subTotal += ((item.quantity * item.price) / 100);
     }
-    const totalInput = subTotal.toString()
+    const totalInput = subTotal.toFixed(2);
+
     $('#subtotal-amount').text(totalInput);  // subtotal thing
     console.log('listBasketItems Success!');
   });
