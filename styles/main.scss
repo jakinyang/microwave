@@ -26,12 +26,10 @@ header {
   .container {
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
 
-  .header-option {
-    padding-left: 20rem;
-  }
-
+  
   .currentDetails,
   .searchBar {
     display: flex;
