@@ -184,6 +184,10 @@ $(() => {
   $('.listings-grid').on('click', '.add-btn', function(event) {
     console.log("Add button clicked!");
     const item = itemInfoGrabber(event);
+    const basketItem = $(`div.menu-itm-id:contains('${item.id}')`);
+    if (item.stock < basketItem.quantity) {
+      return 'Error: not enough stock baby!'
+    }
     updateMenuItemBasket(item)
     .then(res => {
       console.log('Response received from customer-api router for POST to menu/basket', res);
