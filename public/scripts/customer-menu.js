@@ -219,6 +219,7 @@ $(() => {
   .then(res => {
     console.log('delete function coomplete front to back, res :', res);
   })
+  $('#customerCheckout').on('click', )
   /* $('.edit-quantity-btn').on('submit'), function{
 
   } */
