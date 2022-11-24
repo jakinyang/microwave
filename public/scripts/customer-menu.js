@@ -147,19 +147,20 @@ const listBasketItems = function () {
     method: 'GET',
     url: '/api/customers/menu/basket'
   })
-    .done((response) => {
-      console.log('Response from GET /menu/basket', response);
-      console.log('listbaskitems res.menuItems: ', response.menu_items);
-      const $basketList = $('#basket-container');
-      $basketList.empty();
-      let subTotal = 0; // subtotal thing
-      for (const item of response.menu_items) {
-        $('#basket-container').append(basketCardCreator(item));
-        subTotal += Number(item.quantity * item.price / 100) // subtotal thing
-      }
-      console.log('subtotal val: ', $('#subtotal-amount').val());  // subtotal thing
-      console.log('listBasketItems Success!');
-    });
+  .done((response) => {
+    console.log('Response from GET /menu/basket', response);
+    console.log('listbaskitems res.menuItems: ', response.menu_items);
+    const $basketList = $('#basket-container');
+    $basketList.empty();
+    let subTotal = 0; // subtotal thing
+    for (const item of response.menu_items) {
+      $('#basket-container').append(basketCardCreator(item));
+      subTotal += Number(item.quantity * item.price / 100) // subtotal thing
+    }
+    const totalInput = subTotal.toString()
+    $('#subtotal-amount').text(totalInput);  // subtotal thing
+    console.log('listBasketItems Success!');
+  });
 }
 
 const addToBasket = function () {
