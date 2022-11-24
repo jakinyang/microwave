@@ -83,6 +83,23 @@ const listMenuItems = () => {
   });
 }
 
+
+// func in production
+const listCategoricalItems = () => {
+  $.ajax({
+    method: 'GET',
+    url: 'api/customers/menu/categories'
+  })
+  .done((response) => {
+    const $menuList = $('.listings-grid');
+    $menuList.empty();
+    for (const item of response.menu_items) {
+      $('.listings-grid').append(menuCardCreator(item));
+    }
+    console.log('list categorical Items Success :D');
+  });
+}
+
 const basketCardCreator = function(itemObject) {
   return `<div id="top-of-basket-card" class="row mb-4 d-flex justify-content-around align-items-center">
             <div class="col-md-2 col-lg-2 col-xl-2">
