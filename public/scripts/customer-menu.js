@@ -32,8 +32,7 @@ const menuCardCreator = (dbObject) => {
                 </div>
                 <div class="options">
                 <div class="container add-container" style="margin-right: 0.5rem;">
-                      <button type="button" class="options-btn selected" data-container="body" data-toggle="popover" data-placement="bottom"
-                        data-content="Oh hey, Look, it worked!"> Description
+                      <button type="button" class="options-btn selected" data-toggle="tooltip" title="Oh hey, Look, it worked!"> Description
                       </button>
                     </div>
                     <div class="container add-container">
