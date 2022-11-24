@@ -57,7 +57,7 @@ const itemCardCreator = (dbObject) => {
 };
 
 const editCurrentItem = (itemInfo) => {
-  return `<form id="newItemForm">
+  return `<form id="newItemForm" class="overflow-auto">
   <div class="form-group" style="margin-bottom: 1rem;">
     <h4>Item Name</h4>
     <input name="editNewItemName" type="text" placeholder="${itemInfo.name}" class="form-control" placeholder="Enter Name">
