@@ -83,7 +83,6 @@ const listMenuItems = () => {
   });
 }
 
-
 // func in production
 const listCategoricalItems = () => {
   $.ajax({
