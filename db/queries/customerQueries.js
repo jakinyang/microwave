@@ -88,17 +88,16 @@ const addMenuItemBasket = (menuItemObj) => {
 };
 
 // to be called and tested when checkout function is implemented
-const alterMenuItemStock = function(data) {
-  console.log('altermenuitems called');
+const decrementBasketItemQuantity = function(data) {
+  console.log('alterMenuItemStock called; Data received: ', data);
   const queryParams = [
-    2,
     data.id,
-    data.stock
+    data.basketId,
+    data.quantityDifference
   ]
   return db.query(`
-  UPDATE menu_items
-  SET stock = $3,
-  WHERE menu_items.id = $2;
+  DELETE FROM menu_item_baskets
+  WHERE basket_id = $2 AND id IN (SELECT id FROM menu_item_baskets WHERE menu_item_id = $1 AND basket_id = $2 LIMIT $3);
   `, queryParams)
   .then(res => {
     console.log('res from cust.querys :', res);
@@ -142,11 +141,11 @@ const runCategoryQuery = (catId) => {
 };
 
 module.exports = {
-  alterMenuItemStock,
   addMenuItemBasket,
   getMenuItemBasket,
   basketItemDelete,
   getBasketItemQuantity,
   runCategoryQuery,
   getMenuItems,
+  decrementBasketItemQuantity
 }

@@ -2,12 +2,12 @@ const express = require('express');
 const db = require('../db/connection');
 const router = express.Router();
 const {
-  alterMenuItemStock,
   addMenuItemBasket,
   basketItemDelete,
   runCategoryQuery,
   getBasketItemQuantity,
   getMenuItems,
+  decrementBasketItemQuantity
  } = require('../db/queries/customerQueries');
 
 // BROWSE
@@ -72,21 +72,32 @@ router.post('/menu/basket', (req, res) => {
 
 // EDIT
 // to be called and tested when checkout function is implemented
-router.post('/menu/stock/update', (req, res) => {
-  const newStockObject = req.body;
-  console.log('cust.api newStockObj :', newStockObject);
-  alterMenuItemStock(newStockObject)
+router.post('/menu/quantity/update', (req, res) => {
+  const updateData = req.body;
+  console.log('Post request received at /menu/quantity/update:', updateData);
+  const oldQuantity = updateData.quantity;
+  const newQuantity = updateData.newQuantity;
+  const quantityDifference = updateData.quantityDifference;
+  if (oldQuantity > newQuantity) {
+    decrementBasketItemQuantity(updateData)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+  }
+  if (oldQuantity < newQuantity) {
+    console.log('I guess we have to add rows?')
+  }
+  /* alterMenuItemStock(newStockObject)
   .then(response => {
     console.log('result from cust.api stock func :', response);
     res.send(response);
   })
   .catch(err => {
     console.log(err)
-  });
-})
-
-router.post('/menu/basket/update', (req, res) => {
-
+  }); */
 })
 
 //DELETE

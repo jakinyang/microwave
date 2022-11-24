@@ -209,11 +209,11 @@ const updateMenuItemStock = function (event) {
       2. Reload the item card with updated stock number
  */
   const basketItemInfo = basketInfoGrabber(event);
-  console.log(basketItemInfo);
   $newQuanity = $(event.target).find('select').val();
-  console.log($newQuanity);
   const data = basketItemInfo;
-  data.quantity = $newQuanity;
+  data.basketId = 4;
+  data.newQuantity = $newQuanity;
+  data.quantityDifference = data.quantity - data.newQuantity;
   console.log(data);
   return $.ajax({
     method: 'POST',
