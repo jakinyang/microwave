@@ -5,7 +5,7 @@ const deleteBasketItem = (event) => {
   console.log('delete basket id data: ', data);
   return $.ajax({
     method: 'POST',
-    url: '/api/customers/menu/delete',
+    url: '/api/customers/menu/basket/delete',
     data
   })
 };
@@ -192,8 +192,11 @@ $(() => {
 
   })
   $('#basket-container').on('click', '#basket-delete', function(event) {
-    console.log('delete button click does something');
-    deleteBasketItem(event)
+    deleteBasketItem(event);
+    listBasketItems();
+  })
+  .then(res => {
+    console.log('delete function coomplete front to back, res :', res);
   })
   /* $('.edit-quantity-btn').on('submit'), function{
 

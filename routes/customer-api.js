@@ -74,10 +74,15 @@ router.post('/menu/basket/update', (req, res) => {
 
 //DELETE
 router.post('/menu/basket/delete', (req, res) => {
-  console.log('DELETE was hit at customer-api');
   console.log('cust.api req.body :', req.body);
-  const deleteBasketItemId = req.body;
+  const deleteBasketItemId = req.body.basketItemId;
   basketItemDelete(deleteBasketItemId)
-})
+  .then(res => {
+    console.log('delete from cust.api res: ', res);
+  })
+  .catch(err => {
+    console.log(err)
+  });
+});
 
 module.exports = router;

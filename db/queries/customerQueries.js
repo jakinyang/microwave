@@ -100,13 +100,20 @@ const alterMenuItemStock = function(data) {
 }
 
 const basketItemDelete = function(itemId) {
-  console.log('basket item delete was hit from customer quries');
   const basketId = 4;
-  user_id = 2;
   const queryParams = [itemId, basketId]
   return db.query(`
-
+  DELETE FROM menu_item_baskets
+  USING menu_items, baskets
+  WHERE menu_item_baskets.basket_id = $2
+  AND menu_item_baskets.menu_item_id = $1;
   `, queryParams)
+  .then(res => {
+    console.log('basket item delete success! res: ', res);
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
 }
 
 
@@ -117,11 +124,3 @@ module.exports = {
   basketItemDelete,
   getBasketyItemQuantity
 }
-
-
-
-
-// DELETE FROM menu_item_baskets USING menu_items, baskets
-// WHERE basket_id = 2 AND menu_items_id = 2;
-
-
