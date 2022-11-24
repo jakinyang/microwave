@@ -152,11 +152,12 @@ $(() => {
     .then(res => {
       console.log('Response received from post router', res);
       listCurrentItems();
-
+      this.reset();
     })
     .catch(err => {
       console.log('Error', err);
     });
+
   })
 
   $('.listings-grid').on('click', '.delete-btn', function(event) {
@@ -185,6 +186,7 @@ $(() => {
     .then(res => {
       console.log('Response received from post router', res);
       listCurrentItems();
+      this.reset();
     })
     .catch(err => {
       console.log('Error', err);
