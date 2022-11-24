@@ -107,6 +107,11 @@ const listCategoricalItems = () => {
 }
 
 const basketCardCreator = function (itemObject) {
+  const stock = itemObject.stock;
+  let optionsBlock = '';
+  for (let i = 1; i <= stock; i++) {
+    optionsBlock += `<option>${i}</option>\n`
+  }
   return `<div id="top-of-basket-card" class="row mb-4 d-flex justify-content-around align-items-center">
             <div class="col-md-2 col-lg-2 col-xl-2">
               <img
@@ -126,7 +131,15 @@ const basketCardCreator = function (itemObject) {
               <h6 class="mb-0">$${Number(itemObject.price / 100)}</h6>
             </div>
             <div class="col-md-3 col-lg-2 col-xl-3 offset-lg-1">
-            <button type="button" id="basket-edit" class="btn btn-primary">Edit</button>
+            <form class="basket-edit-form">
+              <div class="form-group">
+                <label for="basket-quantity-edit">Edit Quantity</label>
+                <select class="form-control" id="basket-quantity-edit" name="edit_quantity">
+                  ${optionsBlock}
+                </select>
+              </div>
+              <button type="submit" id="basket-edit" class="btn btn-primary">Edit</button>
+            </form>
             <button type="button" id="basket-delete" class="btn btn-danger">Delete</button>
             </div>
           </div>
@@ -230,7 +243,14 @@ $(() => {
     listBasketItems();
   })
 
-  /* $('.edit-quantity-btn').on('submit'), function{
+  $('#basket-container').on('submit', '.basket-edit-form', function(event) {
+    event.preventDefault();
+    console.log(event);
+    console.log(event.target);
+    const data = $(this).serialize();
+    const dataObj = { data };
+    console.log(dataObj);
+    console.log(dataObj.edit_quantity);
 
-  } */
+  })
 })
