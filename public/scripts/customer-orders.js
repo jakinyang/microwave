@@ -37,19 +37,19 @@ const listOrderCards = function () {
     console.log('listOrderCards res.menuItems: ', response.menu_items);
     const $orderList = $('#customer-order-container');
     $orderList.empty();
-    let subTotal = 0; // subtotal thing
+    let subTotal = 0; // subtotal thing 
     for (const item of response.menu_items) {
       $('#customer-order-container').append(orderCardCreator(item));
-      subTotal += Number(item.quantity * item.price / 100) // subtotal thing
+      subTotal += Number(item.quantity * item.price / 100) // subtotal thing 
     }
     const totalInput = '$' + subTotal.toString() // subtotal thing
-    $('#order-grand-total').text(totalInput);  // subtotal thing
+    $('#order-grand-total').text(totalInput);  // subtotal thing 
     console.log('listOrderItems Success!');
   });
 }
 
+// ajax req for cust.api to trigger sending text message
 const sendTextMsg = () => {
-  console.log('sendTextMsg called!');
   $.ajax({
     method: 'POST',
     url: '/api/customers/orders/twilio'
@@ -64,25 +64,6 @@ $(() => {
   listOrderCards();
 
   $('#checkout-area-selector').on('click', '#checkout-button', function() {
-    sendTextMsg();
+    // sendTextMsg();  // comment back in when testing full functionality of orders page
   })
 });
-
-
-/*
-const dotenv = require('dotenv')
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-const sendTo = process.env.MY_PHONE_NUMBER;
-const sendFrom = process.env.TWIL_PHONE_NUMBER;
-const client = require('twilio')(accountSid, authToken);
-
-client.messages
-    .create({
-      body: msgObj.testMessage,
-      from: '+13855037218',
-      to: outBound
-  })
-  .then(message => console.log(message.sid));
-  })
-*/
