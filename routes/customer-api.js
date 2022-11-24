@@ -5,6 +5,8 @@ const {
   alterMenuItemStock,
   addMenuItemBasket,
   getMenuItemBasket,
+  basketItemDelete,
+  getBasketyItemQuantity
  } = require('../db/queries/customerQueries');
 
 // BROWSE
@@ -26,7 +28,7 @@ router.get('/menu', (req, res) => {
 router.get('/menu/basket', (req, res) => {
   console.log('GET request received for /menu/basket');
   const userId = 2; // With cookies this would be grabbed from cookies
-  getMenuItemBasket(userId)
+  getBasketyItemQuantity(userId)
   .then(menu_items => {
     console.log('Menu items from customer basket query', menu_items)
     res.json({ menu_items });
@@ -67,5 +69,12 @@ router.post('/menu/stock/update', (req, res) => {
 
 })
 
+//DELETE
+router.post('/menu/basket/delete', (req, res) => {
+  console.log('DELETE was hit at customer-api');
+  console.log('cust.api req.body :', req.body);
+  const deleteBasketItemId = req.body;
+  basketItemDelete(deleteBasketItemId)
+})
 
 module.exports = router;

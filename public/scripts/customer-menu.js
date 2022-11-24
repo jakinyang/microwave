@@ -1,4 +1,15 @@
 // needs edit to be cusotmer:
+const deleteBasketItem = (event) => {
+  const basketItemId = $(event.target).parents('.row mb-4').find("menu-itm-id").text();
+  const data = {basketItemId: basketItemId};
+  console.log(data);
+  return $.ajax({
+    method: 'POST',
+    url: '/api/customers/menu/delete',
+    data
+  })
+};
+
 const menuCardCreator = (dbObject) => {
     return `<div class="listing-grid-element">
               <div class="image">
@@ -88,10 +99,16 @@ const basketCardCreator = function(itemObject) {
               <div id="menu-itm-description" class="d-none">${itemObject.description}</div>
             </div>
             <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-              <span class="stock-id">${itemObject.stock}</span>
+              <span class="basket-quantity-id">${itemObject.quantity}</span>
             </div>
             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
               <h6 class="mb-0">$${Number(itemObject.price / 100)}</h6>
+            </div>
+            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+            <button type="button" id="basket-edit" class="btn btn-primary">Edit</button>
+            </div>
+            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+            <button type="button" id="basket-delete" class="btn btn-danger">Delete</button>
             </div>
           </div>
           <hr class="my-4">
@@ -175,7 +192,9 @@ $(() => {
     })
 
   })
-
+  $('#basket-container').on('click', '#basket-delete', function(event) {
+    console.log('delete button click does something');
+  })
   /* $('.edit-quantity-btn').on('submit'), function{
 
   } */

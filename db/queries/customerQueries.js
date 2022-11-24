@@ -9,10 +9,32 @@ const getMenuItems = () => {
     });
 };
 
+const getBasketyItemQuantity = (userId) => {
+  console.log('getBasketItemQuantity called!');
+  const queryParams = [userId];
+  return db.query(
+    `SELECT mi.*, COUNT(mi.id) AS quantity
+    FROM menu_item_baskets AS mib
+    JOIN menu_items AS mi
+    ON mi.id = mib.menu_item_id
+    JOIN baskets AS b
+    ON b.id = mib.basket_id
+    JOIN customers AS c
+    ON c.id = b.customer_id
+    WHERE c.id = $1
+    GROUP BY mi.id;
+    `, queryParams)
+  .then(res => {
+    return res.rows;
+  })
+  .catch(err => {
+    console.log(err.message);
+  })
+}
+
 const getMenuItemBasket = (userId) => {
-  console.log('getMenuItemBasket called');
-  const customerId = userId;
-  const queryParams = [customerId];
+  console.log('getMenuItemBasket called!');
+  const queryParams = [userId];
   return db.query(
     `
     SELECT mi.*
@@ -76,8 +98,16 @@ const alterMenuItemStock = function(data) {
   });
 }
 
+const basketItemDelete = function(itemId) {
+  console.log('basket item delete was hit from customer quries');
+
+}
+
+
 module.exports = {
   alterMenuItemStock,
   addMenuItemBasket,
-  getMenuItemBasket
+  getMenuItemBasket,
+  basketItemDelete,
+  getBasketyItemQuantity
 }
