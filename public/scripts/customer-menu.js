@@ -134,7 +134,7 @@ const basketCardCreator = function (itemObject) {
               <div id="menu-itm-description" class="d-none">${itemObject.description}</div>
             </div>
             <div class="col-md-3 col-lg-3 col-xl-1 d-flex">
-              <h4 class="basket-quantity-id">${Number(itemObject.quantity)}</h4>
+              <h4 class="basket-quantity-id">${itemObject.quantity}</h4>
             </div>
             <div class="col-md-3 col-lg-2 col-xl-1 d-flex">
               <h6 class="mb-0">$ <span id="basket-itm-price">${Number(itemObject.price / 100)}</span></h6>
@@ -175,8 +175,11 @@ const listBasketItems = function () {
     $basketList.empty();
     let subTotal = 0; // subtotal thing
     for (const item of response.menu_items) {
+      item.quantity = Number(item.quantity);
+      item.price = Number(item.price);
+      item.stock = Number(item.stock);
       $('#basket-container').append(basketCardCreator(item));
-      subTotal += Number(item.quantity * item.price / 100); // subtotal thing
+      subTotal += item.quantity * item.price / 100 // subtotal thing
     }
     const totalInput = subTotal.toString()
     $('#subtotal-amount').text(totalInput);  // subtotal thing
