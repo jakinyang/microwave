@@ -158,7 +158,7 @@ const listBasketItems = function() {
       $('#basket-container').append(basketCardCreator(item));
       subTotal += Number(item.quantity * item.price / 100) // subtotal thing
     }
-    console.log('subtotal: ', subTotal);  // subtotal thing
+    console.log('subtotal val: ', $('#subtotal-amount').val());  // subtotal thing
     console.log('listBasketItems Success!');
   });
 }
