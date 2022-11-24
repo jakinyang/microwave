@@ -179,9 +179,7 @@ const listBasketItems = function () {
       item.price = Number(item.price);
       item.stock = Number(item.stock);
       $('#basket-container').append(basketCardCreator(item));
-
       subTotal += item.quantity * item.price / 100 // subtotal thing
-
     }
     const totalInput = subTotal.toString()
     $('#subtotal-amount').text(totalInput);  // subtotal thing
