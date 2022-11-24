@@ -110,9 +110,14 @@ const listCategoricalItems = () => {
 
 const basketCardCreator = function (itemObject) {
   const stock = itemObject.stock;
+  const quantity = Number(itemObject.quantity);
   let optionsBlock = '';
   for (let i = 1; i <= stock; i++) {
-    optionsBlock += `<option>${i}</option>\n`
+    if (i === quantity) {
+      optionsBlock += `<option selected>${i}</option>\n`
+    } else {
+      optionsBlock += `<option>${i}</option>\n`
+    }
   }
   return `<div id="top-of-basket-card" class="row mb-4 d-flex justify-content-around align-items-center">
             <div class="col-md-2 col-lg-2 col-xl-2">
