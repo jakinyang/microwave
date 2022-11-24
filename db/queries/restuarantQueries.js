@@ -90,9 +90,6 @@ const addMenuItem = function(menuObj) {
     menuObj.newQuantity,
   ];
   const queryParams2 = [menuObj.newCategory]
-
-  .then(res => console.log(res))
-  .catch(err => console.log('Error from addMenuItem: ', err.message));
   return db.query(
     `INSERT INTO menu_items (
       restaurant_owner_id,
@@ -103,12 +100,12 @@ const addMenuItem = function(menuObj) {
       stock)
     VALUES ($1, $2, $3, $4, $5, $6)
     RETURNING *;`, queryParams1)
-  .then((result) => {
+  .then(() => {
     return db.query(`INSERT INTO menu_items_categories (menu_item_id, categories_id)
-    SELECT (SELECT MAX(id) FROM menu_items), $1;`, queryParams2)
+    SELECT (SELECT MAX(id) FROM menu_items), (SELECT id FROM categories WHERE name = $1);`, queryParams2)
   })
-  .then(result => {
-
+  .then(res => {
+    return res.rows;
   })
   .catch((err) => {
     console.log('Error from addMenuItem: ', err.message);
