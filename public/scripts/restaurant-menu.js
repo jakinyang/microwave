@@ -36,7 +36,7 @@ const itemCardCreator = (dbObject) => {
                   <div>
                     <h6><span class="label label-default">Price</span> <span class="price">$${dbObject.price / 100}</span></h6>
                     <h6><span class="label label-default ">Stock</span> <span class="stock">${dbObject.stock}</span></h6>
-                    <h6><span class="label label-default ">Category</span> <span class="category">${dbObject.category}</span></h6>
+                    <h6><span class="label label-default">Category</span> <span class="category" style="background: 0;">${dbObject.category}</span></h6>
                     <div id="menu-itm-id" class="d-none">${dbObject.id}</div>
                     <div id="menu-itm-owner-id" class="d-none">${dbObject.restaurant_owner_id}</div>
                     <div id="menu-itm-description" class="d-none">${dbObject.description}</div>
