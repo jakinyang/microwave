@@ -1,11 +1,21 @@
 const db = require('../connection');
 
-const getMenuItems = () => {
+const getMenuItems = (ownerId) => {
+  const queryParams = [ownerId];
   return db.query(`
-  SELECT *
-  FROM menu_items;`)
+  SELECT mi.*, cat.name AS category
+  FROM menu_items AS mi
+  JOIN menu_items_categories AS mic
+  ON mi.id = mic.menu_item_id
+  JOIN categories AS cat
+  ON cat.id = mic.categories_id
+  WHERE restaurant_owner_id = $1;
+  `, queryParams)
     .then(data => {
       return data.rows;
+    })
+    .catch(err => {
+      console.log(err.message);
     });
 };
 
@@ -138,4 +148,5 @@ module.exports = {
   basketItemDelete,
   getBasketItemQuantity,
   runCategoryQuery,
+  getMenuItems,
 }

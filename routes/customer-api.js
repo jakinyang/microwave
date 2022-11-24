@@ -4,18 +4,18 @@ const router = express.Router();
 const {
   alterMenuItemStock,
   addMenuItemBasket,
-  getMenuItemBasket,
   basketItemDelete,
   runCategoryQuery,
-  getBasketItemQuantity
+  getBasketItemQuantity,
+  getMenuItems,
  } = require('../db/queries/customerQueries');
 
 // BROWSE
 router.get('/menu', (req, res) => {
-  const query = `SELECT * FROM menu_items WHERE restaurant_owner_id = 2;`;
-  db.query(query)
+  const ownerId = 2;
+  getMenuItems(ownerId)
     .then(data => {
-      const menu_items = data.rows;
+      const menu_items = data;
       res.json({ menu_items });
     })
     .catch(err => {
