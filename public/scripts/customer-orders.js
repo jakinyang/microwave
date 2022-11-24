@@ -43,9 +43,9 @@ const listOrderCards = function () {
       subTotal += Number(item.quantity * item.price / 100) // subtotal thing 
       console.log('subtotal per item: ', subTotal);
     }
-    const totalInput = subTotal.toString() // subtotal thing
+    const totalInput = '$' + subTotal.toString() // subtotal thing
     console.log('subtotal to string: ', subTotal);
-    $('#subtotal-amount').text(totalInput);  // subtotal thing 
+    $('#order-grand-total').text(totalInput);  // subtotal thing 
     console.log('listOrderItems Success!');
   });
 }
