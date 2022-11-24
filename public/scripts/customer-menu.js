@@ -247,10 +247,11 @@ $(() => {
     event.preventDefault();
     console.log(event);
     console.log(event.target);
+    $form = $(event.target).find('select').val();
+    console.log($form);
+
     const data = $(this).serialize();
-    const dataObj = { data };
-    console.log(dataObj);
-    console.log(dataObj.edit_quantity);
+
 
   })
 })
