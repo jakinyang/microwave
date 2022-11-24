@@ -33,16 +33,19 @@ const listOrderCards = function () {
     url: '/api/customers/menu/basket'
   })
   .done((response) => {
+    console.log('response: ', response);
     console.log('listOrderCards res.menuItems: ', response.menu_items);
     const $orderList = $('#customer-order-container');
     $orderList.empty();
-    // let subTotal = 0; // subtotal thing // will uncomment when subtotal area is ready
+    let subTotal = 0; // subtotal thing 
     for (const item of response.menu_items) {
       $('#customer-order-container').append(orderCardCreator(item));
-      // subTotal += Number(item.quantity * item.price / 100) // subtotal thing // will uncomment when subtotal area is ready
+      subTotal += Number(item.quantity * item.price / 100) // subtotal thing 
+      console.log('subtotal per item: ', subTotal);
     }
-    // const totalInput = subTotal.toString() // will uncomment when subtotal area is ready
-    // $('').text(totalInput);  // subtotal thing // will uncomment when subtotal area is ready
+    const totalInput = subTotal.toString() // subtotal thing
+    console.log('subtotal to string: ', subTotal);
+    $('#subtotal-amount').text(totalInput);  // subtotal thing 
     console.log('listOrderItems Success!');
   });
 }
