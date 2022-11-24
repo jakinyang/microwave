@@ -12,7 +12,7 @@ const getOrders = () => {
 const getAllItems = function(ownerId) {
   const queryParams = [ownerId];
   return db.query(`
-  SELECT *, cat.name
+  SELECT mi.*, cat.name AS category
   FROM menu_items AS mi
   JOIN menu_items_categories AS mic
   ON mi.id = mic.menu_item_id
@@ -66,9 +66,8 @@ const editMenuItem = function(menuObj) {
     RETURNING *;
     UPDATE menu_items_categories
     SET
-    menu_item_id = $7,
     categories_id = $8
-    WHERE id =
+    WHERE menu_item_id = $7;
     `, queryParams
   )
   .then(res => {

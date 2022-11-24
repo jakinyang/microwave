@@ -19,7 +19,7 @@ router.get('/menu', (req, res) => {
   const restaurantOwnerId = 2;
   getAllItems(restaurantOwnerId)
     .then(data => {
-      const menu_items = data.rows;
+      const menu_items = data;
       res.json({ menu_items });
     })
     .catch(err => {
