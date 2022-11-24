@@ -67,7 +67,7 @@ router.post('/orders/twilio', (req, res) => {
   console.log('Post request received at /order/twilio');
   client.messages
     .create({
-      body: 'this is a test',
+      body: 'Gravy trains',
       from: sendFrom,
       to: sendTo
   })
