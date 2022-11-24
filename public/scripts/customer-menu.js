@@ -1,8 +1,8 @@
 // needs edit to be cusotmer:
 const deleteBasketItem = (event) => {
-  const basketItemId = $(event.target).parents('.row mb-4').find("menu-itm-id").text();
+  const basketItemId = $(event.target).parents('#top-of-basket-card').find("#menu-itm-id").text();
   const data = {basketItemId: basketItemId};
-  console.log(data);
+  console.log('delete basket id data: ', data);
   return $.ajax({
     method: 'POST',
     url: '/api/customers/menu/delete',
@@ -58,13 +58,13 @@ const itemInfoGrabber = function(event) {
 }
 
 const basketInfoGrabber = function(event) {
-  const id = $(event.target).parents('.row mb-4').find("menu-itm-id").text();
-  const name = $(event.target).parents('.row mb-4').find(".text-black").text();
-  const image_url =$(event.target).parents('.row mb-4').find("img").text();
-  const description = $(event.target).parents('.row mb-4').find("menu-itm-description").text();
-  const priceString = $(event.target).parents('.row mb-4').find("mb-0").text();
+  const id = $(event.target).parents('#top-of-basket-card').find("menu-itm-id").text();
+  const name = $(event.target).parents('#top-of-basket-card').find("basket-itm-name").text();
+  const image_url =$(event.target).parents('#top-of-basket-card').find("img").text();
+  const description = $(event.target).parents('#top-of-basket-card').find("menu-itm-description").text();
+  const priceString = $(event.target).parents('#top-of-basket-card').find("mb-0").text();
   const price = Number(priceString) * 100;
-  const stock = $(event.target).parents('.row mb-4').find("stock-id").text();
+  const stock = $(event.target).parents('#top-of-basket-card').find("stock-id").text();
 
   return {id, restaurant_owner_id, name, image_url, description, price, stock};
 }
@@ -85,7 +85,7 @@ const listMenuItems = () => {
 }
 
 const basketCardCreator = function(itemObject) {
-  return `<div class="row mb-4 d-flex justify-content-around align-items-center">
+  return `<div id="top-of-basket-card" class="row mb-4 d-flex justify-content-around align-items-center">
             <div class="col-md-2 col-lg-2 col-xl-2">
               <img
                 src="${itemObject.image_url}"
@@ -93,21 +93,19 @@ const basketCardCreator = function(itemObject) {
             </div>
             <div class="col-md-3 col-lg-3 col-xl-3">
               <h6 class="text-muted">NEED CATEGORY</h6>
-              <h6 class="text-black mb-0">${itemObject.name}</h6>
+              <h4 class="text-black mb-0" id="basket-itm-name" >${itemObject.name}</h4>
               <div id="menu-itm-id" class="d-none">${itemObject.id}</div>
               <div id="menu-itm-owner-id" class="d-none">${itemObject.restaurant_owner_id}</div>
               <div id="menu-itm-description" class="d-none">${itemObject.description}</div>
             </div>
-            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-              <span class="basket-quantity-id">${itemObject.quantity}</span>
+            <div class="col-md-3 col-lg-3 col-xl-1 d-flex">
+              <h4 class="basket-quantity-id">${itemObject.quantity}</h4>
             </div>
-            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+            <div class="col-md-3 col-lg-2 col-xl-1 d-flex">
               <h6 class="mb-0">$${Number(itemObject.price / 100)}</h6>
             </div>
-            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+            <div class="col-md-3 col-lg-2 col-xl-3 offset-lg-1">
             <button type="button" id="basket-edit" class="btn btn-primary">Edit</button>
-            </div>
-            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
             <button type="button" id="basket-delete" class="btn btn-danger">Delete</button>
             </div>
           </div>
@@ -194,6 +192,7 @@ $(() => {
   })
   $('#basket-container').on('click', '#basket-delete', function(event) {
     console.log('delete button click does something');
+    deleteBasketItem(event)
   })
   /* $('.edit-quantity-btn').on('submit'), function{
 

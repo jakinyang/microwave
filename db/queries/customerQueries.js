@@ -77,6 +77,7 @@ const addMenuItemBasket = (menuItemObj) => {
   });
 };
 
+// to be called and tested when checkout function is implemented
 const alterMenuItemStock = function(data) {
   console.log('altermenuitems called');
   const queryParams = [
@@ -98,9 +99,9 @@ const alterMenuItemStock = function(data) {
   });
 }
 
-const basketItemDelete = function(itemId) {
+const basketItemDelete = function(itemId, basketId) {
   console.log('basket item delete was hit from customer quries');
-
+  const queryParams = [itemId, basketId]
 }
 
 
@@ -111,3 +112,6 @@ module.exports = {
   basketItemDelete,
   getBasketyItemQuantity
 }
+
+
+
