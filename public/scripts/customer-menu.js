@@ -59,7 +59,8 @@ const itemInfoGrabber = function (event) {
   const description = $(event.target).parents('.container-row').find("#menu-itm-description").text();
   const priceString = $(event.target).parents('.container-row').find(".price").text().substring(1);
   const price = Number(priceString) * 100;
-  const stock = $(event.target).parents('.container-row').find(".stock").text();
+  const stockString = $(event.target).parents('.container-row').find(".stock").text();
+  const stock = Number(stockString);
 
   return { id, restaurant_owner_id, name, image_url, description, price, stock };
 }
@@ -72,7 +73,8 @@ const basketInfoGrabber = function (event) {
   const description = $(event.target).parents('#top-of-basket-card').find("#menu-itm-description").text();
   const priceString = $(event.target).parents('#top-of-basket-card').find("#basket-itm-price").text();
   const price = Number(priceString) * 100;
-  const quantity = $(event.target).parents('#top-of-basket-card').find(".basket-quantity-id").text();
+  const quantityString = $(event.target).parents('#top-of-basket-card').find(".basket-quantity-id").text();
+  const quantity = Number(quantityString);
 
   return { id, restaurant_owner_id, name, image_url, description, price, quantity };
 }
@@ -242,11 +244,12 @@ $(() => {
     console.log("Add button clicked!");
     const item = itemInfoGrabber(event);
     console.log(item.id);
-    console.log(item.stock);
-    const $basketItem = $('#basket-container').find(`#menu-itm-id:contains('${item.id}')`);
+    const $basketItem = $('#basket-container').filter(function(){ return $(this).text() === item.id;});
+    console.log($basketItem.text());
     const $itemQuantity = $basketItem.parent('div').next('div').find('.basket-quantity-id').text();
-    console.log($itemQuantity);
-    if (item.stock <= $itemQuantity) {
+    console.log("item quantity: ", $itemQuantity);
+    console.log("item stock: ", item.stock);
+    if (Number(item.stock) <= Number($itemQuantity)) {
       return console.log('Error: not enough stock baby!')
     } else {
       updateMenuItemBasket(item)

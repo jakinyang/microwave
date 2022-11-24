@@ -37,18 +37,19 @@ const listOrderCards = function () {
     console.log('listOrderCards res.menuItems: ', response.menu_items);
     const $orderList = $('#customer-order-container');
     $orderList.empty();
-    let subTotal = 0; // subtotal thing 
+    let subTotal = 0; // subtotal thing
     for (const item of response.menu_items) {
       $('#customer-order-container').append(orderCardCreator(item));
-      subTotal += Number(item.quantity * item.price / 100) // subtotal thing 
+      subTotal += Number(item.quantity * item.price / 100) // subtotal thing
     }
     const totalInput = '$' + subTotal.toString() // subtotal thing
-    $('#order-grand-total').text(totalInput);  // subtotal thing 
+    $('#order-grand-total').text(totalInput);  // subtotal thing
     console.log('listOrderItems Success!');
   });
 }
 
 const sendTextMsg = () => {
+  console.log('sendTextMsg called!');
   $.ajax({
     method: 'POST',
     url: '/api/customers/orders/twilio'
@@ -68,7 +69,7 @@ $(() => {
 });
 
 
-/* 
+/*
 const dotenv = require('dotenv')
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;

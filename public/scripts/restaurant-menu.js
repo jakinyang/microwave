@@ -116,7 +116,8 @@ const itemInfoGrabber = function(event) {
   const description = $(event.target).parents('.container-row').find("#menu-itm-description").text();
   const priceString = $(event.target).parents('.container-row').find(".price").text().substring(1);
   const price = Number(priceString) * 100;
-  const stock = $(event.target).parents('.container-row').find(".stock").text();
+  const stockString = $(event.target).parents('.container-row').find(".stock").text();
+  const stock = Number(stockString);
   const category = $(event.target).parents('.container-row').find(".category").text();
 
   return {id, restaurant_owner_id, name, image_url, description, price, stock, category}
