@@ -116,6 +116,8 @@ const basketItemDelete = function(itemId) {
   });
 }
 
+
+// func in production - not yet operable
 const runCategoryQuery = (catId) => {
   const queryParams = [2, ]
     const query = `

@@ -90,7 +90,7 @@ const listMenuItems = () => {
     });
 }
 
-// func in production
+// func in production - not yet operable
 const listCategoricalItems = () => {
   $.ajax({
     method: 'GET',

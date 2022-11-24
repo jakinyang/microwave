@@ -26,6 +26,7 @@ router.get('/menu', (req, res) => {
 });
 
 //BROWSE (FILTERED)
+// in production, not yet operable
 router.get('/menu/categories', (req, res) => {
 
   runCategoryQuery()
