@@ -200,16 +200,17 @@ $(() => {
     console.log("Add button clicked!");
     const item = itemInfoGrabber(event);
     console.log(item.id);
-    const basketItem = $('#basket-container').find(`#menu-itm-id:contains('${item.id}')`).text();
+    const basketItem = $('#basket-container').find(`#menu-itm-id:contains('${item.id}')`).parents('div#top-of-basket-card').find('.basket-quantity-id').text();
     console.log(basketItem)
-    /* if (item.stock < basketItem.quantity) {
-      return 'Error: not enough stock baby!'
-    } */
-    updateMenuItemBasket(item)
-    .then(res => {
-      console.log('Response received from customer-api router for POST to menu/basket', res);
-      listBasketItems();
-    })
+    if (item.stock <= basketItem) {
+      return console.log('Error: not enough stock baby!')
+    } else {
+      updateMenuItemBasket(item)
+      .then(res => {
+        console.log('Response received from customer-api router for POST to menu/basket', res);
+        listBasketItems();
+      })
+    }
 
   })
   $('#basket-container').on('click', '#basket-delete', function(event) {
