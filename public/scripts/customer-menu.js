@@ -114,7 +114,6 @@ const basketCardCreator = function(itemObject) {
                 class="img-fluid rounded-3" alt="Food Item">
             </div>
             <div class="col-md-3 col-lg-3 col-xl-3">
-              <h6 class="text-muted">NEED CATEGORY</h6>
               <h4 class="text-black mb-0" id="basket-itm-name" >${itemObject.name}</h4>
               <div id="menu-itm-id" class="d-none">${itemObject.id}</div>
               <div id="menu-itm-owner-id" class="d-none">${itemObject.restaurant_owner_id}</div>
