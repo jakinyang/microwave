@@ -38,7 +38,7 @@ const menuCardCreator = (dbObject) => {
 
                <div class="collapse" id="collapseExample${dbObject.id}">
                <div class="card card-body">
-                Oh hey, Look, it worked!Oh hey, Look, it worked!Oh hey, Look, it worked!
+                ${dbObject.description}
                </div>
                </div>
                     </div>
@@ -133,7 +133,6 @@ const basketCardCreator = function (itemObject) {
           <hr class="my-4">
           `
 }
-
 
 const listBasketItems = function () {
   /*
