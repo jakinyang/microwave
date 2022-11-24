@@ -2,7 +2,7 @@
 
   <!--Container-->
 
-  <div class="container">
+  <div class="container" style="display: flex;">
     <div class="logo">
       <h1>Micro<span><b>wave</b></span></h1>
       <i data-feather="user-check">User</i>
@@ -12,29 +12,29 @@
 
 
     <!--Current Details-->
-    <div class="currentDetails">
-      <div class="header-option">
-        <div>
-          <a href="/restaurant_orders" class="btn btn-primary">
-            <i data-feather="bell">Home</i>
-            <span>Customer Order</span>
-          </a>
-        </div>
-        </div>
-      <div class="header-option">
-        <!--Add Items Button-->
-        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-          aria-controls="offcanvasRight"> <i data-feather="briefcase">basket</i>
-          <span>Add Items</span></button>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-          <div class="offcanvas-header" style="margin-bottom: 5rem;">
-            <!-- <h5 class="offcanvas-title" id="offcanvasRightLabel">Item N</h5> -->
-            <h2 class="form-title">Create New<span class =" label label-default"> Item</span></h2>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
 
-          <!--Add Item N-->
-          <div class="d-flex justify-content-center overflow-auto">
+    <div class="header-option">
+      <div>
+        <a href="/restaurant_orders" class="btn btn-primary button-radius">
+          <i data-feather="bell">Home</i>
+          <span>Customer Order</span>
+        </a>
+      </div>
+    </div>
+    <div class="header-option">
+      <!--Add Items Button-->
+      <button class="btn btn-primary button-radius" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+        aria-controls="offcanvasRight"> <i data-feather="briefcase">basket</i>
+        <span>Add Items</span></button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header" style="margin-bottom: 5rem;">
+          <!-- <h5 class="offcanvas-title" id="offcanvasRightLabel">Item N</h5> -->
+          <h2 class="form-title">Create New<span class=" label label-default"> Item</span></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+
+        <!--Add Item N-->
+        <div class="d-flex justify-content-center overflow-auto">
           <form id="newItemForm">
             <div class="form-group" style="margin-bottom: 1rem;">
               <h4>Item Name</h4>
@@ -58,7 +58,7 @@
             <!--Food Type Form End-->
             <div class="form-group">
               <h4>Image URL<h4>
-              <input name="newUrl" type="text" class="form-control" placeholder="url">
+                  <input name="newUrl" type="text" class="form-control" placeholder="url">
             </div>
 
             <div class="form-group">
@@ -67,30 +67,31 @@
             </div>
             <div class="form-group">
               <h4>Price: $</h4>
-              <input name="newPrice" type="float" class="form-control"  placeholder="price">
+              <input name="newPrice" type="float" class="form-control" placeholder="price">
             </div>
 
             <div class="form-group">
               <h4>Stock Quantity</h4>
               <input name="newQuantity" type="number" class="form-control" placeholder="stock">
             </div>
-            <button type="submit" class="btn btn-primary" id="newItem" style="margin-top: 2rem;" data-bs-dismiss="offcanvas" aria-label="Close">Submit</button>
+            <button type="submit" class="btn btn-primary" id="newItem" style="margin-top: 2rem;"
+              data-bs-dismiss="offcanvas" aria-label="Close">Submit</button>
           </form>
-          </div>
-          <!--Add Item N End-->
-          <div class="offcanvas-body">
-          </div>
         </div>
-        <!-- Off Canvas Edit -->
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRightEdit" aria-labelledby="offcanvasRightLabel">
-          <div class="offcanvas-header" style="margin-bottom: 5rem;">
-            <!-- <h5 class="offcanvas-title" id="offcanvasRightLabel">Item N</h5> -->
-            <h2 class="form-title">Edit<span class =" label label-default"> Item</span></h2>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
+        <!--Add Item N End-->
+        <div class="offcanvas-body">
+        </div>
+      </div>
+      <!-- Off Canvas Edit -->
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRightEdit" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header" style="margin-bottom: 5rem;">
+          <!-- <h5 class="offcanvas-title" id="offcanvasRightLabel">Item N</h5> -->
+          <h2 class="form-title">Edit<span class=" label label-default"> Item</span></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
 
-          <!--Add Item N-->
-          <div class="d-flex justify-content-center overflow-auto">
+        <!--Add Item N-->
+        <div class="d-flex justify-content-center overflow-auto">
           <form id="editItemForm">
             <div class="form-group" style="margin-bottom: 1rem;">
               <h4>Item Name</h4>
@@ -114,7 +115,7 @@
             <!--Food Type Form End-->
             <div class="form-group">
               <h4>Image URL<h4>
-              <input name="editUrl" type="text" class="form-control" placeholder="url">
+                  <input name="editUrl" type="text" class="form-control" placeholder="url">
             </div>
 
             <div class="form-group">
@@ -123,7 +124,7 @@
             </div>
             <div class="form-group">
               <h4>Price: $</h4>
-              <input name="editPrice" type="number" class="form-control"  placeholder="price">
+              <input name="editPrice" type="number" class="form-control" placeholder="price">
             </div>
 
             <div class="form-group">
@@ -134,15 +135,16 @@
               <h4>item id</h4>
               <input name="editId" type="number" class="form-control" placeholder="id">
             </div>
-            <button type="submit" class="btn btn-primary" id="editItem" style="margin-top: 2rem;" data-bs-dismiss="offcanvas" aria-label="Close">Submit</button>
+            <button type="submit" class="btn btn-primary" id="editItem" style="margin-top: 2rem;"
+              data-bs-dismiss="offcanvas" aria-label="Close">Submit</button>
           </form>
-          </div>
-          <!--Add Item N End-->
-          <div class="offcanvas-body">
-          </div>
+        </div>
+        <!--Add Item N End-->
+        <div class="offcanvas-body">
         </div>
       </div>
     </div>
+
   </div>
 
 </header>
