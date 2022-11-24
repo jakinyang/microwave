@@ -77,18 +77,28 @@ router.post('/menu/quantity/update', (req, res) => {
   console.log('Post request received at /menu/quantity/update:', updateData);
   const oldQuantity = updateData.quantity;
   const newQuantity = updateData.newQuantity;
-  const quantityDifference = updateData.quantityDifference;
+  const quantityDifference = Math.abs(Number(updateData.quantityDifference));
   if (oldQuantity > newQuantity) {
     decrementBasketItemQuantity(updateData)
-      .then(res => {
-        console.log(res);
+      .then(response => {
+        console.log(response);
+        res.send(response);
       })
       .catch(err => {
         console.log(err.message);
       });
   }
   if (oldQuantity < newQuantity) {
-    console.log('I guess we have to add rows?')
+    for(let i = 0; i < quantityDifference; i++) {
+      addMenuItemBasket(updateData)
+      .then(response => {
+        console.log(response);
+        res.send(response);
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+    }
   }
   /* alterMenuItemStock(newStockObject)
   .then(response => {

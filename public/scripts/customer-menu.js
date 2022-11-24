@@ -203,11 +203,12 @@ const updateMenuItemBasket = function (data) {
     url: '/api/customers/menu/basket',
     data
   })
+
 };
 
 
 // to be called and tested when checkout function is implemented
-const updateMenuItemStock = function (event) {
+const updateBasketItemQuantity = function (event) {
   /* Fire off ajax request to back end to:
       1. Update the stock column value for the item inside of
       menu_items table
@@ -225,6 +226,12 @@ const updateMenuItemStock = function (event) {
     url: '/api/customers/menu/quantity/update',
     data
   })
+  .then(res => {
+    console.log('updateBasketItemQuantity success!', res);
+  })
+  .catch(err => {
+    console.log('Error from updateBasketItemQuantity', err.message);
+  });
 };
 
 $(() => {
@@ -257,7 +264,11 @@ $(() => {
 
   $('#basket-container').on('submit', '.basket-edit-form', function(event) {
     event.preventDefault();
-    updateMenuItemStock(event);
+    updateBasketItemQuantity(event)
+      .then(res => {
+        console.log('updateBasketItemQuantity success; reloading listBasketItems');
+        listBasketItems();
+      });
 
 
 
