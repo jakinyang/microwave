@@ -11,7 +11,7 @@ const deleteBasketItem = (event) => {
 };
 
 const menuCardCreator = (dbObject) => {
-    return `<div class="listing-grid-element">
+  return `<div class="listing-grid-element">
               <div class="image">
                 <img
                   src="${dbObject.image_url}"
@@ -33,10 +33,10 @@ const menuCardCreator = (dbObject) => {
                 <div class="options">
                 <div class="container add-container" style="margin-right: 0.5rem;">
                 <!--DESCRIPTION-->
-                <button class="options-btn selected" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                <button class="options-btn selected" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample${dbObject.id}" aria-expanded="false" aria-controls="collapseExample">
  Description  </button>
 
-               <div class="collapse" id="collapseExample">
+               <div class="collapse" id="collapseExample${dbObject.id}">
                <div class="card card-body">
                 Oh hey, Look, it worked!Oh hey, Look, it worked!Oh hey, Look, it worked!
                </div>
@@ -48,9 +48,9 @@ const menuCardCreator = (dbObject) => {
                 </div>
               </div>
             </div>`
-  };
+};
 
-const itemInfoGrabber = function(event) {
+const itemInfoGrabber = function (event) {
   const id = $(event.target).parents('.container-row').find("#menu-itm-id").text();
   const restaurant_owner_id = $(event.target).parents('.container-row').find("#menu-itm-owner-id").text();
   const name = $(event.target).parents('.container-row').find("h3.name").text();
@@ -60,19 +60,19 @@ const itemInfoGrabber = function(event) {
   const price = Number(priceString) * 100;
   const stock = $(event.target).parents('.container-row').find(".stock").text();
 
-  return {id, restaurant_owner_id, name, image_url, description, price, stock};
+  return { id, restaurant_owner_id, name, image_url, description, price, stock };
 }
 
-const basketInfoGrabber = function(event) {
+const basketInfoGrabber = function (event) {
   const id = $(event.target).parents('#top-of-basket-card').find("menu-itm-id").text();
   const name = $(event.target).parents('#top-of-basket-card').find("basket-itm-name").text();
-  const image_url =$(event.target).parents('#top-of-basket-card').find("img").text();
+  const image_url = $(event.target).parents('#top-of-basket-card').find("img").text();
   const description = $(event.target).parents('#top-of-basket-card').find("menu-itm-description").text();
   const priceString = $(event.target).parents('#top-of-basket-card').find("mb-0").text();
   const price = Number(priceString) * 100;
   const stock = $(event.target).parents('#top-of-basket-card').find("stock-id").text();
 
-  return {id, restaurant_owner_id, name, image_url, description, price, stock};
+  return { id, restaurant_owner_id, name, image_url, description, price, stock };
 }
 
 const listMenuItems = () => {
@@ -80,14 +80,14 @@ const listMenuItems = () => {
     method: 'GET',
     url: 'api/customers/menu'
   })
-  .done((response) => {
-    const $menuList = $('.listings-grid');
-    $menuList.empty();
-    for (const item of response.menu_items) {
-      $('.listings-grid').append(menuCardCreator(item));
-    }
-    console.log('listCurrentItems Success!');
-  });
+    .done((response) => {
+      const $menuList = $('.listings-grid');
+      $menuList.empty();
+      for (const item of response.menu_items) {
+        $('.listings-grid').append(menuCardCreator(item));
+      }
+      console.log('listCurrentItems Success!');
+    });
 }
 
 // func in production
@@ -96,17 +96,17 @@ const listCategoricalItems = () => {
     method: 'GET',
     url: 'api/customers/menu/categories'
   })
-  .done((response) => {
-    const $menuList = $('.listings-grid');
-    $menuList.empty();
-    for (const item of response.menu_items) {
-      $('.listings-grid').append(menuCardCreator(item));
-    }
-    console.log('list categorical Items Success :D');
-  });
+    .done((response) => {
+      const $menuList = $('.listings-grid');
+      $menuList.empty();
+      for (const item of response.menu_items) {
+        $('.listings-grid').append(menuCardCreator(item));
+      }
+      console.log('list categorical Items Success :D');
+    });
 }
 
-const basketCardCreator = function(itemObject) {
+const basketCardCreator = function (itemObject) {
   return `<div id="top-of-basket-card" class="row mb-4 d-flex justify-content-around align-items-center">
             <div class="col-md-2 col-lg-2 col-xl-2">
               <img
@@ -135,7 +135,7 @@ const basketCardCreator = function(itemObject) {
 }
 
 
-const listBasketItems = function() {
+const listBasketItems = function () {
   /*
   On document.ready():
   Fire off ajax request to the back end to:
@@ -147,32 +147,32 @@ const listBasketItems = function() {
     method: 'GET',
     url: '/api/customers/menu/basket'
   })
-  .done((response) => {
-    console.log('Response from GET /menu/basket', response);
-    console.log('listbaskitems res.menuItems: ', response.menu_items);
-    const $basketList = $('#basket-container');
-    $basketList.empty();
-    let subTotal = 0; // subtotal thing
-    for (const item of response.menu_items) {
-      $('#basket-container').append(basketCardCreator(item));
-      subTotal += Number(item.quantity * item.price / 100) // subtotal thing
-    }
-    console.log('subtotal val: ', $('#subtotal-amount').val());  // subtotal thing
-    console.log('listBasketItems Success!');
-  });
+    .done((response) => {
+      console.log('Response from GET /menu/basket', response);
+      console.log('listbaskitems res.menuItems: ', response.menu_items);
+      const $basketList = $('#basket-container');
+      $basketList.empty();
+      let subTotal = 0; // subtotal thing
+      for (const item of response.menu_items) {
+        $('#basket-container').append(basketCardCreator(item));
+        subTotal += Number(item.quantity * item.price / 100) // subtotal thing
+      }
+      console.log('subtotal val: ', $('#subtotal-amount').val());  // subtotal thing
+      console.log('listBasketItems Success!');
+    });
 }
 
-const addToBasket = function() {
-/*
-Front end script only
-Grab item information - generate basket item card
-Insert that card into the basket
-If there is a sub-total information section:
-this function should dynamically update that
-*/
+const addToBasket = function () {
+  /*
+  Front end script only
+  Grab item information - generate basket item card
+  Insert that card into the basket
+  If there is a sub-total information section:
+  this function should dynamically update that
+  */
 };
 
-const updateMenuItemBasket = function(data) {
+const updateMenuItemBasket = function (data) {
   /*
   Fire off ajax request to back end to:
   1. Insert row into table menu_item_baskets with
@@ -187,26 +187,26 @@ const updateMenuItemBasket = function(data) {
 
 
 // to be called and tested when checkout function is implemented
-const updateMenuItemStock = function(event, callback) {
+const updateMenuItemStock = function (event, callback) {
   /* Fire off ajax request to back end to:
       1. Update the stock column value for the item inside of
       menu_items table
       2. Reload the item card with updated stock number
  */
-      const stockItemId = callback(event).id;
-      const data = {stockItemId: stockItemId};
-      return $.ajax({
-        method: 'POST',
-        url: '/api/customers/menu/stock/update',
-        data
-      })
+  const stockItemId = callback(event).id;
+  const data = { stockItemId: stockItemId };
+  return $.ajax({
+    method: 'POST',
+    url: '/api/customers/menu/stock/update',
+    data
+  })
 };
 
 $(() => {
   listMenuItems();
   listBasketItems();
   // Add Item Button Listener
-  $('.listings-grid').on('click', '.add-btn', function(event) {
+  $('.listings-grid').on('click', '.add-btn', function (event) {
     console.log("Add button clicked!");
     const item = itemInfoGrabber(event);
     console.log(item.id);
@@ -218,14 +218,14 @@ $(() => {
       return console.log('Error: not enough stock baby!')
     } else {
       updateMenuItemBasket(item)
-      .then(res => {
-        console.log('Response received from customer-api router for POST to menu/basket', res);
-        listBasketItems();
-      })
+        .then(res => {
+          console.log('Response received from customer-api router for POST to menu/basket', res);
+          listBasketItems();
+        })
     }
 
   })
-  $('#basket-container').on('click', '#basket-delete', function(event) {
+  $('#basket-container').on('click', '#basket-delete', function (event) {
     deleteBasketItem(event);
     listBasketItems();
   })
