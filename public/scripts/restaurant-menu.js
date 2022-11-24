@@ -34,7 +34,7 @@ const itemCardCreator = (dbObject) => {
                 <h3 class="name">${dbObject.name}</h3>
                 <div class="info">
                   <div>
-                    <h6><span class="label label-default">Price</span> <span class="price">$${dbObject.price / 100}</span></h6>
+                    <h6><span class="label label-default">Price</span> <span class="price">$${(dbObject.price / 100).toFixed(2)}</span></h6>
                     <h6><span class="label label-default ">Stock</span> <span class="stock">${dbObject.stock}</span></h6>
                     <h6><span class="label label-default">Category</span> <span class="category" style="background: 0;">${dbObject.category}</span></h6>
                     <div id="menu-itm-id" class="d-none">${dbObject.id}</div>
@@ -89,7 +89,7 @@ const editCurrentItem = (itemInfo) => {
   </div>
   <div class="form-group">
     <h4>Price: $</h4>
-    <input name="editNewPrice" type="number" placeholder="${itemInfo.price}" class="form-control"  placeholder="price">
+    <input name="editNewPrice" type="number" placeholder="${(itemInfo.price)}" class="form-control"  placeholder="price">
   </div>
 
   <div class="form-group">
