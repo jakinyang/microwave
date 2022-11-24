@@ -36,7 +36,7 @@ const itemCardCreator = (dbObject) => {
                   <div>
                     <h6><span class="label label-default">Price</span> <span class="price">$${dbObject.price / 100}</span></h6>
                     <h6><span class="label label-default ">Stock</span> <span class="stock">${dbObject.stock}</span></h6>
-                    <h6><span class="label label-default ">Category</span> <span class="stock">${dbObject.category}</span></h6>
+                    <h6><span class="label label-default ">Category</span> <span class="category">${dbObject.category}</span></h6>
                     <div id="menu-itm-id" class="d-none">${dbObject.id}</div>
                     <div id="menu-itm-owner-id" class="d-none">${dbObject.restaurant_owner_id}</div>
                     <div id="menu-itm-description" class="d-none">${dbObject.description}</div>
@@ -117,8 +117,9 @@ const itemInfoGrabber = function(event) {
   const priceString = $(event.target).parents('.container-row').find(".price").text().substring(1);
   const price = Number(priceString) * 100;
   const stock = $(event.target).parents('.container-row').find(".stock").text();
+  const category = $(event.target).parents('.container-row').find(".category").text();
 
-  return {id, restaurant_owner_id, name, image_url, description, price, stock}
+  return {id, restaurant_owner_id, name, image_url, description, price, stock, category}
 }
 
 const listCurrentItems = () => {
@@ -168,19 +169,13 @@ $(() => {
 
   $('.listings-grid').on('click', '.edit-btn', function(event) {
     const item = itemInfoGrabber(event);
-    /* $('input[name=editItemName]').attr('placeholder', item.name);
-    $('input[name=editUrl]').attr('placeholder', item.image_url);
-    $('input[name=editDescription]').attr('placeholder', item.description);
-    $('input[name=editPrice]').attr('placeholder', item.price);
-    $('input[name=editQuantity]').attr('placeholder', item.stock);
-    $('input[name=editId]').attr('placeholder', item.id); */
-    /* .val() */
     $('input[name=editItemName]').val(item.name);
     $('input[name=editUrl]').val(item.image_url);
     $('input[name=editDescription]').val(item.description);
     $('input[name=editPrice]').val(item.price);
     $('input[name=editQuantity]').val(item.stock);
     $('input[name=editId]').val(item.id);
+    $('select[name=editCategory]').val(item.category);
   });
 
   $('#editItemForm').on('submit', function (event) {
