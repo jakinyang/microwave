@@ -1,4 +1,5 @@
 header {
+  display: flex;
   top: 0;
   margin-bottom: 2rem;
   flex-direction: column;
@@ -11,6 +12,8 @@ header {
   border-radius: 10px;
 
   .logo {
+    display: flex;
+    flex-direction: column;
     h1 {
       font-weight: 300;
 
