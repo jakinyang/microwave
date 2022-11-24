@@ -41,10 +41,8 @@ const listOrderCards = function () {
     for (const item of response.menu_items) {
       $('#customer-order-container').append(orderCardCreator(item));
       subTotal += Number(item.quantity * item.price / 100) // subtotal thing 
-      console.log('subtotal per item: ', subTotal);
     }
     const totalInput = '$' + subTotal.toString() // subtotal thing
-    console.log('subtotal to string: ', subTotal);
     $('#order-grand-total').text(totalInput);  // subtotal thing 
     console.log('listOrderItems Success!');
   });
@@ -56,5 +54,9 @@ const listOrderCards = function () {
 $(() => {
   console.log('document.ready')
   listOrderCards();
+
+  $('#checkout-area-selector').on('click', '#checkout-button', function() {
+    console.log('checkout button clicked!');
+  })
 });
 
