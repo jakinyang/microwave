@@ -96,13 +96,17 @@ router.post('/menu/basket', (req, res) => {
 router.post('/menu/quantity/update', (req, res) => {
   const updateData = req.body;
   console.log('Post request received at /menu/quantity/update:', updateData);
-  const oldQuantity = updateData.quantity;
-  const newQuantity = updateData.newQuantity;
+  const oldQuantity = Number(updateData.quantity);
+  console.log(oldQuantity);
+  const newQuantity = Number(updateData.newQuantity);
+  console.log(newQuantity);
   const quantityDifference = Math.abs(Number(updateData.quantityDifference));
+  console.log(quantityDifference);
   if (oldQuantity > newQuantity) {
+    console.log('Calling decrementBasketItemQuantity');
     decrementBasketItemQuantity(updateData)
       .then(response => {
-        console.log(response);
+        console.log('Response from decrement');
         res.send(response);
       })
       .catch(err => {
@@ -110,15 +114,24 @@ router.post('/menu/quantity/update', (req, res) => {
       });
   }
   if (oldQuantity < newQuantity) {
+    console.log('Entering quantity add loop');
     for(let i = 0; i < quantityDifference; i++) {
-      addMenuItemBasket(updateData)
-      .then(response => {
-        console.log(response);
-        res.send(response);
-      })
-      .catch(err => {
-        console.log(err.message);
-      });
+      if (i === quantityDifference -1) {
+        addMenuItemBasket(updateData)
+        .then(response => {
+          console.log('Response from increment');
+          res.send(response);
+        })
+        .catch(err => {
+          console.log(err.message);
+        });
+      } else {
+        addMenuItemBasket(updateData)
+        .catch(err => {
+          console.log(err.message);
+        })
+      }
+
     }
   }
   /* alterMenuItemStock(newStockObject)
@@ -137,7 +150,7 @@ router.post('/menu/basket/delete', (req, res) => {
   const deleteBasketItemId = req.body.basketItemId;
   basketItemDelete(deleteBasketItemId)
   .then(res => {
-    console.log('delete from cust.api res: ', res);
+    console.log('Menu basket delete response: ', res);
   })
   .catch(err => {
     console.log(err)

@@ -218,8 +218,8 @@ const updateBasketItemQuantity = function (event) {
   $newQuanity = $(event.target).find('select').val();
   const data = basketItemInfo;
   data.basketId = 4;
-  data.newQuantity = $newQuanity;
-  data.quantityDifference = data.quantity - data.newQuantity;
+  data.newQuantity = Number($newQuanity);
+  data.quantityDifference = Number(data.quantity) - Number(data.newQuantity);
   console.log(data);
   return $.ajax({
     method: 'POST',
