@@ -71,9 +71,8 @@ router.post('/orders/twilio', (req, res) => {
       to: sendTo
   })
   .then(message => console.log('response from twilio: ', message.sid))
-  .then(response => {
-    res.send(response);
-  });
+  .then(console.log('text message send to restaurant owner'));
+
 });
 
 
