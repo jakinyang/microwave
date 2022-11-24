@@ -22,7 +22,7 @@ const menuCardCreator = (dbObject) => {
                   <h3 class="name">${dbObject.name}</h3>
                   <div class="info">
                     <div>
-                      <h6><span class="label label-default">Price</span> <span class="price">$${dbObject.price / 100}</span></h6>
+                      <h6><span class="label label-default">Price</span> <span class="price">$${Number(dbObject.price / 100).toFixed(2)}</span></h6>
                       <h6><span class="label label-default ">Stock</span> <span class="stock">${dbObject.stock}</span></h6>
                       <div id="menu-itm-category" class="d-none">${dbObject.category}</div>
                       <div id="menu-itm-id" class="d-none">${dbObject.id}</div>
@@ -137,7 +137,7 @@ const basketCardCreator = function (itemObject) {
               <h4 class="basket-quantity-id">${itemObject.quantity}</h4>
             </div>
             <div class="col-md-3 col-lg-2 col-xl-1 d-flex">
-              <h6 class="mb-0">$ <span id="basket-itm-price">${Number(itemObject.price / 100)}</span></h6>
+              <h6 class="mb-0">$ <span id="basket-itm-price">${Number(itemObject.price / 100).toFixed(2)}</span></h6>
             </div>
             <div class="col-md-3 col-lg-2 col-xl-3 offset-lg-1">
             <form class="basket-edit-form">
@@ -179,9 +179,14 @@ const listBasketItems = function () {
       item.price = Number(item.price);
       item.stock = Number(item.stock);
       $('#basket-container').append(basketCardCreator(item));
+<<<<<<< HEAD
       subTotal += item.quantity * item.price / 100 // subtotal thing
+=======
+      subTotal += ((item.quantity * item.price) / 100);
+>>>>>>> 295e7bab88c59aa7f7db50d1385fb297ab3e4e12
     }
-    const totalInput = subTotal.toString()
+    const totalInput = subTotal.toFixed(2);
+
     $('#subtotal-amount').text(totalInput);  // subtotal thing
     console.log('listBasketItems Success!');
   });
