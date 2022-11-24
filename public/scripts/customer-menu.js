@@ -175,8 +175,13 @@ const listBasketItems = function () {
     $basketList.empty();
     let subTotal = 0; // subtotal thing
     for (const item of response.menu_items) {
+      item.quantity = Number(item.quantity);
+      item.price = Number(item.price);
+      item.stock = Number(item.stock);
       $('#basket-container').append(basketCardCreator(item));
-      subTotal += Number((item.quantity * item.price / 100).toFixed(2)); // subtotal thing
+
+      subTotal += item.quantity * item.price / 100 // subtotal thing
+
     }
     const totalInput = subTotal.toString()
     $('#subtotal-amount').text(totalInput);  // subtotal thing
