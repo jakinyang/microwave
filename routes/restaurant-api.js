@@ -31,6 +31,7 @@ router.get('/menu', (req, res) => {
 
 
 router.post('/menu', (req, res) => {
+  console.log('Post request to /api/restaurants/menu; Request body: ', req.body);
   const newMenuObject = req.body;
   addMenuItem(newMenuObject)
   .then(response => {

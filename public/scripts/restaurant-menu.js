@@ -14,6 +14,7 @@ const deleteCurrentItem = (event) => {
 }
 
 const submitNewItem = (data) => {
+  console.log(data);
   return $.ajax({
     method: 'POST',
     url: '/api/restaurants/menu',
