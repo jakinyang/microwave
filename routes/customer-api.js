@@ -66,7 +66,7 @@ router.get('/menu/basket', (req, res) => {
 router.post('/orders/twilio', (req, res) => {
   client.messages
     .create({
-      body: 'this is a test',
+      body: 'Gravy trains',
       from: sendFrom,
       to: sendTo
   })
