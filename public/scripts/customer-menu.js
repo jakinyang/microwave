@@ -32,8 +32,15 @@ const menuCardCreator = (dbObject) => {
                 </div>
                 <div class="options">
                 <div class="container add-container" style="margin-right: 0.5rem;">
-                      <button type="button" class="options-btn selected" data-toggle="tooltip" title="Oh hey, Look, it worked!"> Description
-                      </button>
+                <!--DESCRIPTION-->
+                <button class="options-btn selected" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+ Description  </button>
+
+               <div class="collapse" id="collapseExample">
+               <div class="card card-body">
+                Oh hey, Look, it worked!Oh hey, Look, it worked!Oh hey, Look, it worked!
+               </div>
+               </div>
                     </div>
                     <div class="container add-container">
                       <button class="options-btn selected add-btn">Add</button>
