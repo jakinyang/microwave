@@ -176,7 +176,7 @@ const listBasketItems = function () {
     let subTotal = 0; // subtotal thing
     for (const item of response.menu_items) {
       $('#basket-container').append(basketCardCreator(item));
-      subTotal += Number(item.quantity * item.price / 100); // subtotal thing
+      subTotal += Number((item.quantity * item.price / 100).toFixed(2)); // subtotal thing
     }
     const totalInput = subTotal.toString()
     $('#subtotal-amount').text(totalInput);  // subtotal thing
