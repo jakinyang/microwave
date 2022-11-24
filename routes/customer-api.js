@@ -6,6 +6,7 @@ const {
   addMenuItemBasket,
   getMenuItemBasket,
   basketItemDelete,
+  runCategoryQuery,
   getBasketyItemQuantity
  } = require('../db/queries/customerQueries');
 
@@ -13,6 +14,21 @@ const {
 router.get('/menu', (req, res) => {
   const query = `SELECT * FROM menu_items WHERE restaurant_owner_id = 2;`;
   db.query(query)
+    .then(data => {
+      const menu_items = data.rows;
+      res.json({ menu_items });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+});
+
+//BROWSE (FILTERED)
+router.get('/menu/categories', (req, res) => {
+
+  runCategoryQuery()
     .then(data => {
       const menu_items = data.rows;
       res.json({ menu_items });
