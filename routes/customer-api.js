@@ -1,6 +1,12 @@
 const express = require('express');
 const db = require('../db/connection');
 const router = express.Router();
+const dotenv = require('dotenv')
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const sendTo = process.env.MY_PHONE_NUMBER;
+const sendFrom = process.env.TWIL_PHONE_NUMBER;
+const client = require('twilio')(accountSid, authToken);
 const {
   addMenuItemBasket,
   basketItemDelete,
@@ -55,6 +61,21 @@ router.get('/menu/basket', (req, res) => {
     .json({ error: err.message });
   })
 })
+
+// ADD - TWILIO MESSAGE
+router.post('/orders/twilio', (req, res) => {
+  client.messages
+    .create({
+      body: 'this is a test',
+      from: sendFrom,
+      to: sendTo
+  })
+  .then(message => console.log('response from twilio: ', message.sid))
+  .then(response => {
+    res.send(response);
+  });
+});
+
 
 // ADD
 router.post('/menu/basket', (req, res) => {

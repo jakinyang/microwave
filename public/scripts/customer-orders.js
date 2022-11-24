@@ -48,6 +48,13 @@ const listOrderCards = function () {
   });
 }
 
+const sendTextMsg = () => {
+  $.ajax({
+    method: 'POST',
+    url: '/api/customers/orders/twilio'
+  })
+}
+
 //
 // DOCUMENT READY \\
 //
@@ -56,7 +63,25 @@ $(() => {
   listOrderCards();
 
   $('#checkout-area-selector').on('click', '#checkout-button', function() {
-    console.log('checkout button clicked!');
+    sendTextMsg();
   })
 });
 
+
+/* 
+const dotenv = require('dotenv')
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const sendTo = process.env.MY_PHONE_NUMBER;
+const sendFrom = process.env.TWIL_PHONE_NUMBER;
+const client = require('twilio')(accountSid, authToken);
+
+client.messages
+    .create({
+      body: msgObj.testMessage,
+      from: '+13855037218',
+      to: outBound
+  })
+  .then(message => console.log(message.sid));
+  })
+*/
