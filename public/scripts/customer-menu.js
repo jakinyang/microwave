@@ -24,6 +24,7 @@ const menuCardCreator = (dbObject) => {
                     <div>
                       <h6><span class="label label-default">Price</span> <span class="price">$${dbObject.price / 100}</span></h6>
                       <h6><span class="label label-default ">Stock</span> <span class="stock">${dbObject.stock}</span></h6>
+                      <div id="menu-itm-category" class="d-none">${dbObject.category}</div>
                       <div id="menu-itm-id" class="d-none">${dbObject.id}</div>
                       <div id="menu-itm-owner-id" class="d-none">${dbObject.restaurant_owner_id}</div>
                       <div id="menu-itm-description" class="d-none">${dbObject.description}</div>
@@ -64,15 +65,15 @@ const itemInfoGrabber = function (event) {
 }
 
 const basketInfoGrabber = function (event) {
-  const id = $(event.target).parents('#top-of-basket-card').find("menu-itm-id").text();
-  const name = $(event.target).parents('#top-of-basket-card').find("basket-itm-name").text();
-  const image_url = $(event.target).parents('#top-of-basket-card').find("img").text();
-  const description = $(event.target).parents('#top-of-basket-card').find("menu-itm-description").text();
-  const priceString = $(event.target).parents('#top-of-basket-card').find("mb-0").text();
+  const id = $(event.target).parents('#top-of-basket-card').find("#menu-itm-id").text();
+  const name = $(event.target).parents('#top-of-basket-card').find("#basket-itm-name").text();
+  const image_url = $(event.target).parents('#top-of-basket-card').find("img").attr('src');
+  const description = $(event.target).parents('#top-of-basket-card').find("#menu-itm-description").text();
+  const priceString = $(event.target).parents('#top-of-basket-card').find("#basket-itm-price").text();
   const price = Number(priceString) * 100;
-  const stock = $(event.target).parents('#top-of-basket-card').find("stock-id").text();
+  const quantity = $(event.target).parents('#top-of-basket-card').find(".basket-quantity-id").text();
 
-  return { id, restaurant_owner_id, name, image_url, description, price, stock };
+  return { id, restaurant_owner_id, name, image_url, description, price, quantity };
 }
 
 const listMenuItems = () => {
@@ -128,7 +129,7 @@ const basketCardCreator = function (itemObject) {
               <h4 class="basket-quantity-id">${itemObject.quantity}</h4>
             </div>
             <div class="col-md-3 col-lg-2 col-xl-1 d-flex">
-              <h6 class="mb-0">$${Number(itemObject.price / 100)}</h6>
+              <h6 id="basket-itm-price" class="mb-0">$${Number(itemObject.price / 100)}</h6>
             </div>
             <div class="col-md-3 col-lg-2 col-xl-3 offset-lg-1">
             <form class="basket-edit-form">
@@ -210,7 +211,7 @@ const updateMenuItemStock = function (event, callback) {
   const data = { stockItemId: stockItemId };
   return $.ajax({
     method: 'POST',
-    url: '/api/customers/menu/stock/update',
+    url: '/api/customers/menu/quantity/update',
     data
   })
 };
@@ -245,12 +246,14 @@ $(() => {
 
   $('#basket-container').on('submit', '.basket-edit-form', function(event) {
     event.preventDefault();
-    console.log(event);
-    console.log(event.target);
-    $form = $(event.target).find('select').val();
-    console.log($form);
+    console.log($(event.target).parents('#top-of-basket-card').find("#menu-itm-id").text());
+    const basketItemInfo = basketInfoGrabber(event);
+    console.log(basketItemInfo);
+    console.log(basketItemInfoObj);
+    $newQuanity = $(event.target).find('select').val();
+    console.log($newQuanity);
 
-    const data = $(this).serialize();
+
 
 
   })
