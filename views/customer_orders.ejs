@@ -31,7 +31,7 @@
   <!--Header-->
   <%- include('partials/_header_c_order') %>
     <div>
-      <section class=" h-110 h-custom" style="height: 1500px;">
+      <section class=" h-110 h-custom" style="height:1200px;">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12">
@@ -41,13 +41,12 @@
                     <div class="col-lg-8">
                       <div class="p-5">
                         <div class="d-flex justify-content-between align-items-center mb-5">
-                          <h1 class="fw-bold mb-0 text-black">Your Order Details</h1>
+                          <h1 class="fw-bold mb-0 text-black">Your Order Number: 01</h1>
                           <h6 class="mb-0 text-muted">3 items</h6>
                         </div>
-                        <div class="fw-bold mb-0 text-black">
-                          <h2>Customer Order Number: 01</h2>
-                        </div>
                         <hr class="my-4">
+
+                        <!--Order Items Container-->
                       <div id="customer-order-container">
                         <div class="row mb-4 d-flex justify-content-between align-items-center">
                           <div class="col-md-2 col-lg-2 col-xl-2">
@@ -118,6 +117,19 @@
 
                         <hr class="my-4">
                       </div>
+
+
+                      <div class="d-flex">
+                        <div class="p-2 w-100 bd-highlight"></div>
+                        <div class="p-2 flex-shrink-1">Subtotal: </div>
+                        <div class="display-6">$20</div>
+                      </div>
+                      <!--Place Order Button-->
+                      <div class="d-flex flex-row-reverse" style="margin-top: 2rem;">
+                        <button id="checkout-button" type="button" class="btn btn-success btn-lg">Place Order</button>
+                      </div>
+
+                      <!--Back to Menu Link-->
                         <div class="pt-5">
                           <h6 class="mb-0"><a href="/restaurant_menus" class="text-body"><i
                                 class="fas fa-long-arrow-alt-left me-2"></i>Back to Menu</a></h6>
