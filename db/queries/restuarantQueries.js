@@ -43,7 +43,7 @@ const deleteMenuItem = function(deleteId) {
 }
 
 const editMenuItem = function(menuObj) {
-  const queryParams = [
+  const queryParams1 = [
     2,
     menuObj.editItemName,
     menuObj.editUrl,
@@ -51,8 +51,8 @@ const editMenuItem = function(menuObj) {
     menuObj.editPrice,
     menuObj.editQuantity,
     menuObj.editId,
-    menuObj.editCategory
   ];
+  const queryParams2 = [menuObj.editCategory, menuObj.editId];
   return db.query(
     `UPDATE menu_items
     SET
@@ -63,13 +63,14 @@ const editMenuItem = function(menuObj) {
       price = $5,
       stock = $6
     WHERE id = $7
-    RETURNING *;
-    UPDATE menu_items_categories
+    RETURNING *;`, queryParams1)
+  .then(res => {
+    return db.query(`UPDATE menu_items_categories
     SET
-    categories_id = $8
-    WHERE menu_item_id = $7;
-    `, queryParams
-  )
+      categories_id = (SELECT id FROM categories WHERE name = $1)
+    WHERE menu_item_id = $2
+    RETURNING *;`, queryParams2);
+  })
   .then(res => {
     return res.rows;
   })
@@ -102,7 +103,7 @@ const addMenuItem = function(menuObj) {
     RETURNING *;`, queryParams1)
   .then(() => {
     return db.query(`INSERT INTO menu_items_categories (menu_item_id, categories_id)
-    SELECT (SELECT MAX(id) FROM menu_items), (SELECT id FROM categories WHERE name = $1);`, queryParams2)
+    SELECT (SELECT MAX(id) FROM menu_items), (SELECT id FROM categories WHERE name = $1) RETURNING *;`, queryParams2)
   })
   .then(res => {
     return res.rows;
