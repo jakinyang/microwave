@@ -129,7 +129,7 @@ const basketItemDelete = function(itemId) {
 
 // func in production - not yet operable
 const runCategoryQuery = (catId) => {
-  const queryParams = [2, ]
+  const queryParams = [2, catId]
     const query = `
     SELECT * FROM menu_items
     JOIN menu_items_categories

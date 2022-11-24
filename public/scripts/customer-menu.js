@@ -34,7 +34,7 @@ const menuCardCreator = (dbObject) => {
                 <div class="options">
                 <div class="container add-container" style="margin-right: 0.5rem;">
                 <!--DESCRIPTION-->
-                <button class="options-btn selected" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample${dbObject.id}" aria-expanded="false" aria-controls="collapseExample">
+                <button class="options-btn selected button-radius" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample${dbObject.id}" aria-expanded="false" aria-controls="collapseExample">
  Description  </button>
 
                <div class="collapse" id="collapseExample${dbObject.id}">
@@ -44,7 +44,7 @@ const menuCardCreator = (dbObject) => {
                </div>
                     </div>
                     <div class="container add-container">
-                      <button class="options-btn selected add-btn">Add</button>
+                      <button class="options-btn selected add-btn button-radius">Add</button>
                     </div>
                 </div>
               </div>
