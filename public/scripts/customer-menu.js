@@ -83,7 +83,6 @@ const listMenuItems = () => {
   });
 }
 
-
 // func in production
 const listCategoricalItems = () => {
   $.ajax({
@@ -147,9 +146,12 @@ const listBasketItems = function() {
     console.log('listbaskitems res.menuItems: ', response.menu_items);
     const $basketList = $('#basket-container');
     $basketList.empty();
+    let subTotal = 0; // subtotal thing
     for (const item of response.menu_items) {
       $('#basket-container').append(basketCardCreator(item));
+      subTotal += Number(item.quantity * item.price / 100) // subtotal thing
     }
+    console.log('subtotal: ', subTotal);  // subtotal thing
     console.log('listBasketItems Success!');
   });
 }
@@ -176,6 +178,7 @@ const updateMenuItemBasket = function(data) {
     data
   })
 };
+
 
 // to be called and tested when checkout function is implemented
 const updateMenuItemStock = function(event, callback) {
@@ -220,9 +223,7 @@ $(() => {
     deleteBasketItem(event);
     listBasketItems();
   })
-  .then(res => {
-    console.log('delete function coomplete front to back, res :', res);
-  })
+
   /* $('.edit-quantity-btn').on('submit'), function{
 
   } */
