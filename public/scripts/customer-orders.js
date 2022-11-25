@@ -72,7 +72,7 @@ $(() => {
   listOrderCards();
 
   $('#checkout-area-selector').on('click', '#checkout-button', function() {
-    // sendTextMsg();  // comment back in when testing full functionality of orders page
+    sendTextMsg();
     checkoutBtnPushed();
   })
 });
