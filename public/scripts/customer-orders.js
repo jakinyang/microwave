@@ -37,13 +37,13 @@ const listOrderCards = function () {
     console.log('listOrderCards res.menuItems: ', response.menu_items);
     const $orderList = $('#customer-order-container');
     $orderList.empty();
-    let subTotal = 0; // subtotal thing 
+    let subTotal = 0; // subtotal thing
     for (const item of response.menu_items) {
       $('#customer-order-container').append(orderCardCreator(item));
-      subTotal += item.quantity * item.price / 100 // subtotal thing 
+      subTotal += item.quantity * item.price / 100 // subtotal thing
     }
     const totalInput = subTotal.toFixed(2); // subtotal thing
-    $('#order-grand-total').text(totalInput);  // subtotal thing 
+    $('#order-grand-total').text(totalInput);  // subtotal thing
     console.log('listOrderItems Success!');
   });
 }
@@ -60,7 +60,7 @@ const checkoutBtnPushed = function() {
   $.ajax({
     method: 'POST',
     url: '/api/customers/orders',
-    data: { basketId: 4 };
+    data: { basketId: 4 }
   })
 }
 
