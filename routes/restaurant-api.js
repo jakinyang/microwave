@@ -4,7 +4,12 @@
  *   these routes are mounted onto /api/widgets
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
-
+const dotenv = require('dotenv')
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const sendTo = process.env.MY_PHONE_NUMBER;
+const sendFrom = process.env.TWIL_PHONE_NUMBER;
+const client = require('twilio')(accountSid, authToken);
 const express = require('express');
 const router  = express.Router();
 const db = require('../db/connection');
@@ -29,6 +34,52 @@ router.get('/menu', (req, res) => {
     });
 });
 
+//
+//
+// TWILIO   VVVVVVVVVV
+
+router.post('/orders/twilio/ready', (req, res) => {
+  console.log('Post request received at /order/twilio');
+  client.messages
+    .create({
+      body: 'Your order is ready! please come by at your earliest convenience :)',
+      from: sendFrom,
+      to: sendTo
+  })
+  .then(message => console.log('response from twilio: ', message.sid))
+  .then(console.log('text message send to customer'));
+
+});
+
+router.post('/orders/twilio/processing', (req, res) => {
+  console.log('Post request received at /order/twilio');
+  client.messages
+    .create({
+      body: 'Your order is confirmed, estimated ready time is x minutes from now!',
+      from: sendFrom,
+      to: sendTo
+  })
+  .then(message => console.log('response from twilio: ', message.sid))
+  .then(console.log('text message send to customer'));
+
+});
+
+router.post('/orders/twilio/cancel', (req, res) => {
+  console.log('Post request received at /order/twilio');
+  client.messages
+    .create({
+      body: 'We have cancelled your order. Life sucks sometimes.',
+      from: sendFrom,
+      to: sendTo
+  })
+  .then(message => console.log('response from twilio: ', message.sid))
+  .then(console.log('text message send to customer'));
+
+});
+
+// TWILIO   ^^^^^^^^^^^^^^^^^^^^^^^^^
+//
+//
 
 router.post('/menu', (req, res) => {
   console.log('Post request to /api/restaurants/menu; Request body: ', req.body);
@@ -42,7 +93,6 @@ router.post('/menu', (req, res) => {
   .catch(err => {
     console.log(err)
   });
-
 })
 
 router.post('/menu/delete', (req, res) => {

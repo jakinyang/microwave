@@ -34,10 +34,49 @@ const listRestaurantOrders = function() {
     });
 };
 
+const sendCancelText = () => {
+  console.log('cancel func initiated');
+  $.ajax({
+    method: 'POST',
+    url: '/api/restaurants/orders/twilio/cancel'
+  })
+}
+
+const sendReadyText = () => {
+  console.log('ready func initiated');
+  $.ajax({
+    method: 'POST',
+    url: '/api/restaurants/orders/twilio/ready'
+  })
+}
+
+const sendProcessingText = () => {
+  console.log('processing func initiated');
+  $.ajax({
+    method: 'POST',
+    url: '/api/restaurants/orders/twilio/processing'
+  })
+}
+
 //
 // DOCUMENT READY
 //
 $(() => {
   setInterval(listRestaurantOrders, 5000);
+
+  $('#estimated-time-container').on('click', '#estimated-time', function() {
+    console.log('event listener processing triggered');
+    sendProcessingText()
+  })
+
+  $('#ready-button-container').on('click', 'order-ready', function() {
+    console.log('event listener ready triggered');
+    sendReadyText()
+  })
+
+  $('#cancel-order-container').on('click', 'cancel-order', function() {
+    console.log('event listener cancel triggered');
+    sendCancelText()
+  })
 })
 // webscocket connections
