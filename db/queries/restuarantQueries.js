@@ -158,7 +158,11 @@ const addTimeReady = function(basketId) {
     ON mi.id = mic.menu_item_id
     JOIN categories AS cat
     ON cat.id = mic.categories_id
-    WHERE ;`)
+    JOIN menu_item_baskets AS mib
+    ON mib.menu_item_id = mi.id
+    JOIN baskets as bask
+    ON bask.id = mib.basket_id
+    WHERE bask.time_received IS NOT NULL GROUP BY  ;`)
   }
 
 module.exports = {
