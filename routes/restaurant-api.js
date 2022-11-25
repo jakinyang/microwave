@@ -7,7 +7,7 @@
 const dotenv = require('dotenv')
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
-const sendTo = process.env.MY_PHONE_NUMBER;
+const sendTo = process.env.CUSTOMER_PHONE_NUMBER;
 const sendFrom = process.env.TWIL_PHONE_NUMBER;
 const client = require('twilio')(accountSid, authToken);
 const express = require('express');
