@@ -147,6 +147,19 @@ const runCategoryQuery = (catId) => {
       });
 };
 
+const addTimeReceived = function (basketId) {
+  basketId
+  const queryParams = [basketId];
+  const query = `UPDATE baskets SET time_received = CURRENT_TIMESTAMP WHERE id = $1 RETURNING *;`
+  return db.query(query, queryParams)
+    .then(data => {
+      return data.rows;
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+}
+
 module.exports = {
   addMenuItemBasket,
   getMenuItemBasket,
@@ -154,5 +167,6 @@ module.exports = {
   getBasketItemQuantity,
   runCategoryQuery,
   getMenuItems,
-  decrementBasketItemQuantity
+  decrementBasketItemQuantity,
+  addTimeReceived
 }

@@ -13,7 +13,8 @@ const {
   runCategoryQuery,
   getBasketItemQuantity,
   getMenuItems,
-  decrementBasketItemQuantity
+  decrementBasketItemQuantity,
+  addTimeReceived
  } = require('../db/queries/customerQueries');
 
 // BROWSE
@@ -140,6 +141,15 @@ router.post('/menu/quantity/update', (req, res) => {
 
 router.post('/orders', (req, res) => {
   console.log('POST request received at /api/customers/orders: ', req.body);
+  const basketId = req.body.basketId;
+  addTimeReceived(basketId)
+    .then(response => {
+      res.send(response);
+      console.log('Response from addTimeReceived: ', response);
+    })
+    .catch(err => {
+      console.log('Error from addTimeReceived: ', err.message);
+    })
 })
 
 //DELETE
