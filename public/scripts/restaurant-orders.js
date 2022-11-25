@@ -25,6 +25,7 @@ const listRestaurantOrders = function() {
     url: 'api/restaurants/orders'
   })
     .done((response) => {
+      console.log('listRestaurantOrders called', response);
       const $restaurantOrderList = $('#restaurant-order-container');
       $restaurantOrderList.empty();
       for (const item of response.menu_items) {
@@ -71,7 +72,8 @@ const sendProcessingText = () => {
 // DOCUMENT READY
 //
 $(() => {
-  setInterval(listRestaurantOrders, 5000);
+  listRestaurantOrders();
+  // setInterval(listRestaurantOrders, 5000);
 
   $('#estimated-time-container').on('click', '#estimated-time', function() {
     console.log('event listener processing triggered');
