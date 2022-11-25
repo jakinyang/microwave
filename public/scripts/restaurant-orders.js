@@ -4,10 +4,10 @@ const restaurantOrderCreator = (orderCardObj) => {
               <h6 class="text-black mb-0">${orderCardObj.name}</h6>
             </div>
             <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-            <div>Quantity ${orderCardObj.quantity}</div>
+            <div>Quantity: ${orderCardObj.quantity}</div>
             </div>
             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-              <h6 class="mb-0">$${(Number(orderCardObj.price) / 100).toFixed(2)}</h6>
+              <h6 class="mb-0" style="display: flex;">$${(Number(orderCardObj.price) / 100).toFixed(2)}</h6>
             </div>
             <div id="menu-itm-id" class="d-none">${orderCardObj.id}</div>
             <div id="menu-itm-owner-id" class="d-none">${orderCardObj.restaurant_owner_id}</div>
@@ -18,7 +18,13 @@ const restaurantOrderCreator = (orderCardObj) => {
           </div>`
 };
 
-const listRestaurantOrders = function() {
+const randomNumGenerator = () => {
+  let randomNum = Math.random() * 100;
+  let orderIdNum = Math.floor(randomNum);
+  return orderIdNum
+}
+
+const listRestaurantOrders = function(orderIdNum) {
   $.ajax({
     method: 'GET',
     url: 'api/restaurants/orders'
@@ -27,9 +33,13 @@ const listRestaurantOrders = function() {
       console.log('listRestaurantOrders called', response);
       const $restaurantOrderList = $('#restaurant-order-container');
       $restaurantOrderList.empty();
+      let itmTracker = 0;
+      $('#restaurant-customer-order-number').text(`Customer Order Number: ${orderIdNum}`)
       for (const item of response.menu_items) {
         $('#restaurant-order-container').append(restaurantOrderCreator(item));
+        itmTracker++;
       }
+      $('#order-itm-qunatity-restaurant').text(`${itmTracker} items`);
       console.log('list Restaurant Orders Success!');
     });
 };
@@ -71,20 +81,30 @@ const sendProcessingText = () => {
 // DOCUMENT READY
 //
 $(() => {
-  listRestaurantOrders();
+  const IdOnPageReady = randomNumGenerator()
+  listRestaurantOrders(IdOnPageReady);
   // setInterval(listRestaurantOrders, 5000);
 
-  $('#estimated-time-container').on('click', '#estimated-time', function() {
-    console.log('event listener processing triggered');
-    sendProcessingText()
+
+  $('#estimated-time-container').on('click', '#estimate-time', function(event) {
+    event.preventDefault();
+    sendProcessingText();
+    console.log('Estimated time form submission', event);
   })
 
-  $('#ready-button-container').on('click', '#order-ready', function() {
+  // $('#estimated-time-container').on('submit', '#estimated-time-input', function(event) {
+  //   console.log('event listener processing triggered', event);
+  //   // sendProcessingText()
+  // })
+
+  $('#ready-button-container').on('click', '#order-ready', function(e) {
+    e.preventDefault();
     console.log('event listener ready triggered');
     sendReadyText()
   })
 
-  $('#cancel-order-container').on('click', '#cancel-order', function() {
+  $('#cancel-order-container').on('click', '#cancel-order', function(e) {
+    e.preventDefault();
     console.log('event listener cancel triggered');
     sendCancelText()
   })

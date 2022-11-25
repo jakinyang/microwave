@@ -159,6 +159,18 @@ const addTimeReceived = function (basketId) {
     });
 }
 
+const getBasketStatus = function (basketId) {
+  const queryParams = [basketId];
+  const query = `SELECT * FROM baskets WHERE id = $1;`
+  return db.query(query, queryParams)
+    .then(data => {
+      return data.rows;
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+}
+
 module.exports = {
   addMenuItemBasket,
   getMenuItemBasket,
@@ -167,5 +179,6 @@ module.exports = {
   runCategoryQuery,
   getMenuItems,
   decrementBasketItemQuantity,
-  addTimeReceived
+  addTimeReceived,
+  getBasketStatus
 }

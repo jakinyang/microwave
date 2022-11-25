@@ -8,6 +8,7 @@
   * Features
   * MVP/MVD
 * Notes
+* Final Scrum Notes
 
 
 ## Links
@@ -299,3 +300,55 @@ app.get('/login/:id', (req, res) => {
 ```jsx
 planning/home_page.png
 ```
+
+### Final Scrum
+```md
+####Scrum: Final Day
+
+1. Restaurant Menu
+[x] Make Microwave redirect to login page (1)
+[x] Delete stock images (2)
+[] Problem with category selection in new item form (3)
+[x] Button colours for customer order, add items - not blue, green or grey (reference the picture) (1)
+[x] Black buttons for edit and delete should match shape of the customer order buttons - keep the colour (1)
+[x] More space between the nav bar at top of scroll state (2)
+[x] Nav bar too thicc? (2)
+[x] spacing of the nav bar buttons is off (1)
+[x] Dynamic sizing of the nav bar elements (2)
+[x] Edit Menu Page text is not visible (1)
+[x] Header user icon should be the users names (1)
+
+2. Restaurant Orders
+[x] Formatting item quantity display (1)
+[x] Total item count needs to be dynamic needs to come down more (1)
+[] Making Customer Order Number and total item count a part of the dynamically rendered elements (1)
+[] Subtotal text is too large, alignment is off, add dollar sign (1)
+[] Get rid of order ready text(2)
+[] Buttons for the text buttons should be a consistent colour (black or green) and shape (1)
+[] Buttons in the header should also match style and colour (1)
+[] Header user icon should be the users names (1)
+[] Header hamburger button should change
+
+3. Customer Menu
+[] Make offcanvas for basket be at least 30 vw (2)
+[] Basket price formatting (3)
+[] Nav bar too thick (1)
+[] All the buttons need to be coloured and styled consistently (1)
+[] Button for all foodtypes to display all foodtypes (1)
+[] Category buttons should be centered (2)
+[] "What are you craving" should also be center aligned (1)
+[] Placing the category buttons in the header (2)
+[] Fix description box (3)
+
+4. Customer Order
+[] Rendering the progress bars on cue with the order state (1)
+[] Change progress bar styling and colour (1)
+[] Make it hidden until cue (1)
+[] Buttons should be consistently styled
+ 
+
+
+
+
+
+

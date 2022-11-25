@@ -14,7 +14,8 @@ const {
   getBasketItemQuantity,
   getMenuItems,
   decrementBasketItemQuantity,
-  addTimeReceived
+  addTimeReceived,
+  getBasketStatus
  } = require('../db/queries/customerQueries');
 
 // BROWSE
@@ -65,12 +66,26 @@ router.get('/menu/basket', (req, res) => {
   });
 })
 
+router.get('/status', (req, res) => {
+  console.log("GET request received at /api/customers/status");
+  const basketId = 4;
+  getBasketStatus(basketId)
+  .then(basket => {
+    console.log('basketItem', basket)
+    res.json({ basket });
+  })
+  .catch(err => {
+    res.status(500)
+    .json({ error: err.message });
+  });
+})
+
 // ADD - TWILIO MESSAGE
 router.post('/orders/twilio', (req, res) => {
   console.log('Post request received at /order/twilio');
   client.messages
     .create({
-      body: 'Gravy trains',
+      body: 'Order confirmed ',
       from: sendFrom,
       to: sendTo
   })

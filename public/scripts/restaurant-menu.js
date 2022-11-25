@@ -45,10 +45,10 @@ const itemCardCreator = (dbObject) => {
               </div>
               <div class="options">
                 <div class="container add-container">
-                  <button class="options-btn selected delete-btn">Delete</button>
+                  <button class="delete-btn">Delete</button>
                 </div>
                 <div class="container add-container">
-                  <button class="options-btn selected edit-btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightEdit"
+                  <button class="edit-btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightEdit"
                   aria-controls="offcanvasRight">Edit</button>
                 </div>
               </div>
@@ -96,7 +96,7 @@ const editCurrentItem = (itemInfo) => {
     <h4>Stock Quantity</h4>
     <input name="editNewQuantity" type="number" placeholder="${itemInfo.stock}" class="form-control" placeholder="stock">
   </div>
-  <button type="submit" class="btn btn-primary" id="newItem" style="margin-top: 2rem;">Submit</button>
+  <button type="submit" class="" id="newItem" style="margin-top: 2rem;">Submit</button>
 </form>`
 };
 

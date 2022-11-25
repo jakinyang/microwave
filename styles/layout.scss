@@ -6,6 +6,12 @@
 // }
 :root {
   --color-green: #06c167;
+  --color-black: rgb(58, 65, 69);
+  --color-white: rgb(250, 241, 219);
+  --color-light-green: rgb(95, 191, 112);
+  --color-pink: rgb(241, 151, 113);
+  --color-yellow: rgb(244, 208, 129);
+  --color-purple: rgb(146, 128, 200);
 }
 
 * {
@@ -20,15 +26,11 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-
-  background: rgb(163, 208, 219);
-  background: #ffffcc;
-  .button-radius {
-    border-radius: 1.8rem;
-  }
+  background-color: var(--color-white);
 }
 .container {
   width: calc(100% - 120px);
   margin: auto;
 }
 
+// var(--color-white)

@@ -1,6 +1,6 @@
 
 const orderCardCreator = (orderObj) => {
-                return `<div class="row mb-4 d-flex justify-content-between align-items-center">
+  return `<div class="row mb-4 d-flex justify-content-between align-items-center">
                           <div class="col-md-2 col-lg-2 col-xl-2">
                             <img
                               src="${orderObj.image_url}"
@@ -32,20 +32,20 @@ const listOrderCards = function () {
     method: 'GET',
     url: '/api/customers/menu/basket'
   })
-  .done((response) => {
-    console.log('response: ', response);
-    console.log('listOrderCards res.menuItems: ', response.menu_items);
-    const $orderList = $('#customer-order-container');
-    $orderList.empty();
-    let subTotal = 0; // subtotal thing
-    for (const item of response.menu_items) {
-      $('#customer-order-container').append(orderCardCreator(item));
-      subTotal += item.quantity * item.price / 100 // subtotal thing
-    }
-    const totalInput = subTotal.toFixed(2); // subtotal thing
-    $('#order-grand-total').text(totalInput);  // subtotal thing
-    console.log('listOrderItems Success!');
-  });
+    .done((response) => {
+      console.log('response: ', response);
+      console.log('listOrderCards res.menuItems: ', response.menu_items);
+      const $orderList = $('#customer-order-container');
+      $orderList.empty();
+      let subTotal = 0; // subtotal thing
+      for (const item of response.menu_items) {
+        $('#customer-order-container').append(orderCardCreator(item));
+        subTotal += item.quantity * item.price / 100 // subtotal thing
+      }
+      const totalInput = subTotal.toFixed(2); // subtotal thing
+      $('#order-grand-total').text(totalInput);  // subtotal thing
+      console.log('listOrderItems Success!');
+    });
 }
 
 // ajax req for cust.api to trigger sending text message
@@ -56,7 +56,7 @@ const sendTextMsg = () => {
   })
 }
 
-const checkoutBtnPushed = function() {
+const checkoutBtnPushed = function () {
   $.ajax({
     method: 'POST',
     url: '/api/customers/orders',
@@ -64,15 +64,46 @@ const checkoutBtnPushed = function() {
   })
 }
 
+const retrieveOrderStatus = function () {
+  console.log('Retrieve order status called!');
+  $.ajax({
+    method: 'GET',
+    url: 'api/customers/status'
+  })
+    .done(response => {
+      const basket = response.basket[0];
+      if (basket.time_ready) {
+        $('#progress-message-bar').text(`Order ready!`);
+        $('.progress-bar').attr('style', 'width: 100%');
+      }
+      if (basket.time_processing) {
+        $('#progress-message-bar').text(`Order processing...`);
+        $('.progress-bar').attr('style', 'width: 50%');
+      }
+    })
+    .catch(err => {
+      console.log(err.message);
+    })
+}
+
+
 //
 // DOCUMENT READY \\
 //
 $(() => {
   console.log('document.ready')
   listOrderCards();
+  retrieveOrderStatus();
 
-  $('#checkout-area-selector').on('click', '#checkout-button', function() {
-    sendTextMsg();
+  $('#checkout-area-selector').on('click', '#checkout-button', function () {
+    const partialContainer = document.getElementById('processsing-partial-container');
+
+   $('#processing-partial-container').attr('class', 'd-none');
+    // sendTextMsg();
     checkoutBtnPushed();
+    const partialsHide = document.getElementById('checkout-partials-container');
+    partialsHide.style.display = 'none';
+    partialContainer.style.display = 'block';
   })
+  setInterval(retrieveOrderStatus(), 5000)
 });

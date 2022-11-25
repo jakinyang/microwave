@@ -92,7 +92,7 @@ router.post('/orders/twilio/processing', (req, res) => {
     });
   client.messages
     .create({
-      body: 'Your order is confirmed, estimated ready time is x minutes from now!',
+      body: 'Your order is confirmed, estimated ready time is 30 minutes from now!',
       from: sendFrom,
       to: sendTo
   })
