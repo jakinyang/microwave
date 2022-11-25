@@ -99,7 +99,7 @@ $(() => {
     const partialContainer = document.getElementById('processsing-partial-container');
 
    $('#processing-partial-container').attr('class', 'd-none');
-    // sendTextMsg();
+    sendTextMsg();
     checkoutBtnPushed();
     const partialsHide = document.getElementById('checkout-partials-container');
     partialsHide.style.display = 'none';
