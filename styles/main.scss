@@ -4,7 +4,7 @@ header {
   margin-bottom: 2rem;
   flex-direction: column;
   align-items: center;
-  height: 20%;
+  height: 30%;
   width: 100%;
   background: rgb(255, 255, 255);
   position: fixed;
@@ -29,7 +29,7 @@ header {
     justify-content: space-between;
   }
 
-  
+
   .currentDetails,
   .searchBar {
     display: flex;
