@@ -71,7 +71,7 @@ const sendProcessingText = () => {
 // DOCUMENT READY
 //
 $(() => {
-  // setInterval(listRestaurantOrders, 5000);
+  setInterval(listRestaurantOrders, 5000);
 
   $('#estimated-time-container').on('click', '#estimated-time', function() {
     console.log('event listener processing triggered');

@@ -20,7 +20,8 @@ const {
   getAllItems,
   addTimeProcessing,
   addTimeReady,
-  cancelBasket
+  cancelBasket,
+  getReceivedOrders
 } = require('../db/queries/restuarantQueries');
 
 router.get('/menu', (req, res) => {
@@ -39,6 +40,16 @@ router.get('/menu', (req, res) => {
 
 router.get('/orders', (req, res) => {
   console.log('GET request received for /api/restaurants/orders!');
+  getReceivedOrders()
+  .then(data => {
+    const menu_items = data;
+    res.json({ menu_items });
+  })
+  .catch(err => {
+    res
+      .status(500)
+      .json({ error: err.message });
+  });
 })
 
 //

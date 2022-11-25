@@ -152,17 +152,16 @@ const addTimeReady = function(basketId) {
   }
 
   const getReceivedOrders = function() {
-    return db.query(`SELECT mi.*, cat.name AS category
-    FROM menu_items AS mi
-    JOIN menu_items_categories AS mic
-    ON mi.id = mic.menu_item_id
-    JOIN categories AS cat
-    ON cat.id = mic.categories_id
-    JOIN menu_item_baskets AS mib
-    ON mib.menu_item_id = mi.id
-    JOIN baskets as bask
+    return db.query(` SELECT bask.id AS basket_id, mi.*, COUNT(mi.id) AS quantity
+    FROM menu_item_baskets AS mib
+    JOIN menu_items AS mi
+    ON mi.id = mib.menu_item_id
+    JOIN baskets AS bask
     ON bask.id = mib.basket_id
-    WHERE bask.time_received IS NOT NULL GROUP BY  ;`)
+    WHERE bask.time_received IS NOT NULL
+    GROUP BY bask.id, mi.id
+    ORDER BY bask.time_received;
+    `)
   }
 
 module.exports = {
