@@ -165,6 +165,12 @@ const addTimeReady = function(basketId) {
     GROUP BY bask.id, mi.id
     ORDER BY bask.time_received;
     `)
+    .then(data => {
+      return data.rows;
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
   }
 
 module.exports = {

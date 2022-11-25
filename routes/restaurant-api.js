@@ -43,6 +43,7 @@ router.get('/orders', (req, res) => {
   getReceivedOrders()
   .then(data => {
     const menu_items = data;
+    console.log(data);
     res.json({ menu_items });
   })
   .catch(err => {

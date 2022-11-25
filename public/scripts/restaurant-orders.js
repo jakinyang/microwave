@@ -1,14 +1,13 @@
 const restaurantOrderCreator = (orderCardObj) => {
    return `<div class="row mb-4 d-flex justify-content-between align-items-center">
             <div class="col-md-3 col-lg-3 col-xl-3">
-              <h6 class="text-muted">${orderCardObj.category}</h6>
               <h6 class="text-black mb-0">${orderCardObj.name}</h6>
             </div>
             <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-            <div>${orderCardObj.quantity}</div>
+            <div>Quantity ${orderCardObj.quantity}</div>
             </div>
             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-              <h6 class="mb-0">$${orderCardObj.price}</h6>
+              <h6 class="mb-0">$${(Number(orderCardObj.price) / 100).toFixed(2)}</h6>
             </div>
             <div id="menu-itm-id" class="d-none">${orderCardObj.id}</div>
             <div id="menu-itm-owner-id" class="d-none">${orderCardObj.restaurant_owner_id}</div>
@@ -25,6 +24,7 @@ const listRestaurantOrders = function() {
     url: 'api/restaurants/orders'
   })
     .done((response) => {
+      console.log('listRestaurantOrders called', response);
       const $restaurantOrderList = $('#restaurant-order-container');
       $restaurantOrderList.empty();
       for (const item of response.menu_items) {
@@ -71,8 +71,13 @@ const sendProcessingText = () => {
 // DOCUMENT READY
 //
 $(() => {
+<<<<<<< HEAD
   listRestaurantOrders()
   setInterval(listRestaurantOrders(), 5000);
+=======
+  listRestaurantOrders();
+  // setInterval(listRestaurantOrders, 5000);
+>>>>>>> ee1d898ce223e38eed6addb0df85c64982f62f5e
 
   $('#estimated-time-container').on('click', '#estimated-time', function() {
     console.log('event listener processing triggered');
