@@ -38,5 +38,6 @@ const listRestaurantOrders = function() {
 // DOCUMENT READY
 //
 $(() => {
-  
+  setInterval(listRestaurantOrders, 5000);
 })
+// webscocket connections
