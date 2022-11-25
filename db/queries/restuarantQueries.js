@@ -113,11 +113,61 @@ const addMenuItem = function(menuObj) {
   });
 }
 
+const addTimeProcessing = function(basketId) {
+  const queryParams = [basketId];
+  const query = `UPDATE baskets SET time_processing = CURRENT_TIMESTAMP WHERE id = $1 RETURNING *;`
+  return db.query(query, queryParams)
+    .then(data => {
+      return data.rows;
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+  };
+
+const addTimeReady = function(basketId) {
+  console.log('addTimeReady called!');
+  const queryParams = [basketId];
+  const query = `UPDATE baskets SET time_ready = CURRENT_TIMESTAMP WHERE id = $1 RETURNING *;`
+  return db.query(query, queryParams)
+    .then(data => {
+      return data.rows;
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+  };
+
+  const cancelBasket = function(basketId) {
+    const queryParams = [basketId];
+    const query = `DELETE FROM menu_item_baskets
+    WHERE basket_id = $1 RETURNING *;`
+    return db.query(query, queryParams)
+    .then(data => {
+      return data.rows;
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+  }
+
+  const getReceivedOrders = function() {
+    return db.query(`SELECT mi.*, cat.name AS category
+    FROM menu_items AS mi
+    JOIN menu_items_categories AS mic
+    ON mi.id = mic.menu_item_id
+    JOIN categories AS cat
+    ON cat.id = mic.categories_id
+    WHERE ;`)
+  }
 
 module.exports = {
   getOrders,
   addMenuItem,
   deleteMenuItem,
   editMenuItem,
-  getAllItems
+  getAllItems,
+  addTimeProcessing,
+  addTimeReady,
+  cancelBasket
 }

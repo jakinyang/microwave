@@ -17,7 +17,10 @@ const {
   addMenuItem,
   deleteMenuItem,
   editMenuItem,
-  getAllItems
+  getAllItems,
+  addTimeProcessing,
+  addTimeReady,
+  cancelBasket
 } = require('../db/queries/restuarantQueries');
 
 router.get('/menu', (req, res) => {
@@ -34,12 +37,25 @@ router.get('/menu', (req, res) => {
     });
 });
 
+router.get('/orders', (req, res) => {
+  console.log('GET request received for /api/restaurants/orders!');
+})
+
 //
 //
 // TWILIO   VVVVVVVVVV
 
 router.post('/orders/twilio/ready', (req, res) => {
   console.log('Post request received at /order/twilio');
+  const basketId = req.body.basketId;
+  addTimeReady(basketId)
+    .then(response => {
+      res.send(response);
+      console.log('Response from addTimeReady success: ', response);
+    })
+    .catch(err => {
+      console.log('Error from addTimeReady', err.message);
+    });
   client.messages
     .create({
       body: 'Your order is ready! please come by at your earliest convenience :)',
@@ -53,6 +69,15 @@ router.post('/orders/twilio/ready', (req, res) => {
 
 router.post('/orders/twilio/processing', (req, res) => {
   console.log('Post request received at /order/twilio');
+  const basketId = req.body.basketId;
+  addTimeProcessing(basketId)
+    .then(response => {
+      res.send(response);
+      console.log('Response from addTimeProcessing success: ', response);
+    })
+    .catch(err => {
+      console.log('Error from addTimeProcessing', err.message);
+    });
   client.messages
     .create({
       body: 'Your order is confirmed, estimated ready time is x minutes from now!',
@@ -66,6 +91,15 @@ router.post('/orders/twilio/processing', (req, res) => {
 
 router.post('/orders/twilio/cancel', (req, res) => {
   console.log('Post request received at /order/twilio');
+  const basketId = req.body.basketId;
+  cancelBasket(basketId)
+  .then(response => {
+    res.send(response);
+    console.log('Response from cancelBasket success: ', response);
+  })
+  .catch(err => {
+    console.log('Error from cancelBasket', err.message);
+  });
   client.messages
     .create({
       body: 'We have cancelled your order. Life sucks sometimes.',

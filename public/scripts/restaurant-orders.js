@@ -16,7 +16,7 @@ const restaurantOrderCreator = (orderCardObj) => {
             <div class="col-md-1 col-lg-1 col-xl-1 text-end">
               <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
             </div>
-          </div>`  
+          </div>`
 };
 
 const listRestaurantOrders = function() {
@@ -36,25 +36,34 @@ const listRestaurantOrders = function() {
 
 const sendCancelText = () => {
   console.log('cancel func initiated');
+  const basketId = 4;
+  const data = { basketId };
   $.ajax({
     method: 'POST',
-    url: '/api/restaurants/orders/twilio/cancel'
+    url: '/api/restaurants/orders/twilio/cancel',
+    data
   })
 }
 
 const sendReadyText = () => {
   console.log('ready func initiated');
+  const basketId = 4;
+  const data = { basketId };
   $.ajax({
     method: 'POST',
-    url: '/api/restaurants/orders/twilio/ready'
+    url: '/api/restaurants/orders/twilio/ready',
+    data
   })
 }
 
 const sendProcessingText = () => {
+  const basketId = 4;
+  const data = { basketId };
   console.log('processing func initiated');
   $.ajax({
     method: 'POST',
-    url: '/api/restaurants/orders/twilio/processing'
+    url: '/api/restaurants/orders/twilio/processing',
+    data
   })
 }
 
