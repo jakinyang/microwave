@@ -187,7 +187,7 @@ const listBasketItems = function () {
   });
 }
 
-const addToBasket = function () {
+const filterMenuItems = function (categoryId) {
   /*
   Front end script only
   Grab item information - generate basket item card
@@ -195,6 +195,12 @@ const addToBasket = function () {
   If there is a sub-total information section:
   this function should dynamically update that
   */
+ const data = { categoryId };
+  return $.ajax({
+    method: 'POST',
+    url: '/api/customers/menu/categories',
+    data
+  })
 };
 
 const updateMenuItemBasket = function (data) {
@@ -275,8 +281,23 @@ $(() => {
         console.log('updateBasketItemQuantity success; reloading listBasketItems');
         listBasketItems();
       });
-
-
-
+    })
+  $('.category-filter').on('click', function(event) {
+    const categoryId = $(event.target).data('category');
+    console.log(categoryId);
+    console.log(`Category button for ${$(event.target).data('category')} (${$(event.target).attr('id')}) fired!`)
+    filterMenuItems(categoryId)
+      .then(res => {
+        console.log('response from filterMenuItems!', res);
+        const $menuList = $('.listings-grid');
+        $menuList.empty();
+        for (const item of res.menu_items) {
+          $('.listings-grid').append(menuCardCreator(item));
+        }
+        console.log('filterMenuItems Success!');
+      })
+      .catch(err => {
+        console.log('Error from filterMenuItems!', err.message);
+      })
   })
 })
