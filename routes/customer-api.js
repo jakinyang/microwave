@@ -136,14 +136,10 @@ router.post('/menu/quantity/update', (req, res) => {
 
     }
   }
-  /* alterMenuItemStock(newStockObject)
-  .then(response => {
-    console.log('result from cust.api stock func :', response);
-    res.send(response);
-  })
-  .catch(err => {
-    console.log(err)
-  }); */
+})
+
+router.post('/orders', (req, res) => {
+  console.log('POST request received at /api/customers/orders: ', req.body);
 })
 
 //DELETE
