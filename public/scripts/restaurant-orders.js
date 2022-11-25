@@ -107,6 +107,7 @@ $(() => {
     e.preventDefault();
     console.log('event listener cancel triggered');
     sendCancelText()
+    listRestaurantOrders('0');
   })
 })
 // webscocket connections
