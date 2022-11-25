@@ -56,6 +56,14 @@ const sendTextMsg = () => {
   })
 }
 
+const checkoutBtnPushed = function() {
+  $.ajax({
+    method: 'POST',
+    url: '/api/customers/orders',
+    data: { basketId: 4 };
+  })
+}
+
 //
 // DOCUMENT READY \\
 //
@@ -65,5 +73,6 @@ $(() => {
 
   $('#checkout-area-selector').on('click', '#checkout-button', function() {
     // sendTextMsg();  // comment back in when testing full functionality of orders page
+    checkoutBtnPushed();
   })
 });
