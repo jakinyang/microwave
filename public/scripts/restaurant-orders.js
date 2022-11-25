@@ -25,11 +25,18 @@ const listRestaurantOrders = function() {
     url: 'api/restaurants/orders'
   })
     .done((response) => {
-      const $restaurantOrderList = $('.listings-grid');
+      const $restaurantOrderList = $('#restaurant-order-container');
       $restaurantOrderList.empty();
       for (const item of response.menu_items) {
-        $('.listings-grid').append(menuCardCreator(item));
+        $('#restaurant-order-container').append(restaurantOrderCreator(item));
       }
       console.log('list Restaurant Orders Success!');
     });
 };
+
+//
+// DOCUMENT READY
+//
+$(() => {
+  
+})
