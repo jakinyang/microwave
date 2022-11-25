@@ -187,7 +187,7 @@ const listBasketItems = function () {
   });
 }
 
-const addToBasket = function () {
+const filterMenuItems = function () {
   /*
   Front end script only
   Grab item information - generate basket item card
@@ -195,6 +195,7 @@ const addToBasket = function () {
   If there is a sub-total information section:
   this function should dynamically update that
   */
+
 };
 
 const updateMenuItemBasket = function (data) {
@@ -275,8 +276,8 @@ $(() => {
         console.log('updateBasketItemQuantity success; reloading listBasketItems');
         listBasketItems();
       });
-
-
-
+    })
+  $('.category-filter').on('click', function(event) {
+    console.log(`Category button for ${$(event.target).data('category')} (${$(event.target).attr('id')}) fired!`)
   })
 })
