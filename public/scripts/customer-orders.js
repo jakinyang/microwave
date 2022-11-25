@@ -87,6 +87,11 @@ const retrieveOrderStatus = function () {
 }
 
 
+const hidePartials = function() {const partialsHide = document.getElementById('checkout-partials-container');
+const partialContainer = document.getElementById('processsing-partial-container');
+    partialContainer.style.display = 'block';
+    partialsHide.style.display = 'none';}
+
 //
 // DOCUMENT READY \\
 //
@@ -96,14 +101,13 @@ $(() => {
   retrieveOrderStatus();
 
   $('#checkout-area-selector').on('click', '#checkout-button', function () {
-    const partialContainer = document.getElementById('processsing-partial-container');
-
    $('#processing-partial-container').attr('class', 'd-none');
     sendTextMsg();
     checkoutBtnPushed();
-    const partialsHide = document.getElementById('checkout-partials-container');
-    partialsHide.style.display = 'none';
-    partialContainer.style.display = 'block';
+    // const partialsHide = document.getElementById('checkout-partials-container');
+    // partialContainer.style.display = 'block';
+    // partialsHide.style.display = 'none';
+    hidePartials();
   })
-  setInterval(retrieveOrderStatus(), 5000)
+  setInterval(retrieveOrderStatus(), 5000);
 });
