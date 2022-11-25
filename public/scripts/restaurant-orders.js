@@ -71,13 +71,8 @@ const sendProcessingText = () => {
 // DOCUMENT READY
 //
 $(() => {
-<<<<<<< HEAD
-  listRestaurantOrders()
-  setInterval(listRestaurantOrders(), 5000);
-=======
   listRestaurantOrders();
   // setInterval(listRestaurantOrders, 5000);
->>>>>>> ee1d898ce223e38eed6addb0df85c64982f62f5e
 
   $('#estimated-time-container').on('click', '#estimated-time', function() {
     console.log('event listener processing triggered');
