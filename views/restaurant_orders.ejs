@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
 
+
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
   <script defer src="/scripts/restaurant-orders.js"></script>
@@ -119,6 +120,11 @@
                         </div>
                         <hr class="my-4">
                       </div>
+                      <div class="d-flex">
+                        <div class="p-2 w-100 bd-highlight"></div>
+                        <div class="p-2 flex-shrink-1">Subtotal: </div>
+                        <div id="order-grand-total" class="display-6">$20</div>
+                      </div>
 
                         <div class="pt-5">
                           <h6 class="mb-0"><a href="/restaurant_menus" class="text-body"><i
@@ -129,7 +135,7 @@
                     <div class="col-lg-4 bg-grey">
                       <div class="p-5">
                         <h3 class="fw-bold mb-5 mt-2 pt-1">Order Status</h3>
-                        
+
 
                         <!--Estimated Time Input-->
                         <div class="d-flex justify-content-between mb-4">
