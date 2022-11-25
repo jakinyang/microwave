@@ -27,9 +27,13 @@ const listRestaurantOrders = function() {
       console.log('listRestaurantOrders called', response);
       const $restaurantOrderList = $('#restaurant-order-container');
       $restaurantOrderList.empty();
+      let subTotal = 0; // subtotal thing
       for (const item of response.menu_items) {
         $('#restaurant-order-container').append(restaurantOrderCreator(item));
+        subTotal += item.quantity * item.price / 100 // subtotal thing
       }
+      const totalInput = subTotal.toFixed(2); // subtotal thing
+      $('#rest-order-grand-total').text(totalInput);  // subtotal thing
       console.log('list Restaurant Orders Success!');
     });
 };
