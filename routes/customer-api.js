@@ -33,11 +33,13 @@ router.get('/menu', (req, res) => {
 
 //BROWSE (FILTERED)
 // in production, not yet operable
-router.get('/menu/categories', (req, res) => {
-
-  runCategoryQuery()
+router.post('/menu/categories', (req, res) => {
+  const categoryId = req.body.categoryId;
+  console.log('POST request received to /menu/categories; req.body: ', categoryId)
+  runCategoryQuery(categoryId)
     .then(data => {
-      const menu_items = data.rows;
+      console.log(data);
+      const menu_items = data;
       res.json({ menu_items });
     })
     .catch(err => {
@@ -59,7 +61,7 @@ router.get('/menu/basket', (req, res) => {
   .catch(err => {
     res.status(500)
     .json({ error: err.message });
-  })
+  });
 })
 
 // ADD - TWILIO MESSAGE

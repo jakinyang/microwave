@@ -130,14 +130,21 @@ const basketItemDelete = function(itemId) {
 const runCategoryQuery = (catId) => {
   const queryParams = [2, catId]
     const query = `
-    SELECT * FROM menu_items
-    JOIN menu_items_categories
-    ON menu_items.id = menu_items_categories.menu_item_id
-    JOIN categories ON categories.id = menu_items_categories.categories_id
-    WHERE restaurant_owner_id = $1
-    AND categories.id = $2
-    ;`;
-    db.query(query)
+    SELECT mi.*, cat.name AS category
+      FROM menu_items AS mi
+      JOIN menu_items_categories AS mic
+      ON mi.id = mic.menu_item_id
+      JOIN categories AS cat
+      ON cat.id = mic.categories_id
+      WHERE restaurant_owner_id = $1
+      AND cat.id = $2;`
+   return db.query(query, queryParams)
+      .then(data => {
+        return data.rows;
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
 };
 
 module.exports = {
