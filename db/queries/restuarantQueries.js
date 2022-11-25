@@ -140,8 +140,11 @@ const addTimeReady = function(basketId) {
 
   const cancelBasket = function(basketId) {
     const queryParams = [basketId];
-    const query = `DELETE FROM menu_item_baskets
-    WHERE basket_id = $1 RETURNING *;`
+    const query = `UPDATE baskets
+    SET time_received = NULL,
+    time_processing = NULL,
+    time_ready = NULL
+    WHERE id = $1 RETURNING *;`
     return db.query(query, queryParams)
     .then(data => {
       return data.rows;
